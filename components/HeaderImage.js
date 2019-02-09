@@ -8,15 +8,18 @@ render() {
     return (
         <View style={styles.headerCovntainer}>
             <View style={styles.roundImage}> 
-              {/* <MaterialCommunityIcons name="dog" size={30} /> */}
               <Image style={styles.image} source={require('../assets/Screenshot_20170626-212646.png')}/>
               <Text style={styles.headerText}>  BANJO</Text>
             </View>
+
+            {/* <View style={styles.roundImage2}> 
+              <MaterialCommunityIcons style={styles.headerIcon} name="dog" size={50} />
+              <Text style={styles.headerText2}> BANJO</Text>
+            </View> */}
         </View>
     )
 }
 }
-
 
 const styles = StyleSheet.create({
     headerContainer: {
@@ -31,8 +34,15 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center'
     },
+    headerIcon:{
+        marginTop: 20,
+    },
+    headerText2: {
+        marginTop: 15,
+        alignItems:'center',
+        justifyContent:'center'
+    },
     image: {
-        // resizeMode: 'contain',
         resizeMode: "stretch",
         height: 60,
         width: 60,
@@ -42,6 +52,14 @@ const styles = StyleSheet.create({
         height: 62,
         width: 62,
         borderRadius: 31,
+    },
+    roundImage2: {
+        height: 62,
+        width: 62,
+        borderRadius: 31,
+        borderWidth:1,
+        alignItems:'center',
+        justifyContent:'center',
     }
 });
   

@@ -53,12 +53,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#fff',
   },
-  topNavContainer: {
-    padding: 3,
-    fontSize: 30,
-    justifyContent:'center',
-    height: '10%',
-  },
   inputContainer: {
     justifyContent:'center',
     alignItems:'center',
@@ -67,10 +61,10 @@ const styles = StyleSheet.create({
     padding: 3,
     fontSize: 30,
     justifyContent:'center',
-    height: '15%',
+    height: '13%',
   },
   contentsContainer: {
-    height: '80%',
+    height: '85%',
     alignItems:'center',
     marginTop: 20
   },

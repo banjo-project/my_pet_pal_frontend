@@ -20,68 +20,59 @@ export default class PetInfoScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.contentsContainer}>
+        <Text style={styles.titleText}>Create your pet's profile</Text>
           <View style={styles.inputContainer}>
-              <Text style={styles.text}>What's your pet's name?</Text>
+            <View style={styles.inputContainer2}>
+              <Text style={styles.text}>Breed       </Text>
               <TextInput style={styles.textInput}></TextInput>
-              <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
+            </View>
+            <View style={styles.inputContainer2}>
+              <Text style={styles.text}>BirthDay  </Text>
+              <TextInput style={styles.textInput}></TextInput>
+            </View>
+            <View style={styles.inputContainer2}>
+              <Text style={styles.text}>Sex           </Text>
+              <TextInput style={styles.textInput}></TextInput>
+            </View>
           </View>
-        </View>
+          <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  roundImage: {
-    alignItems: 'center',
-    borderWidth:1,
-    borderColor:'rgba(0,0,0,0.8)',
-    width:70,
-    height:70,
-    borderRadius:100,
-    alignItems:'center',
-    justifyContent:'center',
-  },
   container: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#fff',
-  },
-  headerContainer:{
+    padding: 10,
     alignItems:'center',
-    justifyContent:'center',
-  },
-  topNavContainer: {
-    padding: 3,
-    fontSize: 30,
-    justifyContent:'center',
-    height: '10%',
   },
   inputContainer: {
-    justifyContent:'center',
+    width: '80%',
+    justifyContent: "center",
     alignItems:'center',
   },
-  bottomNavContainer: {
-    padding: 3,
-    fontSize: 30,
-    justifyContent:'center',
-    height: '15%',
+  inputContainer2: {
+    flexDirection: "row",
   },
-  contentsContainer: {
-    height: '80%',
+  titleText: {
+    marginTop: 30,
+    marginBottom: 30,
+    fontSize: 25,
+    fontWeight: 'bold',
     alignItems:'center',
-    marginTop: 20
-
+    justifyContent: "center",
   },
   text: {
     marginTop: 20,
     fontSize: 20,
   },
   textInput: {
-    margin: 10,
-    height: 40, 
-    fontSize: 30,
+    margin: 15,
+    height: 30, 
+    fontSize: 25,
     width: 200,
     borderColor: 'gray', 
     borderWidth: 1
