@@ -1,61 +1,45 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import NavigationBar from 'react-native-navbar';
-import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import BottomNav from './BottomNav'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Button } from 'react-native-elements';
 
 export default class HomeScreen extends React.Component {
 
-  leftButtonConfig = {
-    title: 'Next',
-    handler: () => alert('hello!'),
-  };
-  
-  rightButtonConfig = {
-    title: 'Next',
-    handler: () => this.props.navigation.navigate('Details'),
-  };
+  state = {
+    openNameInput: false
+  }
 
-  titleConfig = {
-    title: 'Banjo',
-  };
+  handleAddName = () => {
+      this.setState({
+          openNameInput: true
+      })
+  }
+
+  handleNext = () => this.props.navigation.navigate('PetInfoPage')
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.topNavContainer}>
-          <NavigationBar 
-            title={this.titleConfig}
-            leftButton={this.leftButtonConfig}
-            rightButton={this.rightButtonConfig} />
-        </View>
         <View style={styles.contentsContainer}>
           <TouchableOpacity style={styles.roundImage}>
           <MaterialCommunityIcons name="dog" size={60}/>
           <Text style={styles.roundImageText}>+ Pet Image</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={styles.text}>Add Pet</Text>
-          </TouchableOpacity>
+          {!this.state.openNameInput? (
+            <TouchableOpacity onPress={this.handleAddName}>
+              <Text style={styles.text}>Add Pet</Text>
+            </TouchableOpacity>
+          ): (
+              <View style={styles.inputContainer}>
+                  <Text style={styles.text}>What's your pet's name?</Text>
+                  <TextInput style={styles.textInput}></TextInput>
+                  <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
+              </View>
+          )} 
         </View>
         <View style={styles.bottomNavContainer}>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <TouchableOpacity style={styles.bottomNavItem} >
-              <MaterialIcons name="face" size={40} />
-              <Text>Humans</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.bottomNavItem}>
-              <FontAwesome name="calendar" size={40} />
-              <Text>Calendar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.bottomNavItem}>
-              <FontAwesome name="heartbeat" size={40} />
-              <Text>Stats</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.bottomNavItem}>
-              <MaterialIcons name="settings-applications" size={40} />
-              <Text>Settings</Text>
-            </TouchableOpacity>
-          </View>
+          <BottomNav />
         </View>
       </View>
     );
@@ -75,6 +59,10 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     height: '10%',
   },
+  inputContainer: {
+    justifyContent:'center',
+    alignItems:'center',
+  },
   bottomNavContainer: {
     padding: 3,
     fontSize: 30,
@@ -82,9 +70,9 @@ const styles = StyleSheet.create({
     height: '15%',
   },
   contentsContainer: {
-    height: '70%',
+    height: '80%',
     alignItems:'center',
-    justifyContent:'center',
+    marginTop: 20
   },
   roundImage: {
     alignItems: 'center',
@@ -104,9 +92,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 20,
   },
-  bottomNavItem: {
-    width: '25%',
-    justifyContent:'center',
-    alignItems:'center',
+  textInput: {
+    margin: 10,
+    height: 40, 
+    fontSize: 30,
+    width: 200,
+    borderColor: 'gray', 
+    borderWidth: 1
+  },
+  nextBtn: {
+    marginTop: 30,
+    width: 150,
   }
 });

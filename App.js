@@ -1,13 +1,13 @@
 import React from 'react';
 import HomeScreen from './components/HomeScreen'
-import DetailsScreen from './components/DetailsScreen'
+import PetInfoScreen from './components/PetInfoScreen'
 import { createStackNavigator, createAppContainer } from 'react-navigation'; 
 
 
 const RootStack = createStackNavigator (
   {
     Home: HomeScreen,
-    Details: DetailsScreen,
+    PetInfoPage: PetInfoScreen,
   },
   {
     initialRouteName: 'Home',
