@@ -1,24 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default class HeaderImage extends React.Component {
 
-render() {
-    return (
-        <View style={styles.headerCovntainer}>
-            <View style={styles.roundImage}> 
-              <Image style={styles.image} source={require('../assets/Screenshot_20170626-212646.png')}/>
-              <Text style={styles.headerText}>  BANJO</Text>
-            </View>
+    render() {
+        return (
+            <View style={styles.headerCovntainer}>
+                {/* <View style={styles.roundImage}> 
+                <Image style={styles.image} source={require('../assets/Screenshot_20170626-212646.png')}/>
+                <Text style={styles.headerText}>  BANJO</Text>
+                </View> */}
 
-            {/* <View style={styles.roundImage2}> 
-              <MaterialCommunityIcons style={styles.headerIcon} name="dog" size={50} />
-              <Text style={styles.headerText2}> BANJO</Text>
-            </View> */}
-        </View>
-    )
-}
+                <View style={styles.roundImage2}> 
+                <MaterialCommunityIcons style={styles.headerIcon} name="dog" size={50} />
+                <Text style={styles.headerText2}> BANJO</Text>
+                </View>
+            </View>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -61,5 +61,5 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
     }
-});
+})
   
