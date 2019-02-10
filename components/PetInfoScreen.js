@@ -43,28 +43,29 @@ export default class PetInfoScreen extends React.Component {
             
             <View style={styles.inputContainer2}>
               <Text style={styles.text}>Breed       </Text>
-              <TextInput style={styles.textInput}></TextInput>
+              <TextInput style={styles.textInput}
+                placeholder=" ex) Poodle"></TextInput>
             </View>
 
             <View style={styles.inputContainer2}>
               <Text style={styles.text}>Sex           </Text>
-              <TextInput style={styles.textInput}></TextInput>
+              <TextInput style={styles.textInput}
+              placeholder=" Girl or Boy"></TextInput>
             </View>
 
             <View style={styles.inputContainer2}>
               <Text style={styles.text2}>BirthDay  </Text>
-              {/* <TextInput style={styles.textInput}></TextInput> */}
                   <DatePicker
-                  showIcon = 'false'
-                  style={styles.datePickerStyle}
-                  date={this.state.petBirthday}
-                  mode="date"
-                  format="MM-DD-YYYY"
-                  minDate="01-01-2000"
-                  maxDate="12-31-2019"
-                  confirmBtnText="Confirm"
-                  cancelBtnText="Cancel"
-                  onDateChange={(date) => {this.setState({petBirthday: date})}}
+                    showIcon = 'false'
+                    style={styles.datePickerStyle}
+                    date={this.state.petBirthday}
+                    mode="date"
+                    format="MM-DD-YYYY"
+                    minDate="01-01-2000"
+                    maxDate="12-31-2019"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    onDateChange={(date) => {this.setState({petBirthday: date})}}
                   />
             </View>
 
@@ -93,22 +94,22 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: '80%',
     alignItems:'center',
+    padding: '3%'
   },
   inputContainer2: {
     flexDirection: "row",
-    marginTop: '2%',
-    marginBottom: '2%'
+    padding: '3%'
   },
   titleText: {
     marginTop: 30,
-    marginBottom: 30,
+    marginBottom: 20,
     fontSize: 20,
     fontWeight: 'bold',
     alignItems:'center',
     justifyContent: "center",
   },
   text: {
-    marginTop: 20,
+    marginTop: 7,
     fontSize: 20,
   },
   text2: {
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   textInput: {
-    margin: 15,
+    margin: 5,
     height: 30, 
     padding: 5,
     fontSize: 18,
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   nextBtn: {
-    marginTop: '10%',
+    marginTop: '7%',
     width: 150,
   }
 });
