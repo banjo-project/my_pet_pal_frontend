@@ -10,11 +10,7 @@ export default class HomeScreen extends React.Component {
     openNameInput: false
   }
 
-  handleAddName = () => {
-      this.setState({
-          openNameInput: true
-      })
-  }
+  handleAddName = () => { this.setState({ openNameInput: true })}
 
   handleNext = () => this.props.navigation.navigate('PetInfoPage')
 
@@ -23,8 +19,8 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.contentsContainer}>
           <TouchableOpacity style={styles.roundImage}>
-          <MaterialCommunityIcons name="dog" size={60}/>
-          <Text style={styles.roundImageText}>+ Pet Image</Text>
+            <MaterialCommunityIcons name="dog" size={60}/>
+            <Text style={styles.roundImageText}>+ Pet Image</Text>
           </TouchableOpacity>
           {!this.state.openNameInput? (
             <TouchableOpacity onPress={this.handleAddName}>
@@ -32,9 +28,9 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           ): (
               <View style={styles.inputContainer}>
-                  <Text style={styles.text}>What's your pet's name?</Text>
-                  <TextInput style={styles.textInput}></TextInput>
-                  <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
+                <Text style={styles.text}>What's your pet's name?</Text>
+                <TextInput style={styles.textInput}></TextInput>
+                <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
               </View>
           )} 
         </View>
@@ -42,10 +38,9 @@ export default class HomeScreen extends React.Component {
           <BottomNav />
         </View>
       </View>
-    );
+    )
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -98,4 +93,4 @@ const styles = StyleSheet.create({
     marginTop: 30,
     width: 150,
   }
-});
+})

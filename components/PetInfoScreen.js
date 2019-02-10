@@ -1,10 +1,8 @@
-import React from 'react';
+import React from 'react'
 import HeaderImage from './HeaderImage'
-import { StyleSheet, Text, View, TextInput, Picker, TouchableOpacity } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Button } from 'react-native-elements';
+import { StyleSheet, Text, View, TextInput } from 'react-native'
+import { Button } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
-import { Dropdown } from 'react-native-material-dropdown'
 
 export default class PetInfoScreen extends React.Component {
   constructor(props) {
@@ -12,10 +10,9 @@ export default class PetInfoScreen extends React.Component {
     this.state = {
       petSex: '',
       petBirthday: '',
-
       petBdOpen: false,
     }
-}
+  }
 
   static navigationOptions = {
     headerTitle: <HeaderImage />,
@@ -25,16 +22,11 @@ export default class PetInfoScreen extends React.Component {
     },
   };
   
-  HandlePicker = () => {
-    this.setState({
-      petSexPickerOpen: true,
-    })
-  }
+  HandlePicker = () => {this.setState({ petSexPickerOpen: true })}
   
-  handleNext = () => this.props.navigation.navigate('PetInfoPage')
+  handleNext = () => this.props.navigation.navigate('PetSchedulePage')
 
   render() {
-    let data = [{value: 'Girl'}, {value: 'Boy'}]
 
     return (
       <View style={styles.container}>
@@ -42,21 +34,29 @@ export default class PetInfoScreen extends React.Component {
           <View style={styles.inputContainer}>
             
             <View style={styles.inputContainer2}>
-              <Text style={styles.text}>Breed       </Text>
+              <Text style={styles.text}> Breed        </Text>
               <TextInput style={styles.textInput}
                 placeholder=" ex) Poodle"></TextInput>
             </View>
 
             <View style={styles.inputContainer2}>
-              <Text style={styles.text}>Sex           </Text>
+              <Text style={styles.text}> Sex            </Text>
               <TextInput style={styles.textInput}
               placeholder=" Girl or Boy"></TextInput>
             </View>
 
             <View style={styles.inputContainer2}>
-              <Text style={styles.text2}>BirthDay  </Text>
+              <Text style={styles.text}>Bithday     </Text>
                   <DatePicker
-                    showIcon = 'false'
+                    customStyles={{
+                      showIcon: false,
+                      fontSize: 20,
+                      fontColor: 'gray',
+                      dateIcon: {
+                        position: 'absolute',
+                        height: 0
+                      },
+                    }}
                     style={styles.datePickerStyle}
                     date={this.state.petBirthday}
                     mode="date"
@@ -72,7 +72,7 @@ export default class PetInfoScreen extends React.Component {
           </View>
           <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
       </View>
-    );
+    )
   }
 }
 
@@ -84,21 +84,16 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems:'center',
   },
-  datePickerStyle: {
-    width: 210, 
-    height: 25,
-    marginTop: 10,
-    marginBottom: '5%',
-    marginLeft: 13,
-  },
   inputContainer: {
-    width: '80%',
+    width: '60%',
     alignItems:'center',
-    padding: '3%'
+    padding: '1%'
   },
   inputContainer2: {
     flexDirection: "row",
-    padding: '3%'
+    alignItems:'flex-start',
+    justifyContent: 'flex-start',
+    padding: '1%'
   },
   titleText: {
     marginTop: 30,
@@ -109,28 +104,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    marginTop: 7,
-    fontSize: 20,
-  },
-  text2: {
     marginTop: 15,
     fontSize: 20,
   },
   textInput: {
     margin: 5,
-    height: 30, 
-    padding: 5,
+    height: 40, 
+    padding: 10,
     fontSize: 18,
     width: 200,
     borderColor: 'gray', 
     borderWidth: 1
   },
-  inputPicker: {
-    width: 200,
-    fontSize: 18,
+  datePickerStyle: {
+    width: 200, 
+    height: 20,
+    marginTop: 10,
+    marginBottom: '5%'
   },
   nextBtn: {
-    marginTop: '7%',
+    marginTop: 40,
     width: 150,
   }
 });
