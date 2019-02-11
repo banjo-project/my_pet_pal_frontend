@@ -13,7 +13,8 @@ export default class HeaderImage extends React.Component {
                 </View> */}
 
                 <View style={styles.roundImage2}> 
-                <MaterialCommunityIcons style={styles.headerIcon} name="dog" size={50} />
+                {/* <Image source={require('../assets/dog.png')} style={styles.headerIcon}/>  */}
+                <MaterialCommunityIcons  name="dog" size={50} style={styles.headerIcon} />
                 <Text style={styles.headerText2}> BANJO</Text>
                 </View>
             </View>

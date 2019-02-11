@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import BottomNav from './BottomNav'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Button } from 'react-native-elements';
 
 export default class HomeScreen extends React.Component {
@@ -19,7 +18,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.contentsContainer}>
           <TouchableOpacity style={styles.roundImage}>
-            <MaterialCommunityIcons name="dog" size={60}/>
+          <Image source={require('../assets/dog.png')}/> 
             <Text style={styles.roundImageText}>+ Pet Image</Text>
           </TouchableOpacity>
           {!this.state.openNameInput? (
