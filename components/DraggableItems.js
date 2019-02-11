@@ -46,10 +46,11 @@ export default class Draggable extends Component {
   }
 
   isDropArea(gesture) {
-    return gesture.moveY < 700;
+    return gesture.moveX < 700;
   }
 
   render() {
+    // console.warn(this.state.pan)
     const panStyle = {
       transform: this.state.pan.getTranslateTransform()
     }
@@ -66,7 +67,7 @@ let CIRCLE_RADIUS = 30;
 let styles = StyleSheet.create({
   circle: {
     backgroundColor: "skyblue",
-    width: CIRCLE_RADIUS * 3,
+    width: CIRCLE_RADIUS * 2.5,
     height: CIRCLE_RADIUS * 2,
     borderRadius: CIRCLE_RADIUS
   },

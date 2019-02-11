@@ -24,13 +24,18 @@ export default class PetScheduleScreen extends Component {
           <Text style={styles.text}>What does Banjo's morning look like?</Text>
         </View>
         <View style={styles.ballContainer} />
-        <View style={styles.row}>
-          <Draggable />
-          <Draggable />
-          <Draggable />
-          <Draggable />
-          <Draggable />
-        </View>
+          <View style={styles.row}>
+            <Draggable style={styles.dragItem}/>
+            <Draggable style={styles.dragItem}/>
+            <Draggable style={styles.dragItem}/>
+            <Draggable style={styles.dragItem}/>
+          </View>
+          <View style={styles.row2}>
+            <Draggable style={styles.dragItem}/>
+            <Draggable style={styles.dragItem}/>
+            <Draggable style={styles.dragItem}/>
+            <Draggable style={styles.dragItem}/>
+          </View>
       </View>
     );
   }
@@ -38,20 +43,35 @@ export default class PetScheduleScreen extends Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center',
   },
   ballContainer: {
-    height:'10%'
+    flexDirection: 'row',
   },
   row: {
-    flexDirection: "row"
+    paddingTop: '5%',
+    paddingRight: '5%',
+    paddingLeft: '5%',
+    flexDirection: "row",
+    justifyContent: 'space-around',
   },  
+  row2: {
+    padding: '5%',
+    flexDirection: "row",
+    marginBottom: '20%',
+    justifyContent: 'space-around',
+  },
   dropZone: {
-    height: '70%',
+    height: '85%',
     backgroundColor: "#00334d"
   },
+  dragItem:{
+    padding:'2%',
+    margin: '2%'
+  },
   text: {
-    marginTop: 25,
+    marginTop: '30%',
     marginLeft: 5,
     marginRight: 5,
     textAlign: "center",
