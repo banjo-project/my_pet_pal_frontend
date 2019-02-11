@@ -1,7 +1,5 @@
 # banjo-project-frontend
 
-# Banjo Project Backend
-
 ## To install
 
 ```bash
