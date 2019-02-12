@@ -11,8 +11,9 @@ import {
 const ScheduleItem = props => {
     return props.schedule.map( a => {
         return (
-            <View>
-                <Text style={{padding: '5%', fontSize: 15}}>{a}</Text>
+            <View style={{flexDirection: 'row'}}>
+                <Image source={require('../assets/dog.png')} style={{width: 30, height: 30, marginTop: 10}}/> 
+                <Text style={{padding: '5%', fontSize: 15}}>walk</Text>
             </View>
         )
     })
