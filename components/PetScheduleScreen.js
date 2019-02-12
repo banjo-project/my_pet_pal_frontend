@@ -1,13 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, TouchableHighlight, FlatList } from "react-native";
+import { StyleSheet, View, Text, FlatList } from "react-native";
 import HeaderImage from './HeaderImage'
 import ScheduleItem from './ScheduleItem'
-// import { MaterialCommunityIcons } from '@expo/vector-icons';
-// import { Button } from 'react-native-elements';
-import Draggable from "./DraggableItems";
-
-import { Card, ListItem, Button, Icon, Divider } from 'react-native-elements'
-import { isNullOrUndefined } from "util";
+import BottomButtons from './BottomButtons'
 
 
 export default class PetScheduleScreen extends Component {
@@ -35,47 +30,23 @@ export default class PetScheduleScreen extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-      
         <View style={styles.dropZone}>
-          <Text style={styles.text}>What does Banjo's morning look like?</Text>
-            
-            <View style={{alignItems: 'center', justifyContent: 'center', marginTop: '5%'}}>
-
+            <View opacity={0.5} style={styles.listOuterContainer}>
               <FlatList
-                data={[{title: 'BANJO WAKES UP!', key1: 'item1', key2: 'item2',key3: 'item3'}]}
+                data={[{title: "What does Banjo's morning look like?", key: 'Banjo Waks Up!'}]}
                 renderItem={({item, separators}) => (
-                  <TouchableHighlight
-                    onShowUnderlay={separators.highlight}
-                    onHideUnderlay={separators.unhighlight}>
-                    <View style={{backgroundColor: 'white', width: 300, padding: '5%', alignItems: 'center', justifyContent: 'center'}}>
-                      <Text style={{paddingBottom: '10%', fontSize: 15, fontWeight: 'bold', alignItems: 'center', justifyContent: 'center'}}>{item.title}</Text>
-
+                    <View style={styles.listContainer}>
+                      <Text style={styles.listTitle}>{item.title}</Text>
+                      <Text style={styles.listTitle}>{item.key}</Text>
                       <ScheduleItem schedule = {this.state.schedule}/>
-                      {/* <Text style={{padding: '5%', fontSize: 15}}>{item.key1}</Text>
-                      <Text style={{padding: '5%', fontSize: 15}}>{item.key2}</Text>
-                      <Text style={{padding: '5%', fontSize: 15}}>{item.key3}</Text> */}
                     </View>
-                  </TouchableHighlight>
                 )}
               />
-
             </View>
-          
-
         </View>
         <View style={styles.ballContainer} />
-          <View style={styles.row}>
-            <Draggable style={styles.dragItem} addItem = {this.addItem}/>
-            <Draggable style={styles.dragItem} addItem = {this.addItem}/>
-            <Draggable style={styles.dragItem} addItem = {this.addItem}/>
-            <Draggable style={styles.dragItem} addItem = {this.addItem}/>
-          </View>
-          <View style={styles.row2}>
-            <Draggable style={styles.dragItem}/>
-            <Draggable style={styles.dragItem}/>
-            <Draggable style={styles.dragItem}/>
-            <Draggable style={styles.dragItem}/>
-          </View>
+          <BottomButtons 
+            addItem = {() => this.addItem()}/>
       </View>
     );
   }
@@ -88,6 +59,20 @@ const styles = StyleSheet.create({
   },
   ballContainer: {
     flexDirection: 'row',
+    height: 100,
+    position: 'absolute',
+  },
+  listOuterContainer: {
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    marginTop: 130 
+  },
+  listContainer: {
+    backgroundColor: 'white', 
+    width: 300, 
+    padding: '5%', 
+    alignItems: 'center', 
+    borderRadius: 20
   },
   contentContainer: {
     justifyContent: 'center',
@@ -97,21 +82,8 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     width: "70%",
   },
-  row: {
-    paddingTop: '5%',
-    paddingRight: '5%',
-    paddingLeft: '5%',
-    flexDirection: "row",
-    justifyContent: 'space-around',
-  },  
-  row2: {
-    padding: '5%',
-    flexDirection: "row",
-    marginBottom: '20%',
-    justifyContent: 'space-around',
-  },
   dropZone: {
-    height: '85%',
+    height: 600,
     backgroundColor: "#00334d"
   },
   dragItem:{
@@ -126,5 +98,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
     fontWeight: "bold"
+  },
+  listTitle: {
+    paddingBottom: '10%', 
+    marginTop: '5%',
+    fontSize: 15, 
+    fontWeight: 'bold'
   }
 });
