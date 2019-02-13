@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, FlatList, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, FlatList, Image, TouchableOpacity, DatePickerIOS } from "react-native";
 import HeaderImage from './HeaderImage'
 import { Button } from 'react-native-elements'
+import Modal from "react-native-modal";
 
 const activityToImageMap = {
   walk: require('../assets/walk.png'),
@@ -21,9 +22,17 @@ export default class PetScheduleScreen extends Component {
   constructor() {
     super();
     this.state = {
-        selected_schedule: []
+        selected_schedule: [],
+        date: new Date(),
+        modalVisible: false,
+        time_changed_schedule: ''
     };
   }
+
+  componentDidMount = () => {
+    this.saveTimeChange
+  }
+
   static navigationOptions = {
     headerTitle: <HeaderImage />,
     headerStyle: {
@@ -32,22 +41,64 @@ export default class PetScheduleScreen extends Component {
     },
   };
 
-  addItem = (a) => {
-    const joined = this.state.selected_schedule.concat(a);
+  handleTimeChange = ( a, visible ) => { 
     this.setState({
-      selected_schedule: joined
-    })
+      ...this.state,
+      modalVisible: visible,
+      time_changed_schedule: a
+    }) 
   }
-  handleReset = () => {
-    this.setState({
-      selected_schedule: []
+
+  setDate = (newDate) => { this.setState({date: newDate}) }
+
+  addItem = (a) => {
+    const activity = {[a]: 8.50}
+    const joined = this.state.selected_schedule.concat(activity);
+    this.setState({ selected_schedule: joined })
+  }
+  handleReset = () => { this.setState({ selected_schedule: [] }) }
+  closeModalFunc = () => { this.setState({modalVisible: false}) } 
+  saveTimeChange = (a) => {
+    console.warn(Object.keys(a))
+    this.state.selected_schedule.map(i => {
+      if(Object.keys(i) === a){
+        // console.warn(this.state.selected_schedule[i])
+        this.setState({
+          ...this.state,
+          selected_schedule: [...this.state, {a: this.state.date}],
+          modalVisible: false
+        })
+      }
     })
+
   }
 
   render() {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.dropZone}>
+
+          <Modal visible={this.state.modalVisible}>
+            <View style={{ flex: 1, marginTop:130 }}>
+            <View style={styles.modalView}  >
+
+              <DatePickerIOS
+                style={{width: 200, fontSize: 12 }}
+                mode='time'
+                minuteInterval='10'
+                timeZoneOffsetInMinutes='-7 * 60'
+                minDate="1900-05-01"
+                date={this.state.date}
+                onDateChange={this.setDate}
+              />
+              <View style={{flexDirection: 'row'}}>
+                <Button title="Cancel" style={styles.nextBtn} onPress={this.closeModalFunc}></Button>
+                <Button title="Confirm" style={styles.nextBtn} onPress={this.saveTimeChange}></Button>
+              </View>
+              </View>
+            </View>
+          </Modal>
+
             <View opacity={0.8} style={styles.listOuterContainer}>
               <FlatList
                 data={[{title: "What does Banjo's morning look like?", key: '   BANJO WAKES UP!'}]}
@@ -60,9 +111,15 @@ export default class PetScheduleScreen extends Component {
                       </View>
                         {this.state.selected_schedule.map( a => {
                           return (
+                            <View>
                             <View style={{flexDirection: 'row'}}>
-                              <Image source={activityToImageMap[a]} style={{width: 35, height: 35}}/> 
-                              <Text style={{padding: '5%', fontSize: 15, fontWeight:'bold'}}>{a.toUpperCase()}</Text>
+                              <Image source={activityToImageMap[Object.keys(a)]} style={{width: 35, height: 35}}/> 
+                              <Text style={styles.scheduleText}>{Object.keys(a).toString().toUpperCase()}</Text>
+                              <TouchableOpacity onPress={() => this.handleTimeChange(a)}>
+                                <Text style={styles.scheduleText2}>AT 8:00 AM</Text>
+                              </TouchableOpacity>
+                           
+                            </View>
                             </View>
                           )
                         })}
@@ -129,7 +186,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     justifyContent: 'center',
     flexDirection: 'column',
-    padding: '10%',
+    padding: '5%',
     borderStyle: 'solid',
     borderColor: 'white',
     width: "70%",
@@ -162,8 +219,17 @@ const styles = StyleSheet.create({
     paddingBottom: '10%', 
     marginTop: '5%',
     fontSize: 17, 
-    color: 'red',
+    color: 'blue',
     fontWeight: 'bold'
+  },
+  scheduleText: {
+    padding: '5%', 
+    fontSize: 15, 
+    fontWeight:'bold'
+  },
+  scheduleText2: {
+    padding: '5%', 
+    fontSize: 15, 
   },
   contentImg: {
     width: 30, 
@@ -196,7 +262,8 @@ const styles = StyleSheet.create({
   },
   circle: {
     backgroundColor: "skyblue",
-    alignItems: 'center', justifyContent: 'center',
+    alignItems: 'center', 
+    justifyContent: 'center',
     width: 30 * 2.5,
     height: 30 * 2,
     borderRadius: 30
@@ -208,5 +275,34 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 10,
-  }
+  },
+  textInput: {
+    fontSize: 15,
+    paddingLeft: '3%', 
+    fontWeight:'bold',
+    width: 55,
+  },
+  container: {
+    backgroundColor: 'gray',
+    alignItems: 'center', 
+    justifyContent: 'center', 
+   },
+   modalView: {
+    backgroundColor: 'white',
+    marginTop: 100,
+    margin: 40,
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    padding: 20,
+   },
+   closeText: {
+     color: 'black',
+     borderRadius: 20,
+     width: 32,
+     padding: 6,
+     alignSelf: 'flex-end',
+     textAlign: 'center',
+     borderWidth: 1,
+     borderColor:'white'
+    },
 });
