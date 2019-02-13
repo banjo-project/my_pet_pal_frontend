@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, FlatList, Image, TouchableOpacity } from "react-native";
-import HeaderImage from './HeaderImage'
+import { StyleSheet, View, Text, FlatList, Image, TouchableOpacity, DatePickerIOS } from "react-native";
 import { Button } from 'react-native-elements'
+import Modal from "react-native-modal";
+import HeaderImage from './HeaderImage'
+import BottomButtons from "./BottomButtons";
+const date = require('date-and-time');
+const shortid = require('shortid');
 
 const activityToImageMap = {
   walk: require('../assets/walk.png'),
@@ -14,16 +18,18 @@ const activityToImageMap = {
   potty: require('../assets/potty.png'),
 }
 
-const activities1 = ['walk', 'eat', 'meds', 'treats']
-const activities2 = ['exercise', 'groom', 'crate', 'potty']
-
 export default class PetScheduleScreen extends Component {
+ 
   constructor() {
     super();
     this.state = {
-        selected_schedule: []
+        selected_schedule: [],
+        date: new Date(),
+        modalVisible: false,
+        time_changed_schedule: ''
     };
   }
+
   static navigationOptions = {
     headerTitle: <HeaderImage />,
     headerStyle: {
@@ -32,73 +38,115 @@ export default class PetScheduleScreen extends Component {
     },
   };
 
-  addItem = (a) => {
-    const joined = this.state.selected_schedule.concat(a);
+  handleTimeChange = ( id, visible ) => { 
     this.setState({
-      selected_schedule: joined
-    })
+      ...this.state,
+      modalVisible: visible,
+      time_changed_schedule: id
+    }) 
   }
-  handleReset = () => {
+
+  handleTime = (str) => {
+    if(str == '8.5') {
+      return '8:30 AM'
+    } else {
+      let time = str.slice(15, 21)
+      let hour = Number(time.slice(0, 3))
+      if(hour >= 12) {
+        if(hour === 12){return time += 'PM'}
+        let newNumber = (hour - 12).toString() 
+        newNumber += time.slice(3, 6)
+        return newNumber += ' PM'
+      } return time += ' AM'
+    }
+  }
+
+  addItem = (a) => {
+    const activity = { id: shortid.generate(),
+                       activity: a,
+                       time: 8.5 }
+    const joined = this.state.selected_schedule.concat(activity);
+    this.setState({ selected_schedule: joined })
+  }
+
+  handleReset = () => { this.setState({ selected_schedule: [] }) }
+
+  closeModalFunc = () => { this.setState({modalVisible: false}) } 
+
+  saveTimeChange = () => {
+    const activityId = this.state.time_changed_schedule
+    const ns = this.state.selected_schedule.map(i => {
+      if(i.id === activityId){
+        return {...i, time: this.state.date}
+      }
+      return i
+    })
     this.setState({
-      selected_schedule: []
+      selected_schedule: ns,
+      modalVisible: false
     })
   }
 
   render() {
+
     return (
       <View style={styles.mainContainer}>
         <View style={styles.dropZone}>
-            <View opacity={0.8} style={styles.listOuterContainer}>
-              <FlatList
-                data={[{title: "What does Banjo's morning look like?", key: '   BANJO WAKES UP!'}]}
-                renderItem={({item, separators}) => (
-                    <View style={styles.listContainer}>
-                      <Text style={styles.listTitle}>{item.title}</Text>
-                      <View style={styles.contentBox}>
-                        <Image source={require('../assets/dog.png')} style={styles.contentImg}/> 
-                        <Text style={styles.listText}>{item.key}</Text>
-                      </View>
-                        {this.state.selected_schedule.map( a => {
-                          return (
-                            <View style={{flexDirection: 'row'}}>
-                              <Image source={activityToImageMap[a]} style={{width: 35, height: 35}}/> 
-                              <Text style={{padding: '5%', fontSize: 15, fontWeight:'bold'}}>{a.toUpperCase()}</Text>
-                            </View>
-                          )
-                        })}
-                      <View style={{flexDirection: 'row'}}>
-                        <Button title="Reset" style={styles.nextBtn} onPress={this.handleReset}></Button>
-                        <Button title="Confirm" style={styles.nextBtn} onPress={this.handleNext}></Button>
-                      </View>
-                    </View>
+          <Modal visible={this.state.modalVisible}>
+            <View style={{ flex: 1, marginTop:130 }}>
+            <View style={styles.modalView}  >
+
+              <DatePickerIOS
+                style={{width: 200, fontSize: 12 }}
+                mode='time'
+                minuteInterval='10'
+                date={this.state.date}
+                onDateChange={(date) => {this.setState({date: date})}}
+              />
+              <View style={{flexDirection: 'row'}}>
+                <Button title="Cancel" style={styles.nextBtn} onPress={this.closeModalFunc}></Button>
+                <Button title="Confirm" style={styles.nextBtn} onPress={this.saveTimeChange}></Button>
+              </View>
+              </View>
+            </View>
+          </Modal>
+        <View opacity={0.8} style={styles.listOuterContainer}>
+          <FlatList
+            data={[{title: "What does Banjo's morning look like?", key: '   BANJO WAKES UP!'}]}
+            renderItem={({item, separators}) => (
+                <View style={styles.listContainer}>
+                  <Text style={styles.listTitle}>{item.title}</Text>
+                  <View style={styles.contentBox}>
+                    <Image source={require('../assets/dog.png')} style={styles.contentImg}/> 
+                    <Text style={styles.listText}>{item.key}</Text>
+                  </View>
+                    {this.state.selected_schedule.map( a => {
+                      return (
+                        <View style={{flexDirection: 'row'}}>
+                          <Image source={activityToImageMap[a.activity]} style={{width: 30, height: 30}}/> 
+                          <Text style={styles.scheduleText}>{a.activity.toUpperCase()}</Text>
+                          <TouchableOpacity onPress={() => this.handleTimeChange(a.id)}>
+                            <Text style={styles.scheduleText2}>AT {this.handleTime(a.time.toString())}</Text>
+                          </TouchableOpacity>
+                        </View>
+                      )
+                    })}
+                  <View style={{flexDirection: 'row'}}>
+                    <Button title="Reset" style={styles.nextBtn} onPress={this.handleReset}></Button>
+                    <Button title="Confirm" style={styles.nextBtn} onPress={this.handleNext}></Button>
+                  </View>
+                </View>
                 )}
               />
             </View>
         </View>
+
         <View style={styles.ballContainer} />
-
-        <View style={styles.row}>
-          {activities1.map( a => {
-            return (
-              <TouchableOpacity style={styles.circle} onPress={()=>this.addItem(a)}>    
-                <Image source={activityToImageMap[a]} style={styles.image}/> 
-                <Text style={styles.btnText}>{a.toUpperCase()}</Text>
-              </TouchableOpacity>
-            )
-          })}
-        </View> 
-        <View style={styles.row2}>
-          {activities2.map( a => {
-            return (
-              <TouchableOpacity style={styles.circle} onPress={()=>this.addItem(a)}>
-                <Image source={activityToImageMap[a]} style={styles.image}/> 
-                <Text style={styles.btnText}>{a.toUpperCase()}</Text>
-              </TouchableOpacity>
-            )
-          })}
-        </View> 
-
-      </View>
+        <BottomButtons 
+          activityToImageMap={activityToImageMap}
+          addItem={this.addItem}
+          />
+    </View>
     );
   }
 }
@@ -129,7 +177,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     justifyContent: 'center',
     flexDirection: 'column',
-    padding: '10%',
+    padding: '5%',
     borderStyle: 'solid',
     borderColor: 'white',
     width: "70%",
@@ -165,6 +213,15 @@ const styles = StyleSheet.create({
     color: 'red',
     fontWeight: 'bold'
   },
+  scheduleText: {
+    padding: '5%', 
+    fontSize: 15, 
+    fontWeight:'bold'
+  },
+  scheduleText2: {
+    padding: '5%', 
+    fontSize: 13, 
+  },
   contentImg: {
     width: 30, 
     height: 30, 
@@ -181,32 +238,33 @@ const styles = StyleSheet.create({
     width: 90,
     justifyContent: 'space-between',
   },
-  row: {
-    paddingTop: '3%',
-    paddingRight: '3%',
-    paddingLeft: '3%',
-    flexDirection: "row",
-    justifyContent: 'space-around',
-  },  
-  row2: {
-    padding: '3%',
-    flexDirection: "row",
-    marginBottom: '17%',
-    justifyContent: 'space-around',
+  textInput: {
+    fontSize: 15,
+    paddingLeft: '3%', 
+    fontWeight:'bold',
+    width: 55,
   },
-  circle: {
-    backgroundColor: "skyblue",
-    alignItems: 'center', justifyContent: 'center',
-    width: 30 * 2.5,
-    height: 30 * 2,
-    borderRadius: 30
-  },
-  image: {
-    width: 30, 
-    height: 30, 
-    marginTop: 10
-  },
-  btnText: {
-    fontSize: 10,
-  }
+  container: {
+    backgroundColor: 'gray',
+    alignItems: 'center', 
+    justifyContent: 'center', 
+   },
+   modalView: {
+    backgroundColor: 'white',
+    marginTop: 100,
+    margin: 40,
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    padding: 20,
+   },
+   closeText: {
+     color: 'black',
+     borderRadius: 20,
+     width: 32,
+     padding: 6,
+     alignSelf: 'flex-end',
+     textAlign: 'center',
+     borderWidth: 1,
+     borderColor:'white'
+    },
 });
