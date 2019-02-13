@@ -1,15 +1,27 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import { StyleSheet, View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import HeaderImage from './HeaderImage'
-import ScheduleItem from './ScheduleItem'
-import BottomButtons from './BottomButtons'
+import { Button } from 'react-native-elements'
 
+const activityToImageMap = {
+  walk: require('../assets/walk.png'),
+  eat: require('../assets/eat.png'),
+  meds: require('../assets/meds.png'),
+  treats: require('../assets/treats.png'),
+  exercise: require('../assets/exercise.png'),
+  groom: require('../assets/groom.png'),
+  crate: require('../assets/crate.png'),
+  potty: require('../assets/potty.png'),
+}
+
+const activities1 = ['walk', 'eat', 'meds', 'treats']
+const activities2 = ['exercise', 'groom', 'crate', 'potty']
 
 export default class PetScheduleScreen extends Component {
   constructor() {
     super();
     this.state = {
-        schedule: []
+        selected_schedule: []
     };
   }
   static navigationOptions = {
@@ -21,9 +33,14 @@ export default class PetScheduleScreen extends Component {
   };
 
   addItem = (a) => {
-    const joined = this.state.schedule.concat(a);
+    const joined = this.state.selected_schedule.concat(a);
     this.setState({
-      schedule: joined
+      selected_schedule: joined
+    })
+  }
+  handleReset = () => {
+    this.setState({
+      selected_schedule: []
     })
   }
 
@@ -31,22 +48,56 @@ export default class PetScheduleScreen extends Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.dropZone}>
-            <View opacity={0.5} style={styles.listOuterContainer}>
+            <View opacity={0.8} style={styles.listOuterContainer}>
               <FlatList
-                data={[{title: "What does Banjo's morning look like?", key: 'Banjo Waks Up!'}]}
+                data={[{title: "What does Banjo's morning look like?", key: '   BANJO WAKES UP!'}]}
                 renderItem={({item, separators}) => (
                     <View style={styles.listContainer}>
                       <Text style={styles.listTitle}>{item.title}</Text>
-                      <Text style={styles.listTitle}>{item.key}</Text>
-                      <ScheduleItem schedule = {this.state.schedule}/>
+                      <View style={styles.contentBox}>
+                        <Image source={require('../assets/dog.png')} style={styles.contentImg}/> 
+                        <Text style={styles.listText}>{item.key}</Text>
+                      </View>
+                        {this.state.selected_schedule.map( a => {
+                          return (
+                            <View style={{flexDirection: 'row'}}>
+                              <Image source={activityToImageMap[a]} style={{width: 35, height: 35}}/> 
+                              <Text style={{padding: '5%', fontSize: 15, fontWeight:'bold'}}>{a.toUpperCase()}</Text>
+                            </View>
+                          )
+                        })}
+                      <View style={{flexDirection: 'row'}}>
+                        <Button title="Reset" style={styles.nextBtn} onPress={this.handleReset}></Button>
+                        <Button title="Confirm" style={styles.nextBtn} onPress={this.handleNext}></Button>
+                      </View>
                     </View>
                 )}
               />
             </View>
         </View>
         <View style={styles.ballContainer} />
-          <BottomButtons 
-            addItem = {() => this.addItem()}/>
+
+        <View style={styles.row}>
+          {activities1.map( a => {
+            return (
+              <TouchableOpacity style={styles.circle} onPress={()=>this.addItem(a)}>    
+                <Image source={activityToImageMap[a]} style={styles.image}/> 
+                <Text style={styles.btnText}>{a.toUpperCase()}</Text>
+              </TouchableOpacity>
+            )
+          })}
+        </View> 
+        <View style={styles.row2}>
+          {activities2.map( a => {
+            return (
+              <TouchableOpacity style={styles.circle} onPress={()=>this.addItem(a)}>
+                <Image source={activityToImageMap[a]} style={styles.image}/> 
+                <Text style={styles.btnText}>{a.toUpperCase()}</Text>
+              </TouchableOpacity>
+            )
+          })}
+        </View> 
+
       </View>
     );
   }
@@ -59,13 +110,14 @@ const styles = StyleSheet.create({
   },
   ballContainer: {
     flexDirection: 'row',
-    height: 100,
+    height: 70,
     position: 'absolute',
   },
   listOuterContainer: {
     alignItems: 'center', 
     justifyContent: 'center', 
-    marginTop: 130 
+    marginTop: 100,
+    marginBottom: 20, 
   },
   listContainer: {
     backgroundColor: 'white', 
@@ -82,13 +134,13 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     width: "70%",
   },
-  dropZone: {
-    height: 600,
-    backgroundColor: "#00334d"
+  contentBox: {
+    flexDirection: 'row',
   },
-  dragItem:{
-    padding:'2%',
-    margin: '2%'
+  dropZone: {
+    height: '85%',
+    backgroundColor: "#00334d",
+    justifyContent: 'center',
   },
   text: {
     marginTop: '30%',
@@ -100,9 +152,61 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   listTitle: {
-    paddingBottom: '10%', 
+    paddingBottom: '5%', 
     marginTop: '5%',
+    marginLeft: 10,
     fontSize: 15, 
     fontWeight: 'bold'
+  },
+  listText: {
+    paddingBottom: '10%', 
+    marginTop: '5%',
+    fontSize: 17, 
+    color: 'red',
+    fontWeight: 'bold'
+  },
+  contentImg: {
+    width: 30, 
+    height: 30, 
+    marginTop: 10
+  },
+  btnStyle:{
+    alignItems: 'center', 
+    justifyContent: 'center', 
+  },
+  nextBtn: {
+    marginTop: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    width: 90,
+    justifyContent: 'space-between',
+  },
+  row: {
+    paddingTop: '3%',
+    paddingRight: '3%',
+    paddingLeft: '3%',
+    flexDirection: "row",
+    justifyContent: 'space-around',
+  },  
+  row2: {
+    padding: '3%',
+    flexDirection: "row",
+    marginBottom: '17%',
+    justifyContent: 'space-around',
+  },
+  circle: {
+    backgroundColor: "skyblue",
+    alignItems: 'center', justifyContent: 'center',
+    width: 30 * 2.5,
+    height: 30 * 2,
+    borderRadius: 30
+  },
+  image: {
+    width: 30, 
+    height: 30, 
+    marginTop: 10
+  },
+  btnText: {
+    fontSize: 10,
   }
 });
