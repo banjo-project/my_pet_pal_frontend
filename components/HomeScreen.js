@@ -10,14 +10,14 @@ export default class HomeScreen extends React.Component {
   }
 
   handleAddName = () => { this.setState({ openNameInput: true })}
-
+  handleAddImage = () => this.props.navigation.navigate('PetPhotoPage')
   handleNext = () => this.props.navigation.navigate('PetInfoPage')
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.contentsContainer}>
-          <TouchableOpacity style={styles.roundImage}>
+          <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
           <Image source={require('../assets/dog.png')}/> 
             <Text style={styles.roundImageText}>+ Pet Image</Text>
           </TouchableOpacity>

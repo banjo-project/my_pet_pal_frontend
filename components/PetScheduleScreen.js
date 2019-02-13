@@ -4,7 +4,6 @@ import { Button } from 'react-native-elements'
 import Modal from "react-native-modal";
 import HeaderImage from './HeaderImage'
 import BottomButtons from "./BottomButtons";
-const date = require('date-and-time');
 const shortid = require('shortid');
 
 const activityToImageMap = {
@@ -126,7 +125,7 @@ export default class PetScheduleScreen extends Component {
                           <Image source={activityToImageMap[a.activity]} style={{width: 30, height: 30}}/> 
                           <Text style={styles.scheduleText}>{a.activity.toUpperCase()}</Text>
                           <TouchableOpacity onPress={() => this.handleTimeChange(a.id)}>
-                            <Text style={styles.scheduleText2}>AT {this.handleTime(a.time.toString())}</Text>
+                            <Text style={styles.scheduleText2}>{this.handleTime(a.time.toString())}</Text>
                           </TouchableOpacity>
                         </View>
                       )
