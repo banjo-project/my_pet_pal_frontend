@@ -22,8 +22,9 @@ export default class HomeScreen extends React.Component {
             <Text style={styles.roundImageText}>+ Pet Image</Text>
           </TouchableOpacity>
           {!this.state.openNameInput? (
-            <TouchableOpacity onPress={this.handleAddName}>
-              <Text style={styles.text}>Add Pet</Text>
+            <TouchableOpacity onPress={this.handleAddName} style={{flexDirection: 'row'}}> 
+              <Text style={styles.text}> Tell us about your Pet!  </Text>
+              <Image source={require('../assets/happy.png')} style={{width:30, height:30, marginTop: 15}} />
             </TouchableOpacity>
           ): (
               <View style={styles.inputContainer}>
