@@ -85,6 +85,12 @@ export default class PetScheduleScreen extends Component {
       modalVisible: false
     })
   }
+  handleToggle = (id) => {
+    const ns = this.state.selected_schedule.filter(i => i.id !== id)
+    this.setState({
+      selected_schedule: ns
+    })
+  }
 
   render() {
 
@@ -94,7 +100,6 @@ export default class PetScheduleScreen extends Component {
           <Modal visible={this.state.modalVisible}>
             <View style={{ flex: 1, marginTop:130 }}>
             <View style={styles.modalView}  >
-
               <DatePickerIOS
                 style={{width: 200, fontSize: 12 }}
                 mode='time'
@@ -102,8 +107,11 @@ export default class PetScheduleScreen extends Component {
                 date={this.state.date}
                 onDateChange={(date) => {this.setState({date: date})}}
               />
+              <TouchableOpacity onPress={this.closeModalFunc} style={styles.cancelContainer}>
+                <Image source={require('../assets/cancel.png')} style={styles.cancelImg}/>
+                <Text> </Text> 
+              </TouchableOpacity>
               <View style={{flexDirection: 'row'}}>
-                <Button title="Cancel" style={styles.nextBtn} onPress={this.closeModalFunc}></Button>
                 <Button title="Confirm" style={styles.nextBtn} onPress={this.saveTimeChange}></Button>
               </View>
               </View>
@@ -111,7 +119,7 @@ export default class PetScheduleScreen extends Component {
           </Modal>
         <View opacity={0.8} style={styles.listOuterContainer}>
           <FlatList
-            data={[{title: "What does Banjo's morning look like?", key: '   BANJO WAKES UP!'}]}
+            data={[{title: "What does Banjo's daily schedule look like?", key: '   BANJO WAKES UP!'}]}
             renderItem={({item, separators}) => (
                 <View style={styles.listContainer}>
                   <Text style={styles.listTitle}>{item.title}</Text>
@@ -122,8 +130,10 @@ export default class PetScheduleScreen extends Component {
                     {this.state.selected_schedule.map( a => {
                       return (
                         <View style={{flexDirection: 'row'}}>
+                        <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => this.handleToggle(a.id)}>
                           <Image source={activityToImageMap[a.activity]} style={{width: 30, height: 30}}/> 
                           <Text style={styles.scheduleText}>{a.activity.toUpperCase()}</Text>
+                        </TouchableOpacity >
                           <TouchableOpacity onPress={() => this.handleTimeChange(a.id)}>
                             <Text style={styles.scheduleText2}>{this.handleTime(a.time.toString())}</Text>
                           </TouchableOpacity>
@@ -131,7 +141,6 @@ export default class PetScheduleScreen extends Component {
                       )
                     })}
                   <View style={{flexDirection: 'row'}}>
-                    <Button title="Reset" style={styles.nextBtn} onPress={this.handleReset}></Button>
                     <Button title="Confirm" style={styles.nextBtn} onPress={this.handleNext}></Button>
                   </View>
                 </View>
@@ -232,9 +241,7 @@ const styles = StyleSheet.create({
   },
   nextBtn: {
     marginTop: 20,
-    marginLeft: 10,
-    marginRight: 10,
-    width: 90,
+    width: 130,
     justifyContent: 'space-between',
   },
   textInput: {
@@ -266,4 +273,21 @@ const styles = StyleSheet.create({
      borderWidth: 1,
      borderColor:'white'
     },
+    cancelContainer: {
+      position: 'absolute',
+      marginLeft: '100%',
+      right: 0,
+      left: 0,
+      top: 0,
+      bottom: 0,
+
+    },
+    cancelImg: {
+      right: 0,
+      left: 0,
+      top: 10,
+      bottom: 0,
+      width: 25,
+      height: 25
+    }
 });
