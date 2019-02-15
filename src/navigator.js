@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import HomeScreen from './components/HomeScreen'
 import PetInfoScreen from './components/PetInfoScreen'
 import PetScheduleScreen from './components/PetScheduleScreen'
@@ -20,5 +20,5 @@ const RootStack = createStackNavigator (
   }
 );
 
-export default createAppContainer(RootStack)
+export default Navigator = createAppContainer(RootStack)
 

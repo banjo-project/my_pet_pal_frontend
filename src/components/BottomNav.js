@@ -28,7 +28,6 @@ render() {
 }
 }
 
-
 const styles = StyleSheet.create({
     bottomNavItem: {
       width: '25%',
