@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, AsyncStorage } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import BottomNav from './BottomNav'
 import styles from '../styling/HomeScreen'
-import { Button } from 'react-native-elements';
+import { Button } from 'react-native-elements'
+import { connect } from 'react-redux'
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   state = {
     openNameInput: false,
   }
@@ -13,20 +14,13 @@ export default class HomeScreen extends React.Component {
   handleAddImage = () => this.props.navigation.navigate('PetPhotoPage')
   handleNext = () => this.props.navigation.navigate('PetInfoPage')
 
-  async _getImageData () {
-  //await AsyncStorage.removeItem('imageData')
-   return await AsyncStorage.getItem('imageData')
-}
-
   render() {
-  //  let { openNameInput, image } = this.state;
-    let image = this._getImageData()
-    console.warn(image)
-
+    let image = this.props.saveImage
+  
     return (
       <View style={styles.container}>
         <View style={styles.contentsContainer}>
-        {image ==! null ? (
+        {image ? (
           <View style={styles.roundImage} onPress={this.handleAddImage}>
             <Image style={styles.image} source={{ uri: image }} /> 
           </View>
@@ -57,3 +51,12 @@ export default class HomeScreen extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return ({
+    saveImage: state.saveImage,
+  })
+}
+
+export default connect(mapStateToProps, null)(HomeScreen)
+

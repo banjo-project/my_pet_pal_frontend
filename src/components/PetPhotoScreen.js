@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { saveImage } from '../action/pets'
 import styles from '../styling/PetPhotoScreen'
-import { AsyncStorage, Button, Text, ScrollView, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
-import { ImagePicker, Permissions, Constants } from 'expo';
+import { Button, Text, ScrollView, View, TouchableOpacity, Image } from 'react-native';
+import { ImagePicker, Permissions } from 'expo';
 
 class PetPhotoScreen extends Component {
   state = {

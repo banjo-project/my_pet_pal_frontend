@@ -1,22 +1,14 @@
 import React from 'react'
 import styles from '../styling/HeaderImage'
-import { StyleSheet, Text, View, Image, AsyncStorage } from 'react-native'
+import { Text, View, Image } from 'react-native'
+import { connect } from 'react-redux'
 
-export default class HeaderImage extends React.Component {
-    state = {
-        image: null,
-      };
-
-    // async _getImageData () {
-    //     let imageAddress = await AsyncStorage.getItem('imageData')
-    // }
+class HeaderImage extends React.Component {
 
     render() {
-        this._getImageData
-        // let { image } = this.state;
-        
-        return (
-            
+        let image = this.props.saveImage
+
+        return (  
             <View style={styles.headerCovntainer}>
                 {image ? (
                     <View style={styles.roundImage}> 
@@ -33,3 +25,12 @@ export default class HeaderImage extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return ({
+      saveImage: state.saveImage,
+    })
+  }
+  
+export default connect(mapStateToProps, null)(HeaderImage)
+  
+  

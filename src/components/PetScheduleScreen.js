@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, FlatList, Image, TouchableOpacity, DatePickerIOS } from "react-native";
+import { View, Text, FlatList, Image, TouchableOpacity, DatePickerIOS } from "react-native";
 import { Button } from 'react-native-elements'
 import Modal from "react-native-modal";
 import HeaderImage from './HeaderImage'
