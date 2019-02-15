@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import styles from '../styling/BottomButton'
 
 const activities1 = ['walk', 'eat', 'meds', 'treats']

@@ -1,6 +1,6 @@
 import React from 'react'
 import HeaderImage from './HeaderImage'
-import { StyleSheet, Text, View, TextInput } from 'react-native'
+import { Text, View, TextInput } from 'react-native'
 import { Button } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
 import styles from '../styling/PetInfoScreen'
