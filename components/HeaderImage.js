@@ -1,20 +1,34 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, AsyncStorage } from 'react-native'
 
 export default class HeaderImage extends React.Component {
+    state = {
+        image: null,
+      };
+
+    async _getImageData () {
+        let imageAddress = await AsyncStorage.getItem('imageData')
+
+    }
 
     render() {
-        return (
-            <View style={styles.headerCovntainer}>
-                {/* <View style={styles.roundImage}> 
-                    <Image style={styles.image} source={require('../assets/Screenshot_20170626-212646.png')}/>
-                    <Text style={styles.headerText}>  BANJO</Text>
-                </View> */}
+        this._getImageData
+        let { image } = this.state;
+        
 
-                <View style={styles.roundImage2}> 
-                    <Image source={require('../assets/dog.png')} style={styles.headerIcon}/> 
-                    <Text style={styles.headerText2}> BANJO</Text>
-                </View>
+        return (
+            
+            <View style={styles.headerCovntainer}>
+                {image ? (
+                    <View style={styles.roundImage}> 
+                        <Image source={{ uri: image }} style={styles.image} />
+                        <Text style={styles.headerText}>  BANJO</Text>
+                    </View>) : 
+                    <View style={styles.roundImage2}> 
+                        <Image source={require('../assets/dog.png')} style={styles.headerIcon}/> 
+                        <Text style={styles.headerText2}> BANJO</Text>
+                    </View> 
+                }
             </View>
         )
     }
@@ -35,8 +49,8 @@ const styles = StyleSheet.create({
     },
     headerIcon:{
         marginTop: 25,
-        width: 50,
-        height: 50
+        width: 40,
+        height: 40
     },
     headerText2: {
         marginTop: 10,

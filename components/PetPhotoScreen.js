@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Text, ScrollView, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
+import { AsyncStorage, Button, Text, ScrollView, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { ImagePicker, Permissions, Constants } from 'expo';
 
 export default class PetPhotoScreen extends Component {
@@ -7,6 +7,11 @@ export default class PetPhotoScreen extends Component {
     result: null,
     image: null,
   };
+
+  async _addImageData () {
+    const imageData = this.state.image
+    await AsyncStorage.setItem('imageData', imageData)
+  }
 
   askPermissionsAsync = async () => {
     await Permissions.askAsync(Permissions.CAMERA);
@@ -35,14 +40,15 @@ export default class PetPhotoScreen extends Component {
     this.setState({ image: result.uri });
   };
   
-  handleNext = () => this.props.navigation.navigate('PetInfoPage')
+  handleNext = async () => {
+    await this._addImageData()
+    this.props.navigation.navigate('Home')
+  }
 
   render() {
     let { image } = this.state;
     return (
-
         <ScrollView style={{flex: 1, flexDirection: 'column',}} contentContainerStyle={styles.container2}>
-
             <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
                 {image ? <Image source={{ uri: image }} style={styles.image}/> 
                     : (
@@ -51,9 +57,8 @@ export default class PetPhotoScreen extends Component {
                         <Text style={styles.roundImageText}>+ Pet Image</Text>
                     </View> 
                     )}
-
-
             </TouchableOpacity>
+
             <View style={styles.textContainer }>
                 <TouchableOpacity onPress={this.useCameraHandler} style={{flexDirection: 'column', justifyContent:'center', alignItems:'center', padding: 10}}>
                     <Image source={require('../assets/camera.png')} style={{width:40, height:40, marginBottom: '2%'}}/> 
@@ -62,13 +67,11 @@ export default class PetPhotoScreen extends Component {
                 <TouchableOpacity onPress={this.useLibraryHandler} style={{flexDirection: 'column', justifyContent:'center', alignItems:'center', padding: 10}}>
                     <Image source={require('../assets/files.png')} style={{width:40, height:40, marginBottom: '2%'}}/> 
                     <Text style={styles.roundImageText}>Choose a photo from my album</Text>
-                </TouchableOpacity>
-                <Button title="Save this photo" onPress={() => this.handleNext(image)}>
-                
+                </TouchableOpacity >
+                <Button style={{marginTop: '70%'}} title="Save this photo" onPress={() => this.handleNext(image)}>
                 </Button>
             </View>
         </ScrollView>
-        
     );
   }
 }

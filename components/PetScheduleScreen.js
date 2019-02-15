@@ -91,6 +91,7 @@ export default class PetScheduleScreen extends Component {
       selected_schedule: ns
     })
   }
+  handleNext = () => this.props.navigation.navigate('AddHumanPage')
 
   render() {
 
@@ -141,7 +142,7 @@ export default class PetScheduleScreen extends Component {
                       )
                     })}
                   <View style={{flexDirection: 'row'}}>
-                    <Button title="Confirm" style={styles.nextBtn} onPress={this.handleNext}></Button>
+                    <Button title="Add a human" style={styles.nextBtn} onPress={this.handleNext}></Button>
                   </View>
                 </View>
                 )}

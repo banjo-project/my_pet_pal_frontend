@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput } from 'react-native'
 import { Button } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
 
-export default class PetInfoScreen extends React.Component {
+export default class AddHumanScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
