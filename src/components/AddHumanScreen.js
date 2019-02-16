@@ -1,11 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { openHumanImage, saveHumanImage } from '../action/humans'
 import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import BottomNav from './BottomNav'
 import styles from '../styling/HomeScreen'
 import HeaderImage from './HeaderImage'
 import { Button } from 'react-native-elements'
-import { connect } from 'react-redux'
-
 
 class AddHumanScreen extends React.Component {
 
@@ -17,7 +18,17 @@ class AddHumanScreen extends React.Component {
     },
   };
 
-  handleAddImage = () => this.props.navigation.navigate('PetPhotoPage')
+  // handleAddImage = () => {
+  //   this.props.openHumanImage(() => {
+  //     this.props.navigation.navigate('PetPhotoPage')
+  //   })
+  // }
+
+  handleAddImage = () => {
+    this.props.openHumanImage()
+    this.props.navigation.navigate('PetPhotoPage')
+  }
+
   handleNext = () => this.props.navigation.navigate('PetInfoPage')
 
   render() {
@@ -48,11 +59,8 @@ class AddHumanScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    saveImage: state.saveImage,
-  })
-}
 
-export default connect(mapStateToProps, null)(AddHumanScreen)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ openHumanImage, saveHumanImage }, dispatch)
+
+export default connect(null, mapDispatchToProps)(AddHumanScreen)
 

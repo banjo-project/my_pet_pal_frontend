@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 class HeaderImage extends React.Component {
 
     render() {
-        let image = this.props.saveImage
+        let image = this.props.petsData
 
         return (  
             <View style={styles.headerCovntainer}>
@@ -27,9 +27,9 @@ class HeaderImage extends React.Component {
 
 const mapStateToProps = (state) => {
     return ({
-      saveImage: state.saveImage,
+      petsData: state.petsData,
     })
-  }
+  }  
   
 export default connect(mapStateToProps, null)(HeaderImage)
   
