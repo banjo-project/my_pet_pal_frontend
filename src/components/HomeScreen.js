@@ -4,18 +4,28 @@ import BottomNav from './BottomNav'
 import styles from '../styling/HomeScreen'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { saveName } from '../action/pets'
 
 class HomeScreen extends React.Component {
   state = {
     openNameInput: false,
+    openErrorMsg: false,
+    petName: ''
   }
 
   handleAddName = () => { this.setState({ openNameInput: true }) }
   handleAddImage = () => this.props.navigation.navigate('PetPhotoPage')
-  handleNext = () => this.props.navigation.navigate('PetInfoPage')
+  handleNext = () => {
+    if(!this.state.petName){ 
+      return this.setState({ openErrorMsg: true })
+    }
+    this.props.saveName(this.state.petName)
+    this.props.navigation.navigate('PetInfoPage')
+  }
 
   render() {
-    let image = this.props.petsData
+    const image = this.props.petsData.petImage
   
     return (
       <View style={styles.container}>
@@ -39,10 +49,16 @@ class HomeScreen extends React.Component {
           ): (
               <View style={styles.inputContainer}>
                 <Text style={styles.text}>What's your pet's name?</Text>
-                <TextInput style={styles.textInput}></TextInput>
+                <TextInput style={styles.textInput} onChangeText={(petName) => this.setState({petName})}></TextInput>
                 <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
               </View>
           )} 
+          {this.state.openErrorMsg? (
+            <View>
+             <Text>Please type your pet's name</Text>
+            </View>
+          ) : null}
+          
         </View>
         <View style={styles.bottomNavContainer}>
           <BottomNav />
@@ -59,5 +75,8 @@ const mapStateToProps = (state) => {
   })
 }
 
-export default connect(mapStateToProps, null)(HomeScreen)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ saveName }, dispatch)
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
 
