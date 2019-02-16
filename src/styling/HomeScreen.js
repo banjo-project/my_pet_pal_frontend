@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
       marginTop: 20
     },
     roundImage: {
-      alignItems: 'center',
       borderWidth:1,
       borderColor:'rgba(0,0,0,0.8)',
       width:200,
