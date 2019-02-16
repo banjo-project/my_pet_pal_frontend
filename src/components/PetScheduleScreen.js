@@ -150,7 +150,7 @@ class PetScheduleScreen extends Component {
                       )
                     })}
                   <View style={{flexDirection: 'row'}}>
-                    <Button title="Add a human" style={styles.nextBtn} onPress={this.handleNext}></Button>
+                    <Button title="Add a human"  type="outline" style={styles.nextBtn} onPress={this.handleNext}></Button>
                   </View>
                 </View>
                 )}

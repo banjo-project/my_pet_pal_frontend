@@ -37,27 +37,34 @@ class AddHumanScreen extends React.Component {
           </TouchableOpacity>
           
             <View style={styles.inputContainer}>
-              <Text style={styles.text}>name</Text>
-              <TextInput style={styles.textInput}></TextInput>
-              <Text style={styles.text}>title</Text>
-              <TextInput style={styles.textInput}></TextInput>
-              <Text style={styles.text}>email</Text>
-              <TextInput style={styles.textInput}></TextInput>
-              <Text style={styles.text}>password</Text>
-              <TextInput style={styles.textInput}></TextInput>
-              <Text style={styles.text}>retype password</Text>
-              <TextInput style={styles.textInput}></TextInput>
-              <Text style={styles.text}>phone number</Text>
-              <TextInput style={styles.textInput}></TextInput>
-              <Button title="Send Invitation" style={styles.nextBtn} onPress={this.handleInvitation}></Button>
-              <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
+              <View style={styles.inputTitleContainer}>
+                <Text style={styles.text}>Name</Text>
+                <Text style={styles.text}>Title</Text>
+                <Text style={styles.text}>Email</Text>
+                <Text style={styles.text}>Password</Text>
+                <Text style={styles.text}>Retype Password</Text>
+                <Text style={styles.text}>Phone Number</Text>
+              </View>
+              <View style={styles.inputContentContainer}>
+                <TextInput style={styles.mdTextInput}></TextInput>
+                <TextInput style={styles.smTextInput}></TextInput>
+                <TextInput style={styles.lgTextInput}></TextInput>
+                <TextInput style={styles.smTextInput}></TextInput>
+                <TextInput style={styles.smTextInput}></TextInput>
+                <TextInput style={styles.mdTextInput}></TextInput>
+              </View>
             </View>
-            
-        </View>
+          
+              <View style={styles.btnContainer}>
+                {/* <Button title="Send Invitation" type="outline" style={styles.nextBtn} onPress={this.handleInvitation}></Button> */}
+                <Button title="Create Account" type="outline" style={styles.nextBtn} onPress={this.handleNext}></Button>
+              </View>
+            </View>
         <View style={styles.bottomNavContainer}>
           <BottomNav />
         </View>
       </View>
+      
     )
   }
 }

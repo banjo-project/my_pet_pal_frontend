@@ -7,8 +7,17 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
     },
     inputContainer: {
-      justifyContent:'center',
-      alignItems:'center',
+      flexDirection: 'row',
+      justifyContent:'space-evenly',
+      margin: 10,
+      padding: 10,
+      alignItems:'flex-start',
+    },
+    inputTitleContainer: {
+      margin: 5,
+    },
+    inputContentContainer: {
+      margin: 5,
     },
     bottomNavContainer: {
       padding: 3,
@@ -21,6 +30,10 @@ const styles = StyleSheet.create({
       alignItems:'center',
       marginTop: 20
     },
+    btnContainer: {
+        flexDirection: 'column',
+        margin: 10
+      },
     roundImage: {
       alignItems: 'center',
       borderWidth:1,
@@ -39,22 +52,40 @@ const styles = StyleSheet.create({
   },
     roundImageText:{
       justifyContent:'center',
-      fontSize: 20
+      fontSize: 17
     },
     text: {
       marginTop: 20,
-      fontSize: 20,
+      fontSize: 15,
     },
-    textInput: {
-      margin: 10,
-      height: 40, 
-      fontSize: 30,
-      width: 200,
+    smTextInput: {
+      padding: 5,
+      margin: 5,
+      height: 30, 
+      fontSize: 15,
+      width: 120,
       borderColor: 'gray', 
       borderWidth: 1
     },
+    mdTextInput: {
+        padding: 5,
+        margin: 5,
+        height: 30, 
+        fontSize: 15,
+        width: 160,
+        borderColor: 'gray', 
+        borderWidth: 1
+    },
+    lgTextInput: {
+        padding: 5,
+        margin: 5,
+        height: 30, 
+        fontSize: 15,
+        width: 200,
+        borderColor: 'gray', 
+        borderWidth: 1
+    },
     nextBtn: {
-      marginTop: 30,
       width: 150,
     }
   })
