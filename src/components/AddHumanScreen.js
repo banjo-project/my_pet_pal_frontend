@@ -1,12 +1,13 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux'
 import { openHumanImage, saveHumanImage } from '../action/humans'
-import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
-import BottomNav from './BottomNav'
-import styles from '../styling/HomeScreen'
-import HeaderImage from './HeaderImage'
+import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
 import { Button } from 'react-native-elements'
+import BottomNav from './BottomNav'
+import HeaderImage from './HeaderImage'
+import styles from '../styling/AddHumanScreen'
+
 
 class AddHumanScreen extends React.Component {
 
@@ -26,7 +27,7 @@ class AddHumanScreen extends React.Component {
   handleNext = () => this.props.navigation.navigate('PetInfoPage')
 
   render() {
-  console.warn(this.props.petsData.petEvent)
+
     return (
       <View style={styles.container}>
         <View style={styles.contentsContainer}>
@@ -38,7 +39,15 @@ class AddHumanScreen extends React.Component {
             <View style={styles.inputContainer}>
               <Text style={styles.text}>name</Text>
               <TextInput style={styles.textInput}></TextInput>
+              <Text style={styles.text}>title</Text>
+              <TextInput style={styles.textInput}></TextInput>
               <Text style={styles.text}>email</Text>
+              <TextInput style={styles.textInput}></TextInput>
+              <Text style={styles.text}>password</Text>
+              <TextInput style={styles.textInput}></TextInput>
+              <Text style={styles.text}>retype password</Text>
+              <TextInput style={styles.textInput}></TextInput>
+              <Text style={styles.text}>phone number</Text>
               <TextInput style={styles.textInput}></TextInput>
               <Button title="Send Invitation" style={styles.nextBtn} onPress={this.handleInvitation}></Button>
               <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
