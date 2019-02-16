@@ -26,7 +26,7 @@ class AddHumanScreen extends React.Component {
   handleNext = () => this.props.navigation.navigate('PetInfoPage')
 
   render() {
-  
+  console.warn(this.props.petsData.petEvent)
     return (
       <View style={styles.container}>
         <View style={styles.contentsContainer}>
@@ -53,8 +53,14 @@ class AddHumanScreen extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return ({
+    petsData: state.petsData,
+    humansData: state.humansData
+  })
+}
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({ openHumanImage, saveHumanImage }, dispatch)
 
-export default connect(null, mapDispatchToProps)(AddHumanScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(AddHumanScreen)
 

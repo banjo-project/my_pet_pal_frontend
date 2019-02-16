@@ -1,4 +1,4 @@
-import { SAVE_IMAGE, SAVE_NAME, SAVE_BREED, SAVE_SEX, SAVE_BIRTHDAY  } from '../action/pets'
+import { SAVE_IMAGE, SAVE_NAME, SAVE_BREED, SAVE_SEX, SAVE_BIRTHDAY, SAVE_EVENT  } from '../action/pets'
 
 export const petsData = (state = {}, {type, payload}) => {
     switch(type){
@@ -27,6 +27,11 @@ export const petsData = (state = {}, {type, payload}) => {
             ...state,
             petBirthday: payload
           }
+        case SAVE_EVENT:
+          return {
+            ...state,
+            petEvent: payload
+        }
         default:
           return state
     }

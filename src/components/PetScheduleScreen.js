@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, Image, TouchableOpacity, DatePickerIOS } from "react-native";
 import { Button } from 'react-native-elements'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { saveEvent } from '../action/pets'
 import Modal from "react-native-modal";
 import HeaderImage from './HeaderImage'
 import BottomButtons from "./BottomButtons";
 import styles from '../styling/PetScheduleScreen'
-import { connect } from 'react-redux'
+
 const shortid = require('shortid');
 
 const activityToImageMap = {
@@ -93,10 +96,13 @@ class PetScheduleScreen extends Component {
       selected_schedule: ns
     })
   }
-  handleNext = () => this.props.navigation.navigate('AddHumanPage')
+  handleNext = () => {
+    this.props.saveEvent(this.state.selected_schedule)
+    this.props.navigation.navigate('AddHumanPage')
+  }
 
   render() {
- console.warn(this.props.petsData.petBirthday)
+
     return (
       <View style={styles.mainContainer}>
         <View style={styles.dropZone}>
@@ -122,7 +128,7 @@ class PetScheduleScreen extends Component {
           </Modal>
         <View opacity={0.8} style={styles.listOuterContainer}>
           <FlatList
-            data={[{title: "What does Banjo's daily schedule look like?", key: '   BANJO WAKES UP!'}]}
+            data={[{title: `What does ${this.props.petsData.petName}'s daily schedule look like?`, key: `   ${this.props.petsData.petName.toUpperCase()} WAKES UP!`}]}
             renderItem={({item, separators}) => (
                 <View style={styles.listContainer}>
                   <Text style={styles.listTitle}>{item.title}</Text>
@@ -166,7 +172,9 @@ const mapStateToProps = (state) => {
   return ({
     petsData: state.petsData,
   })
-}  
+} 
 
-export default connect(mapStateToProps, null)(PetScheduleScreen)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEvent }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PetScheduleScreen)
 
