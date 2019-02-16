@@ -5,6 +5,7 @@ import Modal from "react-native-modal";
 import HeaderImage from './HeaderImage'
 import BottomButtons from "./BottomButtons";
 import styles from '../styling/PetScheduleScreen'
+import { connect } from 'react-redux'
 const shortid = require('shortid');
 
 const activityToImageMap = {
@@ -18,7 +19,7 @@ const activityToImageMap = {
   potty: require('../../assets/potty.png'),
 }
 
-export default class PetScheduleScreen extends Component {
+class PetScheduleScreen extends Component {
  
   constructor() {
     super();
@@ -95,7 +96,7 @@ export default class PetScheduleScreen extends Component {
   handleNext = () => this.props.navigation.navigate('AddHumanPage')
 
   render() {
-
+ console.warn(this.props.petsData.petBirthday)
     return (
       <View style={styles.mainContainer}>
         <View style={styles.dropZone}>
@@ -160,3 +161,12 @@ export default class PetScheduleScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return ({
+    petsData: state.petsData,
+  })
+}  
+
+export default connect(mapStateToProps, null)(PetScheduleScreen)
+

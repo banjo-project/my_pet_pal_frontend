@@ -18,12 +18,6 @@ class AddHumanScreen extends React.Component {
     },
   };
 
-  // handleAddImage = () => {
-  //   this.props.openHumanImage(() => {
-  //     this.props.navigation.navigate('PetPhotoPage')
-  //   })
-  // }
-
   handleAddImage = () => {
     this.props.openHumanImage()
     this.props.navigation.navigate('PetPhotoPage')

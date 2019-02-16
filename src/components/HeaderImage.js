@@ -6,18 +6,19 @@ import { connect } from 'react-redux'
 class HeaderImage extends React.Component {
 
     render() {
-        let image = this.props.petsData
+        const image = this.props.petsData.petImage
+        const petName = this.props.petsData.petName
 
         return (  
             <View style={styles.headerCovntainer}>
                 {image ? (
                     <View style={styles.roundImage}> 
                         <Image source={{ uri: image }} style={styles.image} />
-                        <Text style={styles.headerText}>  BANJO</Text>
+                        <Text style={styles.headerText}>{petName}</Text>
                     </View>) : 
                     <View style={styles.roundImage2}> 
                         <Image source={require('../../assets/dog.png')} style={styles.headerIcon}/> 
-                        <Text style={styles.headerText2}> BANJO</Text>
+                        <Text style={styles.headerText2}>{petName}</Text>
                     </View> 
                 }
             </View>
