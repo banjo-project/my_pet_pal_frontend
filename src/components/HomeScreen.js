@@ -15,7 +15,7 @@ class HomeScreen extends React.Component {
   handleNext = () => this.props.navigation.navigate('PetInfoPage')
 
   render() {
-    let image = this.props.saveImage
+    let image = this.props.petsData
   
     return (
       <View style={styles.container}>
@@ -54,7 +54,8 @@ class HomeScreen extends React.Component {
 
 const mapStateToProps = (state) => {
   return ({
-    saveImage: state.saveImage,
+    petsData: state.petsData,
+    humansData: state.humansData
   })
 }
 
