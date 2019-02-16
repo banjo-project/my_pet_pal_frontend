@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { saveImage } from '../action/pets'
+import { Button } from 'react-native-elements'
 import { openHumanImage, saveHumanImage } from '../action/humans'
 import styles from '../styling/PetPhotoScreen'
-import { Button, Text, ScrollView, View, TouchableOpacity, Image } from 'react-native';
+import { Text, ScrollView, View, TouchableOpacity, Image } from 'react-native';
 import { ImagePicker, Permissions } from 'expo';
 
 class PetPhotoScreen extends Component {
@@ -52,14 +53,14 @@ class PetPhotoScreen extends Component {
 
   handleHumanNext = async () => {
     this.props.saveHumanImage(this.state.image)
-    this.props.navigation.navigate('Home')
+    this.props.navigation.navigate('AddHumanPage')
   }
 
   render() {
     let { image } = this.state;
-    if (this.props.humansData){
+    if (this.props.humansData.humanImageOpen){
       return (
-        <ScrollView style={{flex: 1, flexDirection: 'column',}} contentContainerStyle={styles.container2}>
+        <ScrollView style={{flex: 1, flexDirection: 'column'}} contentContainerStyle={styles.container2}>
             <View style={styles.roundImage}>
                 {image ? <Image source={{ uri: image }} style={styles.image}/> 
                     : (
@@ -69,21 +70,21 @@ class PetPhotoScreen extends Component {
                     </View> 
                     )}
             </View>
-            <View style={styles.textContainer }>
-                <TouchableOpacity onPress={this.useCameraHandler} style={{flexDirection: 'column', justifyContent:'center', alignItems:'center', padding: 10}}>
-                    <Image source={require('../../assets/camera.png')} style={{width:40, height:40, marginBottom: '2%'}}/> 
+            <View style={styles.textContainer}>
+                <TouchableOpacity onPress={this.useCameraHandler} style={styles.cameraContainer}>
+                    <Image source={require('../../assets/camera.png')} style={styles.cameraImage}/> 
                     <Text style={styles.roundImageText}> Take a profile photo </Text> 
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.useLibraryHandler} style={{flexDirection: 'column', justifyContent:'center', alignItems:'center', padding: 10}}>
-                    <Image source={require('../../assets/files.png')} style={{width:40, height:40, marginBottom: '2%'}}/> 
+                <TouchableOpacity onPress={this.useLibraryHandler} style={styles.cameraContainer}>
+                    <Image source={require('../../assets/files.png')} style={styles.cameraImage}/> 
                     <Text style={styles.roundImageText}>Choose a photo from my album</Text>
                 </TouchableOpacity >
-                <Button style={{marginTop: '70%'}} title="Save this photo" onPress={() => this.handleHumanNext(image)}>
+                <Button style={styles.btn} type="outline" title="Save this photo"  onPress={() => this.handleHumanNext(image)}>
                 </Button>
             </View>
         </ScrollView>
   )} return (
-        <ScrollView style={{flex: 1, flexDirection: 'column',}} contentContainerStyle={styles.container2}>
+        <ScrollView style={{flex: 1, flexDirection: 'column'}} contentContainerStyle={styles.container2}>
             <View style={styles.roundImage}>
                 {image ? <Image source={{ uri: image }} style={styles.image}/> 
                     : (
@@ -94,16 +95,16 @@ class PetPhotoScreen extends Component {
                     )}
             </View>
 
-            <View style={styles.textContainer }>
-                <TouchableOpacity onPress={this.useCameraHandler} style={{flexDirection: 'column', justifyContent:'center', alignItems:'center', padding: 10}}>
-                    <Image source={require('../../assets/camera.png')} style={{width:40, height:40, marginBottom: '2%'}}/> 
+            <View style={styles.textContainer}>
+                <TouchableOpacity onPress={this.useCameraHandler} style={styles.cameraContainer}>
+                    <Image source={require('../../assets/camera.png')} style={styles.cameraImage}/> 
                     <Text style={styles.roundImageText}> Take a profile photo </Text> 
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.useLibraryHandler} style={{flexDirection: 'column', justifyContent:'center', alignItems:'center', padding: 10}}>
-                    <Image source={require('../../assets/files.png')} style={{width:40, height:40, marginBottom: '2%'}}/> 
+                <TouchableOpacity onPress={this.useLibraryHandler} style={styles.cameraContainer}>
+                    <Image source={require('../../assets/files.png')} style={styles.cameraImage}/> 
                     <Text style={styles.roundImageText}>Choose a photo from my album</Text>
                 </TouchableOpacity >
-                <Button style={{marginTop: '70%'}} title="Save this photo" onPress={() => this.handleNext(image)}>
+                <Button style={styles.btn} type="outline" title="Save this photo" onPress={() => this.handleNext(image)}>
                 </Button>
             </View>
         </ScrollView>

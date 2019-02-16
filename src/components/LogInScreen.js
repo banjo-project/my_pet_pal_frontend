@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput, Image, Alert } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import BottomNav from './BottomNav'
 import styles from '../styling/HomeScreen'
 import { Button } from 'react-native-elements'
@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { saveName } from '../action/pets'
 
-class HomeScreen extends React.Component {
+class LogInScreen extends React.Component {
   state = {
     openNameInput: false,
     openErrorMsg: false,
@@ -25,7 +25,10 @@ class HomeScreen extends React.Component {
   }
 
   render() {
-    const image = this.props.petsData.petImage
+    const image = this.props.humansData.humanImage
+    const phone = this.props.humansData.humanPhone
+    console.warn(image)
+    console.warn(phone)
   
     return (
       <View style={styles.container}>
@@ -53,16 +56,11 @@ class HomeScreen extends React.Component {
                 <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
               </View>
           )} 
-
-          {this.state.openErrorMsg? 
-            Alert.alert(
-              "Please enter your dog's name",
-              '',
-              [
-                {text: 'OK', onPress: () => this.setState({ openErrorMsg: false })}
-              ],
-              {cancelable: false},
-            ) : null}
+          {this.state.openErrorMsg? (
+            <View>
+             <Text>Please type your pet's name</Text>
+            </View>
+          ) : null}
           
         </View>
         <View style={styles.bottomNavContainer}>
@@ -83,5 +81,5 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators({ saveName }, dispatch)
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(LogInScreen)
 

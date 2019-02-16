@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { openHumanImage, saveHumanImage } from '../action/humans'
+import { openHumanImage, saveHumanName, saveHumanTitle, saveHumanEmail, saveHumanPw, saveHumanPhoneNumber } from '../action/humans'
 import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
 import { Button } from 'react-native-elements'
 import BottomNav from './BottomNav'
@@ -10,6 +10,18 @@ import styles from '../styling/AddHumanScreen'
 
 
 class AddHumanScreen extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      humanName: '',
+      humanTitle: '',
+      humanEmail: '',
+      humanPw: '',
+      humanPhone: '',
+      petBdOpen: false,
+    }
+  }
 
   static navigationOptions = {
     headerTitle: <HeaderImage />,
@@ -24,18 +36,31 @@ class AddHumanScreen extends React.Component {
     this.props.navigation.navigate('PetPhotoPage')
   }
 
-  handleNext = () => this.props.navigation.navigate('PetInfoPage')
+  handleNext = () => {
+    this.props.saveHumanName(this.state.humanName)
+    this.props.saveHumanTitle(this.state.humanTitle)
+    this.props.saveHumanEmail(this.state.humanEmail)
+    this.props.saveHumanPw(this.state.humanPw)
+    this.props.saveHumanPhoneNumber(this.state.humanPhone)
+    this.props.navigation.navigate('LogInPage')
+  }
 
   render() {
-
+    const image = this.props.humansData.humanImage
     return (
       <View style={styles.container}>
         <View style={styles.contentsContainer}>
+        {image ? (
+          <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
+            <Image style={styles.image} source={{ uri: image }} /> 
+          </TouchableOpacity>
+        ): (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
             <Image source={require('../../assets/happy.png')}/> 
             <Text style={styles.roundImageText}>+ My Haman Image</Text>
           </TouchableOpacity>
-          
+        )}
+
             <View style={styles.inputContainer}>
               <View style={styles.inputTitleContainer}>
                 <Text style={styles.text}>Name</Text>
@@ -46,25 +71,23 @@ class AddHumanScreen extends React.Component {
                 <Text style={styles.text}>Phone Number</Text>
               </View>
               <View style={styles.inputContentContainer}>
-                <TextInput style={styles.mdTextInput}></TextInput>
-                <TextInput style={styles.smTextInput}></TextInput>
-                <TextInput style={styles.lgTextInput}></TextInput>
-                <TextInput style={styles.smTextInput}></TextInput>
-                <TextInput style={styles.smTextInput}></TextInput>
-                <TextInput style={styles.mdTextInput}></TextInput>
+                <TextInput style={styles.mdTextInput} onChangeText={(humanName) => this.setState({ humanName })}></TextInput>
+                <TextInput style={styles.smTextInput} onChangeText={(humanTitle) => this.setState({ humanTitle })}></TextInput>
+                <TextInput style={styles.lgTextInput} onChangeText={(humanEmail) => this.setState({ humanEmail })}></TextInput>
+                <TextInput style={styles.smTextInput} onChangeText={(humanPw) => this.setState({ humanPw})}></TextInput>
+                <TextInput style={styles.smTextInput} onChangeText={(humanPw) => this.setState({ humanPw })}></TextInput>
+                <TextInput style={styles.mdTextInput} onChangeText={(humanPhone) => this.setState({ humanPhone })}></TextInput>
               </View>
             </View>
           
-              <View style={styles.btnContainer}>
-                {/* <Button title="Send Invitation" type="outline" style={styles.nextBtn} onPress={this.handleInvitation}></Button> */}
-                <Button title="Create Account" type="outline" style={styles.nextBtn} onPress={this.handleNext}></Button>
-              </View>
+            <View style={styles.btnContainer}>
+              <Button title="Create Account" type="outline" style={styles.nextBtn} onPress={this.handleNext}></Button>
             </View>
+          </View>
         <View style={styles.bottomNavContainer}>
           <BottomNav />
         </View>
-      </View>
-      
+      </View> 
     )
   }
 }
@@ -76,7 +99,7 @@ const mapStateToProps = (state) => {
   })
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ openHumanImage, saveHumanImage }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ openHumanImage, saveHumanName, saveHumanTitle, saveHumanEmail, saveHumanPw, saveHumanPhoneNumber }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddHumanScreen)
 
