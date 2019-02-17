@@ -85,8 +85,8 @@ class AddHumanScreen extends React.Component {
           </TouchableOpacity>
         ): (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-            <Image source={require('../../assets/happy.png')}/> 
-            <Text style={styles.roundImageText}>+ My Haman Image</Text>
+            <Image style={styles.image2} source={require('../../assets/happy.png')}/> 
+            <Text style={styles.roundImageText}>+Photo </Text>
           </TouchableOpacity>
         )}
 
@@ -110,7 +110,7 @@ class AddHumanScreen extends React.Component {
             </View>
             {this.state.errorMessage ? (
               <View>
-              <Text>`{this.state.errorMessage}`</Text>
+              <Text>{this.state.errorMessage}</Text>
               </View>
               ) : null}
             <View style={styles.btnContainer}>

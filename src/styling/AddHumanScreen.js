@@ -9,8 +9,11 @@ const styles = StyleSheet.create({
     inputContainer: {
       flexDirection: 'row',
       justifyContent:'space-evenly',
-      margin: 10,
-      padding: 10,
+      marginLeft: 10,
+      marginRight: 10,
+      paddingTop: 10,
+      paddingRight: 10,
+      paddingLeft: 10,
       alignItems:'flex-start',
     },
     inputTitleContainer: {
@@ -32,27 +35,31 @@ const styles = StyleSheet.create({
     },
     btnContainer: {
         flexDirection: 'column',
-        margin: 10
+        margin: 5
       },
     roundImage: {
       alignItems: 'center',
       borderWidth:1,
       borderColor:'rgba(0,0,0,0.8)',
-      width:200,
-      height:200,
-      borderRadius:100,
-      alignItems:'center',
+      width:120,
+      height:120,
+      borderRadius:60,
       justifyContent:'center',
     },
     image: {
       resizeMode: "stretch",
-      height: 200,
-      width: 200,
-      borderRadius: 100
+      height: 120,
+      width: 120,
+      borderRadius: 60
   },
+      image2: {
+        height: 35,
+        width: 35,
+        marginTop: "10%"
+    },
     roundImageText:{
       justifyContent:'center',
-      fontSize: 17
+      fontSize: 13
     },
     text: {
       marginTop: 20,
@@ -87,6 +94,7 @@ const styles = StyleSheet.create({
     },
     nextBtn: {
       width: 150,
+      marginTop: 10,
     }
   })
   
