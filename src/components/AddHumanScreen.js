@@ -21,7 +21,7 @@ class AddHumanScreen extends React.Component {
       humanPw2: '',
       humanPhone: '',
       petBdOpen: false,
-      errorMessage: false
+      errorMessage: ''
     }
   }
 
@@ -38,14 +38,39 @@ class AddHumanScreen extends React.Component {
     this.props.navigation.navigate('PetPhotoPage')
   }
 
+  emailValidate = (humanEmail) => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+    if(reg.test(humanEmail) === false){
+      this.setState({ humanEmail, errorMessage: 'Please type valid email address.' })
+      } else {
+      this.setState({ humanEmail, errorMessage: '' })
+    }
+  }
+  pwValidate = (humanPw2) => {
+    if(humanPw2 !== this.state.humanPw){
+      this.setState({ humanPw2, errorMessage: 'Please type matching password' })
+      } else {
+      this.setState({ humanPw2, errorMessage: '' })
+    }
+  }
+  phoneValidate = (humanPhone) => {
+    let reg = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/;
+    if(reg.test(humanPhone) === false){
+      this.setState({ humanPhone, errorMessage: 'Please type valid phone number.' })
+      } else {
+      this.setState({ humanPhone, errorMessage: '' })
+    }
+  }
+
   handleNext = () => {
-    
-    this.props.saveHumanName(this.state.humanName)
-    this.props.saveHumanTitle(this.state.humanTitle)
-    this.props.saveHumanEmail(this.state.humanEmail)
-    this.props.saveHumanPw(this.state.humanPw)
-    this.props.saveHumanPhoneNumber(this.state.humanPhone)
-    this.props.navigation.navigate('LogInPage')
+    if(!this.state.errorMessage){
+      this.props.saveHumanName(this.state.humanName)
+      this.props.saveHumanTitle(this.state.humanTitle)
+      this.props.saveHumanEmail(this.state.humanEmail)
+      this.props.saveHumanPw(this.state.humanPw)
+      this.props.saveHumanPhoneNumber(this.state.humanPhone)
+      this.props.navigation.navigate('LogInPage')
+    }
   }
 
   render() {
@@ -60,8 +85,8 @@ class AddHumanScreen extends React.Component {
           </TouchableOpacity>
         ): (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-            <Image source={require('../../assets/happy.png')}/> 
-            <Text style={styles.roundImageText}>+ My Haman Image</Text>
+            <Image style={styles.image2} source={require('../../assets/happy.png')}/> 
+            <Text style={styles.roundImageText}>+Photo </Text>
           </TouchableOpacity>
         )}
 
@@ -77,13 +102,17 @@ class AddHumanScreen extends React.Component {
               <View style={styles.inputContentContainer}>
                 <TextInput style={styles.mdTextInput} value={this.state.humanName} onChangeText={(humanName) => this.setState({ humanName })}></TextInput>
                 <TextInput style={styles.smTextInput} value={this.state.humanTitle} onChangeText={(humanTitle) => this.setState({ humanTitle })}></TextInput>
-                <TextInput style={styles.lgTextInput} value={this.state.humanEmail} onChangeText={(humanEmail) => this.setState({ humanEmail })}></TextInput>
+                <TextInput style={styles.lgTextInput} value={this.state.humanEmail} onChangeText={(humanEmail) => this.emailValidate(humanEmail)}></TextInput>
                 <TextInput style={styles.smTextInput} value={this.state.humanPw} onChangeText={(humanPw) => this.setState({ humanPw})}></TextInput>
-                <TextInput style={styles.smTextInput} value={this.state.humanPw2} onChangeText={(humanPw) => this.setState({ humanPw })}></TextInput>
-                <TextInput style={styles.mdTextInput} value={this.state.humanPhone} onChangeText={(humanPhone) => this.setState({ humanPhone })}></TextInput>
+                <TextInput style={styles.smTextInput} value={this.state.humanPw2} onChangeText={(humanPw2) => this.pwValidate(humanPw2)}></TextInput>
+                <TextInput style={styles.mdTextInput} value={this.state.humanPhone} onChangeText={(humanPhone) => this.phoneValidate(humanPhone)}></TextInput>
               </View>
             </View>
-          
+            {this.state.errorMessage ? (
+              <View>
+              <Text>{this.state.errorMessage}</Text>
+              </View>
+              ) : null}
             <View style={styles.btnContainer}>
               <Button title="Create Account" type="outline" style={styles.nextBtn} onPress={this.handleNext}></Button>
             </View>

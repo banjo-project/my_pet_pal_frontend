@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import BottomNav from './BottomNav'
 import HeaderImage from './HeaderImage'
-import styles from '../styling/HomeScreen'
+import styles from '../styling/LogInScreen'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -42,16 +42,15 @@ class LogInScreen extends React.Component {
           </View>
         ) : (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-            <Image source={require('../../assets/happy.png')}/> 
+            <Image style={styles.image2} source={require('../../assets/happy.png')}/> 
             <Text style={styles.roundImageText}>+ Human Image</Text>
           </TouchableOpacity>
         )}
           <View style={styles.inputContainer}>
             <Text style={styles.text}>Email</Text>
-            <TextInput style={styles.textInput} onChangeText={(humanEmail) => this.setState({humanEmail})}></TextInput>
+            <TextInput style={styles.textInput1} onChangeText={(humanEmail) => this.setState({humanEmail})}></TextInput>
             <Text style={styles.text}>Password</Text>
-            <TextInput style={styles.textInput} onChangeText={(humanPw) => this.setState({humanPw})}></TextInput>
-            <Button title="Submit" style={styles.nextBtn} onPress={this.handleNext}></Button>
+            <TextInput style={styles.textInput2} onChangeText={(humanPw) => this.setState({humanPw})}></TextInput>
           </View>
   
           {this.state.openErrorMsg? (
@@ -59,7 +58,7 @@ class LogInScreen extends React.Component {
              <Text>Please type valid email address and password.</Text>
             </View>
           ) : null}
-          
+          <Button title="Submit" style={styles.nextBtn} onPress={this.handleNext}></Button>
         </View>
         <View style={styles.bottomNavContainer}>
           <BottomNav />
