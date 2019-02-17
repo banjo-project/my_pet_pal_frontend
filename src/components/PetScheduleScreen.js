@@ -4,23 +4,13 @@ import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { saveEvent } from '../action/pets'
-import Modal from "react-native-modal";
+import Modal from "react-native-modal"
+import activityToImageMap from './imageMap'
 import HeaderImage from './HeaderImage'
 import BottomButtons from "./BottomButtons";
 import styles from '../styling/PetScheduleScreen'
 
 const shortid = require('shortid');
-
-const activityToImageMap = {
-  walk: require('../../assets/walk.png'),
-  eat: require('../../assets/eat.png'),
-  meds: require('../../assets/meds.png'),
-  treats: require('../../assets/treats.png'),
-  exercise: require('../../assets/exercise.png'),
-  groom: require('../../assets/groom.png'),
-  crate: require('../../assets/crate.png'),
-  potty: require('../../assets/potty.png'),
-}
 
 class PetScheduleScreen extends Component {
  
@@ -160,7 +150,6 @@ class PetScheduleScreen extends Component {
 
         <View style={styles.ballContainer} />
         <BottomButtons 
-          activityToImageMap={activityToImageMap}
           addItem={this.addItem}
           />
     </View>
