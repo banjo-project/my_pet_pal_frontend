@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     headerText: {
         marginTop: 3,
         alignItems:'center',
+        marginLeft: 20,
         justifyContent:'center'
     },
     headerIcon:{

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import BottomNav from './BottomNav'
+import HeaderImage from './HeaderImage'
 import styles from '../styling/HomeScreen'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
@@ -11,25 +12,27 @@ class LogInScreen extends React.Component {
   state = {
     openNameInput: false,
     openErrorMsg: false,
-    petName: ''
+    humanEmail: '',
+    humanPw: ''
   }
 
-  handleAddName = () => { this.setState({ openNameInput: true }) }
-  handleAddImage = () => this.props.navigation.navigate('PetPhotoPage')
+  static navigationOptions = {
+    headerTitle: <HeaderImage />,
+    headerStyle: {
+      height: 100,
+      fontWeight: 'bold',
+    },
+  };
+
   handleNext = () => {
-    if(!this.state.petName){ 
+    if(!this.state.humanEmail || !this.state.humanPw){ 
       return this.setState({ openErrorMsg: true })
     }
-    this.props.saveName(this.state.petName)
     this.props.navigation.navigate('PetInfoPage')
   }
 
   render() {
-    const image = this.props.humansData.humanImage
-    const phone = this.props.humansData.humanPhone
-    console.warn(image)
-    console.warn(phone)
-  
+  const image = this.props.humansData.humanImage
     return (
       <View style={styles.container}>
         <View style={styles.contentsContainer}>
@@ -39,26 +42,21 @@ class LogInScreen extends React.Component {
           </View>
         ) : (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-            <Image source={require('../../assets/dog.png')}/> 
-            <Text style={styles.roundImageText}>+ Pet Image</Text>
+            <Image source={require('../../assets/happy.png')}/> 
+            <Text style={styles.roundImageText}>+ Human Image</Text>
           </TouchableOpacity>
         )}
-          
-          {!this.state.openNameInput? (
-            <TouchableOpacity onPress={this.handleAddName} style={{flexDirection: 'row'}}> 
-              <Text style={styles.text}> Tell us about your Pet  </Text>
-              <Image source={require('../../assets/happy.png')} style={{width:35, height:35, marginTop: 15}} />
-            </TouchableOpacity>
-          ): (
-              <View style={styles.inputContainer}>
-                <Text style={styles.text}>What's your pet's name?</Text>
-                <TextInput style={styles.textInput} onChangeText={(petName) => this.setState({petName})}></TextInput>
-                <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
-              </View>
-          )} 
+          <View style={styles.inputContainer}>
+            <Text style={styles.text}>Email</Text>
+            <TextInput style={styles.textInput} onChangeText={(humanEmail) => this.setState({humanEmail})}></TextInput>
+            <Text style={styles.text}>Password</Text>
+            <TextInput style={styles.textInput} onChangeText={(humanPw) => this.setState({humanPw})}></TextInput>
+            <Button title="Submit" style={styles.nextBtn} onPress={this.handleNext}></Button>
+          </View>
+  
           {this.state.openErrorMsg? (
             <View>
-             <Text>Please type your pet's name</Text>
+             <Text>Please type valid email address and password.</Text>
             </View>
           ) : null}
           
