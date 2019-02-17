@@ -28,7 +28,7 @@ class LogInScreen extends React.Component {
     if(!this.state.humanEmail || !this.state.humanPw){ 
       return this.setState({ openErrorMsg: true })
     }
-    this.props.navigation.navigate('PetInfoPage')
+    this.props.navigation.navigate('DailySchedulePage')
   }
 
   render() {

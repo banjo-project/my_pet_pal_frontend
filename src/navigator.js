@@ -5,6 +5,7 @@ import PetScheduleScreen from './components/PetScheduleScreen'
 import PetPhotoScreen from './components/PetPhotoScreen'
 import AddHumanScreen from './components/AddHumanScreen'
 import LogInScreen from './components/LogInScreen'
+import DailyScheduleScreen from './components/DailyScheduleScreen'
 import { createStackNavigator, createAppContainer } from 'react-navigation'
 
 
@@ -15,10 +16,11 @@ const RootStack = createStackNavigator (
     PetSchedulePage: PetScheduleScreen,
     PetPhotoPage: PetPhotoScreen,
     AddHumanPage: AddHumanScreen,
-    LogInPage: LogInScreen
+    LogInPage: LogInScreen,
+    DailySchedulePage: DailyScheduleScreen,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'DailySchedulePage',
   }
 );
 

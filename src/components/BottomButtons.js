@@ -1,4 +1,5 @@
 import React from 'react';
+import activityToImageMap from './imageMap'
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import styles from '../styling/BottomButton'
 
@@ -18,7 +19,7 @@ render() {
             {activities1.map( a => {
                 return (
                 <TouchableOpacity style={styles.circle} onPress={()=>this.props.addItem(a)}>    
-                    <Image source={this.props.activityToImageMap[a]} style={styles.image}/> 
+                    <Image source={activityToImageMap[a]} style={styles.image}/> 
                     <Text style={styles.btnText}>{a.toUpperCase()}</Text>
                 </TouchableOpacity>
                 )
@@ -28,7 +29,7 @@ render() {
             {activities2.map( a => {
                 return (
                 <TouchableOpacity style={styles.circle} onPress={()=>this.props.addItem(a)}>
-                    <Image source={this.props.activityToImageMap[a]} style={styles.image}/> 
+                    <Image source={activityToImageMap[a]} style={styles.image}/> 
                     <Text style={styles.btnText}>{a.toUpperCase()}</Text>
                 </TouchableOpacity>
                 )
