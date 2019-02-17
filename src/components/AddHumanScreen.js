@@ -18,8 +18,10 @@ class AddHumanScreen extends React.Component {
       humanTitle: '',
       humanEmail: '',
       humanPw: '',
+      humanPw2: '',
       humanPhone: '',
       petBdOpen: false,
+      errorMessage: false
     }
   }
 
@@ -37,6 +39,7 @@ class AddHumanScreen extends React.Component {
   }
 
   handleNext = () => {
+    
     this.props.saveHumanName(this.state.humanName)
     this.props.saveHumanTitle(this.state.humanTitle)
     this.props.saveHumanEmail(this.state.humanEmail)
@@ -50,6 +53,7 @@ class AddHumanScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.contentsContainer}>
+        
         {image ? (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
             <Image style={styles.image} source={{ uri: image }} /> 
@@ -71,12 +75,12 @@ class AddHumanScreen extends React.Component {
                 <Text style={styles.text}>Phone Number</Text>
               </View>
               <View style={styles.inputContentContainer}>
-                <TextInput style={styles.mdTextInput} onChangeText={(humanName) => this.setState({ humanName })}></TextInput>
-                <TextInput style={styles.smTextInput} onChangeText={(humanTitle) => this.setState({ humanTitle })}></TextInput>
-                <TextInput style={styles.lgTextInput} onChangeText={(humanEmail) => this.setState({ humanEmail })}></TextInput>
-                <TextInput style={styles.smTextInput} onChangeText={(humanPw) => this.setState({ humanPw})}></TextInput>
-                <TextInput style={styles.smTextInput} onChangeText={(humanPw) => this.setState({ humanPw })}></TextInput>
-                <TextInput style={styles.mdTextInput} onChangeText={(humanPhone) => this.setState({ humanPhone })}></TextInput>
+                <TextInput style={styles.mdTextInput} value={this.state.humanName} onChangeText={(humanName) => this.setState({ humanName })}></TextInput>
+                <TextInput style={styles.smTextInput} value={this.state.humanTitle} onChangeText={(humanTitle) => this.setState({ humanTitle })}></TextInput>
+                <TextInput style={styles.lgTextInput} value={this.state.humanEmail} onChangeText={(humanEmail) => this.setState({ humanEmail })}></TextInput>
+                <TextInput style={styles.smTextInput} value={this.state.humanPw} onChangeText={(humanPw) => this.setState({ humanPw})}></TextInput>
+                <TextInput style={styles.smTextInput} value={this.state.humanPw2} onChangeText={(humanPw) => this.setState({ humanPw })}></TextInput>
+                <TextInput style={styles.mdTextInput} value={this.state.humanPhone} onChangeText={(humanPhone) => this.setState({ humanPhone })}></TextInput>
               </View>
             </View>
           
