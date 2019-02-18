@@ -1,4 +1,11 @@
-import { SAVE_IMAGE, SAVE_NAME, SAVE_BREED, SAVE_SEX, SAVE_BIRTHDAY, SAVE_EVENT  } from '../action/pets'
+import { SAVE_IMAGE, 
+        SAVE_NAME, 
+        SAVE_BREED, 
+        SAVE_SEX, 
+        SAVE_BIRTHDAY, 
+        SAVE_EVENT,
+        OPEN_SCHEDULE_CHECKER,
+        SELECTED_SCHEDULE  } from '../action/pets'
 
 export const petsData = (state = {}, {type, payload}) => {
     switch(type){
@@ -32,6 +39,16 @@ export const petsData = (state = {}, {type, payload}) => {
             ...state,
             petEvent: payload
         }
+        case OPEN_SCHEDULE_CHECKER:
+          return {
+            ...state,
+            openScheduleChecker: payload
+          }
+        case SELECTED_SCHEDULE:
+          return {
+            ...state,
+            selectedSchedule: payload
+          }
         default:
           return state
     }

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, TouchableOpacity, Image, TextInput } from "react-native";
-import { Overlay, Button } from 'react-native-elements'
+import { View, Text, FlatList } from "react-native";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { saveEvent } from '../action/pets'
+import { saveEvent, openScheduleChecker } from '../action/pets'
 import ScheduleItem from './ScheduleItem'
+import ScheduleDetail from './ScheduleDetail'
 import CompletedScheduleItem from './CompletedScheduleItem'
 import BottomNav from './BottomNav'
 import styles from '../styling/DailyScheduleScreen'
@@ -25,19 +25,15 @@ const completed_event = [
   ]
 
 class DailyScheduleScreen extends Component {
- 
-    constructor() {
-      super();
-      this.state = {
-        overlayVisible: true,
-      };
-    }
 
     handleNext = () => {
       this.props.navigation.navigate('AddHumanPage')
     }
-
-    openModalFunc = () => { this.setState({overlayVisible: false}) } 
+    handleAddImage = () => {
+    //   this.props.openScheduleChecker(false)
+      this.props.navigation.navigate('PetPhotoPage')
+    }
+    // openModalFunc = () => { this.setState({overlayVisible: false}) } 
     
     render() {
 
@@ -45,21 +41,7 @@ class DailyScheduleScreen extends Component {
         <View style={styles.container}>
             <View style={styles.contentsContainer}>
 
-            <Overlay
-                isVisible={this.state.overlayVisible}
-                onBackdropPress={() => this.setState({ overlayVisible: false })}
-                >
-                <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-                    <Image source={require('../../assets/dog.png')}/> 
-                    <Text style={styles.roundImageText}>+ Add Photo</Text>
-                </TouchableOpacity>
-
-                <View style={styles.inputContainer}>
-                    <Text style={styles.text}>What's your pet's name?</Text>
-                    <TextInput style={styles.textInput} onChangeText={(petName) => this.setState({petName})}></TextInput>
-                    <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
-                </View>
-            </Overlay>
+            <ScheduleDetail />
             
                 <View style={styles.headContainer}>
                     <View style={styles.roundImage}>
@@ -114,7 +96,7 @@ class DailyScheduleScreen extends Component {
     })
   } 
   
-  const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEvent }, dispatch)
+  const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEvent, openScheduleChecker }, dispatch)
   
   export default connect(mapStateToProps, mapDispatchToProps)(DailyScheduleScreen)
   
