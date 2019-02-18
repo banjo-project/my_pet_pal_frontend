@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
     },
     completedEventContainer: {
         height: '35%',
-       // margin: 5,
     },
     completedTitleContainer:{
         alignItems:'center',
         justifyContent:'center',
-        padding: "2%"
+        padding: "2%",
+        marginBottom: "2%"
     },
     showCompletedContainer: {
         width: '100%',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     eventContainer: {
         alignItems:'center',
         justifyContent:'center',
-        height: '50%',
+        height: '48%',
         margin: '1%'
     },
     oneEventContainer:{
@@ -116,11 +116,10 @@ const styles = StyleSheet.create({
     },
     completedTitleText:{
         fontSize: 20
+    },
+    timeText:{
+        marginLeft: "45%"
     }
-    // btn: {
-    //     width: "90%",
-    //     height: "90%",
-    // }
 })
 
 export default styles  
