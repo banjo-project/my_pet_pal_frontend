@@ -21,37 +21,42 @@ const styles = StyleSheet.create({
     },
     scheduleContainer:{
         width: '100%',
-        height: '90%',
+        height: '100%',
     },
     completedEventContainer: {
         height: '35%',
-        marginBottom: "14%",
-        margin: 5,
+       // margin: 5,
+    },
+    completedTitleContainer:{
+        alignItems:'center',
+        justifyContent:'center',
+        padding: "2%"
     },
     showCompletedContainer: {
         width: '100%',
-        height: '10%',
+        height: '15%',
+        marginBottom: '1%',
+        justifyContent:'center',
+        alignItems:'center',
     },
     eventContainer: {
         alignItems:'center',
         justifyContent:'center',
-        height: '85%',
-        width: '100%',
-        margin: 5,
+        height: '50%',
+        margin: '1%'
     },
     oneEventContainer:{
         flexDirection: 'row',
         justifyContent:'center',
         alignItems:'center',
-        width: '100%',
-        //borderWidth: 1,
         paddingLeft: '3%',
         paddingRight: '3%',
         paddingBottom: "2%"
     },
     headTitleContainer:{
         flexDirection: 'column',
-        marginLeft: "5%"
+        marginLeft: "5%",
+        marginBottom: "2%"
     },
     bottomNavContainer: {
         padding: 3,
@@ -60,17 +65,34 @@ const styles = StyleSheet.create({
         height: '13%',
     },
     iconContainer:{
-        width:50,
+        width: "15%",
         height:50,
         borderRadius:25,
         marginBottom: 5,
+        marginLeft: 20,
         justifyContent:'center',
         alignItems:'center',
         borderWidth:0.7
     },
+    photoImage:{
+        width: "100%",
+        height: "100%",
+        borderRadius:25,
+        resizeMode: "stretch",
+    },
     eventTextContainer:{
-        width: "75%",
+        width: "15%",
         marginLeft: "2%"
+    },
+    timeContainer:{
+        width: "45%",
+    },
+    commentContainer:{
+        width: "45%",
+    },
+    btnContainer: {
+        width: "10%",
+        marginRight: 20,
     },
     iconImage:{
         width:30,
@@ -91,7 +113,14 @@ const styles = StyleSheet.create({
     headText: {
         marginTop: "5%",
         fontSize: 13,
+    },
+    completedTitleText:{
+        fontSize: 20
     }
+    // btn: {
+    //     width: "90%",
+    //     height: "90%",
+    // }
 })
 
 export default styles  

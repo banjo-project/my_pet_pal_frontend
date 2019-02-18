@@ -11,21 +11,21 @@ import BottomNav from './BottomNav'
 import styles from '../styling/DailyScheduleScreen'
 
 const events = [
-    { id: 1, pet_id: 1, event_type: 'WALK', time: '8' },
-    { id: 2, pet_id: 1, event_type: 'POTTY', time: '8', note: 'need to give him a treat' },
-    { id: 3, pet_id: 1, event_type: 'WALK', time: '11' },
-    { id: 4, pet_id: 1, event_type: 'WALK', time: '17' },
-    { id: 5, pet_id: 1, event_type: 'POTTY', time: '17' },
-    { id: 6, pet_id: 1, event_type: 'EAT', time: '18' },
-    { id: 7, pet_id: 1, event_type: 'WALK', time: '17' },
-    { id: 8, pet_id: 1, event_type: 'POTTY', time: '17' },
-    { id: 9, pet_id: 1, event_type: 'EAT', time: '18' },
+    { id: 1, pet_id: 1, event_type: 'WALK', time: '8:30 AM' },
+    { id: 2, pet_id: 1, event_type: 'POTTY', time: '8:30 AM' },
+    { id: 3, pet_id: 1, event_type: 'WALK', time: '11:00 AM' },
+    { id: 4, pet_id: 1, event_type: 'WALK', time: '05:00 PM' },
+    { id: 5, pet_id: 1, event_type: 'POTTY', time: '05:00 PM' },
+    { id: 6, pet_id: 1, event_type: 'EAT', time: '07:00 PM' },
+    { id: 7, pet_id: 1, event_type: 'WALK', time: '09:00 PM' },
+    { id: 8, pet_id: 1, event_type: 'POTTY', time: '09:00 PM' },
+    { id: 9, pet_id: 1, event_type: 'EAT', time: '10:20 PM' },
   ]
 
 const completed_event = [
-    { id: 1, event_id: 1, event_type: 'WALK', user_id: 1, completed_time: 'Fri Feb 08 2019 09:11:06 GMT-0800' },
+    { id: 1, event_id: 1, event_type: 'WALK', user_id: 1, completed_time: 'Fri Feb 08 2019 09:11:06 GMT-0800', image:  'https://www.petmd.com/sites/default/files/over-active-dog-211592482.jpg', comment: 'We went to Seattle Center! Banjo has been a good boi. need to give him lots of treats <3'},
     { id: 2, event_id: 2, event_type: 'POTTY', user_id: 1, completed_time: 'Fri Feb 08 2019 09:11:06 GMT-0800' },
-    { id: 3, event_id: 3, event_type: 'WALK', user_id: 2, completed_time: 'Fri Feb 08 2019 09:11:06 GMT-0800', comment: 'banjo has been a good boi :)' }
+    { id: 3, event_id: 3, event_type: 'WALK', user_id: 2, completed_time: 'Fri Feb 08 2019 09:11:06 GMT-0800', image: 'https://cdn3-www.dogtime.com/assets/uploads/gallery/west-highland-white-terrier-dogs-and-puppies/west-highland-white-terrier-dogs-puppies-2.jpg', comment: 'played with Merlin:)' }
   ]
 
 class DailyScheduleScreen extends Component {
@@ -36,14 +36,8 @@ class DailyScheduleScreen extends Component {
       };
     }
   
-    static navigationOptions = {
-      headerTitle: <HeaderImage />,
-      headerStyle: {
-        height: 100,
-        fontWeight: 'bold',
-      },
-    }
-  
+    
+
     handleNext = () => {
       this.props.navigation.navigate('AddHumanPage')
     }
@@ -71,22 +65,23 @@ class DailyScheduleScreen extends Component {
                     <View style={styles.eventContainer}>
                         <FlatList
                             data = {events}
-                            renderItem={(i) => (
-                                <ScheduleItem event = {i}/>
+                            renderItem={(event) => (
+                                <ScheduleItem event = {event}/>
                             )}>
                         </FlatList>
                     </View>
-                    <View style={styles.showCompletedContainer}>
-                        <Button title='Completed Activities'></Button>
-                    </View>
-                    {/* <View style={styles.completedEventContainer}>
+
+                    <View style={styles.completedEventContainer}>
+                        <View style={styles.completedTitleContainer}>
+                            <Text style={styles.completedTitleText}>Completed Activities</Text>
+                        </View>                   
                         <FlatList
                             data = {completed_event}
                             renderItem={(i) => (
                                 <CompletedScheduleItem event = {i}/>
                             )}>
                         </FlatList>
-                    </View> */}
+                    </View>
                 </View>
             </View>
             <View style={styles.bottomNavContainer}>
