@@ -1,19 +1,15 @@
 import React, { Component } from "react";
-import { View, Text, FlatList } from "react-native";
-import { Button } from 'react-native-elements'
+import { View, Text, FlatList, TouchableOpacity, Image, TextInput } from "react-native";
+import { Overlay, Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { saveEvent } from '../action/pets'
-import HeaderImage from './HeaderImage'
 import ScheduleItem from './ScheduleItem'
 import CompletedScheduleItem from './CompletedScheduleItem'
 import BottomNav from './BottomNav'
 import styles from '../styling/DailyScheduleScreen'
 
 const events = [
-    { id: 1, pet_id: 1, event_type: 'WALK', time: '8:30 AM' },
-    { id: 2, pet_id: 1, event_type: 'POTTY', time: '8:30 AM' },
-    { id: 3, pet_id: 1, event_type: 'WALK', time: '11:00 AM' },
     { id: 4, pet_id: 1, event_type: 'WALK', time: '05:00 PM' },
     { id: 5, pet_id: 1, event_type: 'POTTY', time: '05:00 PM' },
     { id: 6, pet_id: 1, event_type: 'EAT', time: '07:00 PM' },
@@ -33,20 +29,38 @@ class DailyScheduleScreen extends Component {
     constructor() {
       super();
       this.state = {
+        overlayVisible: true,
       };
     }
-  
-    
 
     handleNext = () => {
       this.props.navigation.navigate('AddHumanPage')
     }
+
+    openModalFunc = () => { this.setState({overlayVisible: false}) } 
     
     render() {
-  
+
       return (
         <View style={styles.container}>
             <View style={styles.contentsContainer}>
+
+            <Overlay
+                isVisible={this.state.overlayVisible}
+                onBackdropPress={() => this.setState({ overlayVisible: false })}
+                >
+                <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
+                    <Image source={require('../../assets/dog.png')}/> 
+                    <Text style={styles.roundImageText}>+ Add Photo</Text>
+                </TouchableOpacity>
+
+                <View style={styles.inputContainer}>
+                    <Text style={styles.text}>What's your pet's name?</Text>
+                    <TextInput style={styles.textInput} onChangeText={(petName) => this.setState({petName})}></TextInput>
+                    <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
+                </View>
+            </Overlay>
+            
                 <View style={styles.headContainer}>
                     <View style={styles.roundImage}>
 
@@ -66,7 +80,8 @@ class DailyScheduleScreen extends Component {
                         <FlatList
                             data = {events}
                             renderItem={(event) => (
-                                <ScheduleItem event = {event}/>
+                                <ScheduleItem 
+                                    event = {event}/>
                             )}>
                         </FlatList>
                     </View>

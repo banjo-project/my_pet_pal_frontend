@@ -4,9 +4,7 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import styles from '../styling/DailyScheduleScreen'
 
 export default class ScheduleItem extends React.Component {
-
- 
-
+      
     render () {
         const type = this.props.event.item.event_type.toLowerCase()
         const time = this.props.event.item.time
@@ -21,7 +19,7 @@ export default class ScheduleItem extends React.Component {
                     <Text>{type.toUpperCase()}</Text>
                 </View>
                 <View style={styles.timeContainer}>
-                    <Text>{time}</Text>
+                    <Text style={styles.timeText}>{time}</Text>
                 </View>
                 <TouchableOpacity style={styles.btnContainer}>
                     <Image style={styles.iconImage} source={require('../../assets/veterinary.png')}/>
