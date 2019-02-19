@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     eventTextContainer:{
-        width: "15%",
+        width: "20%",
         marginLeft: "2%"
     },
     timeContainer:{
@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
     roundImage: {
         borderWidth:1,
         borderColor:'rgba(0,0,0,0.8)',
-        width:200,
-        height:200,
-        borderRadius:100,
+        width:140,
+        height:140,
+        borderRadius:70,
         alignItems:'center',
         justifyContent:'center',
     },
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
         height:30,
     },
     text:{
+        marginLeft: 10,
         fontSize: 15
     },
     textInput:{
@@ -79,10 +80,26 @@ const styles = StyleSheet.create({
     btn:{
         marginTop: 10,
         justifyContent:'center',
-        marginLeft: 10,
+        marginLeft: 18,
         width: 250,
 
-    }
+    },
+    cancelContainer: {
+        position: 'absolute',
+        marginLeft: '100%',
+        right: 0,
+        left: -35,
+        top: 0,
+        bottom: 0,
+      },
+      cancelImg: {
+        right: 0,
+        left: 0,
+        top: 10,
+        bottom: 0,
+        width: 25,
+        height: 25
+      }
 
 })
 

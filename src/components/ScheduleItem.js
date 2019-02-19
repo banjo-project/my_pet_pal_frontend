@@ -8,14 +8,13 @@ import { openScheduleChecker, selectedSchedule } from '../action/pets'
 
 class ScheduleItem extends React.Component {
       
-    handleSelect = (type, time) => { 
-        const info = {type: type, time: time}
-        this.props.openScheduleChecker(true) 
-        this.props.selectedSchedule(info)
+    handleSelect = (event) => { 
+        this.props.openModalFunc()
+        this.props.selectedSchedule(event)
     }
 
     render () {
-    
+        const event = this.props.event.item
         const type = this.props.event.item.event_type.toLowerCase()
         const time = this.props.event.item.time
         const icon = activityToImageMap[type]
@@ -31,7 +30,7 @@ class ScheduleItem extends React.Component {
                 <View style={styles.timeContainer}>
                     <Text style={styles.timeText}>{time}</Text>
                 </View>
-                <TouchableOpacity style={styles.btnContainer} onPress={() => this.handleSelect(type, time)}>
+                <TouchableOpacity style={styles.btnContainer} onPress={() => this.handleSelect(event)}>
                     <Image style={styles.iconImage} source={require('../../assets/veterinary.png')}/>
                 </TouchableOpacity>
             </View>

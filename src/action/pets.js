@@ -4,7 +4,6 @@ export const SAVE_BREED = 'SAVE_BREED'
 export const SAVE_SEX = 'SAVE_SEX'
 export const SAVE_BIRTHDAY = 'SAVE_BIRTHDAY'
 export const SAVE_EVENT = 'SAVE_EVENT'
-export const OPEN_SCHEDULE_CHECKER = 'OPEN_SCHEDULE_CHECKER'
 export const SELECTED_SCHEDULE = 'SELECTED_SCHEDULE'
 
 export const saveImage = (image) => {
@@ -49,16 +48,10 @@ export const saveEvent = (event) => {
     }
 }
 
-export const openScheduleChecker = (boolean) => {
-    return {
-        type: OPEN_SCHEDULE_CHECKER,
-        payload: boolean
-    }
-}
 
-export const selectedSchedule = (info) => {
+export const selectedSchedule = (event) => {
     return {
         type: SELECTED_SCHEDULE,
-        payload: info
+        payload: event
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text, FlatList } from "react-native";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { saveEvent, openScheduleChecker } from '../action/pets'
+import { saveEvent } from '../action/pets'
 import ScheduleItem from './ScheduleItem'
 import ScheduleDetail from './ScheduleDetail'
 import CompletedScheduleItem from './CompletedScheduleItem'
@@ -26,6 +26,13 @@ const completed_event = [
 
 class DailyScheduleScreen extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            isVisible: false
+        };
+    }
+
     handleNext = () => {
       this.props.navigation.navigate('AddHumanPage')
     }
@@ -33,7 +40,12 @@ class DailyScheduleScreen extends Component {
     //   this.props.openScheduleChecker(false)
       this.props.navigation.navigate('PetPhotoPage')
     }
-    // openModalFunc = () => { this.setState({overlayVisible: false}) } 
+    openModalFunc = () => { 
+        this.setState({ isVisible: true }) 
+    } 
+    closeModalFunc = () => {
+        this.setState({ isVisible: false }) 
+    }
     
     render() {
 
@@ -41,7 +53,9 @@ class DailyScheduleScreen extends Component {
         <View style={styles.container}>
             <View style={styles.contentsContainer}>
 
-            <ScheduleDetail />
+            <ScheduleDetail 
+                isVisible = {this.state.isVisible}
+                closeModalFunc = {this.closeModalFunc}/>
             
                 <View style={styles.headContainer}>
                     <View style={styles.roundImage}>
@@ -63,7 +77,10 @@ class DailyScheduleScreen extends Component {
                             data = {events}
                             renderItem={(event) => (
                                 <ScheduleItem 
-                                    event = {event}/>
+                                    event = {event}
+                                    isVisible = {this.state.isVisible}
+                                    openModalFunc = {this.openModalFunc}
+                                    />
                             )}>
                         </FlatList>
                     </View>
@@ -96,7 +113,7 @@ class DailyScheduleScreen extends Component {
     })
   } 
   
-  const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEvent, openScheduleChecker }, dispatch)
+  const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEvent }, dispatch)
   
   export default connect(mapStateToProps, mapDispatchToProps)(DailyScheduleScreen)
   

@@ -39,11 +39,6 @@ export const petsData = (state = {}, {type, payload}) => {
             ...state,
             petEvent: payload
         }
-        case OPEN_SCHEDULE_CHECKER:
-          return {
-            ...state,
-            openScheduleChecker: payload
-          }
         case SELECTED_SCHEDULE:
           return {
             ...state,
