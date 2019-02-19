@@ -32,7 +32,6 @@ class ScheduleDetail extends Component {
 
     handleNext = () => {
         this.props.closeModalFunc()
-    //   this.props.navigation.navigate('AddHumanPage')
     }
     handleAddImage = () => {
         this.props.closeModalFunc()
