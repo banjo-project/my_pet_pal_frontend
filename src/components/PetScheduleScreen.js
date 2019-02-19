@@ -108,7 +108,6 @@ class PetScheduleScreen extends Component {
               />
               <TouchableOpacity onPress={this.closeModalFunc} style={styles.cancelContainer}>
                 <Image source={require('../../assets/cancel.png')} style={styles.cancelImg}/>
-                <Text> </Text> 
               </TouchableOpacity>
               <View style={{flexDirection: 'row'}}>
                 <Button title="Confirm" style={styles.nextBtn} onPress={this.saveTimeChange}></Button>

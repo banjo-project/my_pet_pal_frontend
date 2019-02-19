@@ -7,7 +7,7 @@ export default class bottomNav extends React.Component {
 render() {
     return (
         <View style={{flex: 1, flexDirection: 'row'}}>
-            <TouchableOpacity style={styles.bottomNavItem} >
+            <TouchableOpacity style={styles.bottomNavItem} onPress={()=>this.props.navigation.navigate('Home')}>
               <MaterialIcons name="face" size={40} />
               <Text>Humans</Text>
             </TouchableOpacity>
@@ -25,7 +25,7 @@ render() {
             </TouchableOpacity>
         </View>
     )
-}
+  }
 }
 
 const styles = StyleSheet.create({

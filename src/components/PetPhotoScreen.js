@@ -104,8 +104,7 @@ class PetPhotoScreen extends Component {
                     <Image source={require('../../assets/files.png')} style={styles.cameraImage}/> 
                     <Text style={styles.roundImageText}>Choose a photo from my album</Text>
                 </TouchableOpacity >
-                <Button style={styles.btn} type="outline" title="Save this photo" onPress={() => this.handleNext(image)}>
-                </Button>
+                <Button style={styles.btn} type="outline" title="Save this photo" onPress={() => this.handleNext(image)}/>
             </View>
         </ScrollView>
     );
