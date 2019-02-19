@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react';
 import { Text, View, TouchableOpacity, TextInput, Image, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import BottomNav from './BottomNav'
@@ -7,6 +8,7 @@ import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { saveName } from '../action/pets'
+import Communications from 'react-native-communications';
 
 class ManageHumanScreen extends React.Component {
   state = {
@@ -64,6 +66,19 @@ class ManageHumanScreen extends React.Component {
             <TextInput style={styles.textInput1} onChangeText={(human2Name) => this.setState({human2Name})}></TextInput>
             <Text style={styles.profileText}>Email</Text>
             <TextInput style={styles.textInput2} onChangeText={(human2Email) => this.setState({human2Email})}></TextInput>
+
+            <TouchableOpacity onPress={() => Communications.email(['tmddms0223@hotmail.dom'],null,null,'My Subject','My body text')}>
+          <View style={styles.holder}>
+            <Text style={styles.text}>Send an email</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => Communications.text('5038668388', 'testing my app -Sarah-')}>
+          <View style={styles.holder}>
+            <Text style={styles.text}>Send a text/iMessage</Text>
+          </View>
+        </TouchableOpacity>
+
             <Button style={styles.btn} title="Send Invitation" onPress={()=>{this.setState({ openInvitation: !this.state.openInvitation, openProfile: false})}}></Button>
         </View>
         ): null}
