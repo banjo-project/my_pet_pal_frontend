@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         marginLeft: '100%',
         right: 0,
-        left: -45,
+        left: -30,
         top: 0,
         bottom: 0,
       },
@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
         left: 0,
         top: 10,
         bottom: 0,
-        width: 25,
-        height: 25
+        width: 30,
+        height: 30
       },
       container2: {
         marginTop: 200,

@@ -109,15 +109,21 @@ class ScheduleDetail extends Component {
         return (
 
         <Modal isVisible={this.props.isVisible} >
+
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={styles.container}>
             
             {this.state.modalPageOpen? (
-                <View style={styles.timeContainer2}>
+
+                
+                <ScrollView contentContainerStyle={styles.container}>
+
+
                     <TouchableOpacity onPress={() => this.closeModalFunc()} style={styles.cancelContainer}>
                         <Image source={require('../../assets/cancel.png')} style={styles.cancelImg}/>
                         <Text> </Text> 
                     </TouchableOpacity>
+
                     <Text style={styles.timeText}>
                         {date.toString().slice(0,15)}
                     </Text>
@@ -173,7 +179,7 @@ class ScheduleDetail extends Component {
                         <Button style={styles.btn} title="Completed" onPress={() => this.handleNext()}/>
                         <Button style={styles.btn} title="Notification" onPress={() => this.handleNotification()}/>
                     </View>
-                </View>
+                </ScrollView>
             ):<View/>}
               
             {this.state.photoPageOpen? (

@@ -32,6 +32,19 @@ const styles = StyleSheet.create({
         padding: "2%",
         marginBottom: "2%"
     },
+    timeContainer2:{
+        width: '100%',
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    container2:{
+        width: '100%', 
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    center: {
+        alignItems: 'center',
+      },
     showCompletedContainer: {
         width: '100%',
         height: '15%',
