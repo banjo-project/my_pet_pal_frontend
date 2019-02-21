@@ -6,7 +6,10 @@ import styles from '../styling/LogInScreen'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { SecureStore } from 'expo'
+import { getUserId, postLogin } from '../util/auth'
 import { saveName } from '../action/pets'
+import { setAuthentication } from '../action/auth'
 
 class LogInScreen extends React.Component {
   state = {
@@ -24,11 +27,25 @@ class LogInScreen extends React.Component {
     },
   };
 
-  handleNext = () => {
-    if(!this.state.humanEmail || !this.state.humanPw){ 
-      return this.setState({ openErrorMsg: true })
-    }
-    this.props.navigation.navigate('DailySchedulePage')
+  handleLogIn = () => {
+    postLogin({
+      email: this.state.humanEmail,
+      password: this.state.humanPw
+    })
+      .then(response => {
+        return SecureStore.setItemAsync('token', response.data.token)
+      })
+      .then(() => {
+        return getUserId()
+      })
+      .then(response => {
+        this.setState({ openErrorMsg: false })
+        this.props.setAuthentication(response.data.id)
+        this.props.navigation.navigate('DailySchedulePage')
+      })
+      .catch(() => {
+        this.setState({ openErrorMsg: true })
+      })
   }
 
   render() {
@@ -48,7 +65,7 @@ class LogInScreen extends React.Component {
         )}
           <View style={styles.inputContainer}>
             <Text style={styles.text}>Email</Text>
-            <TextInput style={styles.textInput1} onChangeText={(humanEmail) => this.setState({humanEmail})}></TextInput>
+            <TextInput style={styles.textInput1} onChangeText={(humanEmail) => this.setState({humanEmail, openErrorMsg: false })}></TextInput>
             <Text style={styles.text}>Password</Text>
             <TextInput style={styles.textInput2} onChangeText={(humanPw) => this.setState({humanPw})}></TextInput>
           </View>
@@ -58,7 +75,7 @@ class LogInScreen extends React.Component {
              <Text>Please type valid email address and password.</Text>
             </View>
           ) : null}
-          <Button title="Submit" style={styles.nextBtn} onPress={this.handleNext}></Button>
+          <Button title="Submit" style={styles.nextBtn} onPress={this.handleLogIn}></Button>
         </View>
         <View style={styles.bottomNavContainer}>
           <BottomNav />
@@ -75,7 +92,7 @@ const mapStateToProps = (state) => {
   })
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ saveName }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ saveName, setAuthentication }, dispatch)
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogInScreen)

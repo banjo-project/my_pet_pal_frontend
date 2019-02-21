@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { openHumanImage, saveHumanName, saveHumanTitle, saveHumanEmail, saveHumanPw, saveHumanPhoneNumber } from '../action/humans'
+import { openHumanImage, saveHumanName } from '../action/humans'
 import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
 import { Button } from 'react-native-elements'
 import BottomNav from './BottomNav'
@@ -14,13 +14,12 @@ class AddHumanScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      humanName: '',
-      humanTitle: '',
-      humanEmail: '',
-      humanPw: '',
-      humanPw2: '',
-      humanPhone: '',
-      petBdOpen: false,
+      username: '',
+      title: '',
+      email: '',
+      password: '',
+      password2: '',
+      phone_number: '',
       errorMessage: ''
     }
   }
@@ -38,40 +37,82 @@ class AddHumanScreen extends React.Component {
     this.props.navigation.navigate('PetPhotoPage')
   }
 
-  emailValidate = (humanEmail) => {
+  emailValidate = (email) => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
-    if(reg.test(humanEmail) === false){
-      this.setState({ humanEmail, errorMessage: 'Please type valid email address.' })
+    if(reg.test(email) === false){
+      this.setState({ email, errorMessage: 'Please type valid email address.' })
       } else {
-      this.setState({ humanEmail, errorMessage: '' })
+      this.setState({ email, errorMessage: '' })
     }
   }
-  pwValidate = (humanPw2) => {
-    if(humanPw2 !== this.state.humanPw){
-      this.setState({ humanPw2, errorMessage: 'Please type matching password' })
+  pwValidate = (password2) => {
+    if(password2 !== this.state.password){
+      this.setState({ password2, errorMessage: 'Please type matching password' })
       } else {
-      this.setState({ humanPw2, errorMessage: '' })
+      this.setState({ password2, errorMessage: '' })
     }
   }
-  phoneValidate = (humanPhone) => {
+  phoneValidate = (phone_number) => {
     let reg = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/;
-    if(reg.test(humanPhone) === false){
-      this.setState({ humanPhone, errorMessage: 'Please type valid phone number.' })
+    if(reg.test(phone_number) === false){
+      this.setState({ phone_number, errorMessage: 'Please type valid phone number.' })
       } else {
-      this.setState({ humanPhone, errorMessage: '' })
+      this.setState({ phone_number, errorMessage: '' })
     }
   }
 
   handleNext = () => {
     if(!this.state.errorMessage){
-      this.props.saveHumanName(this.state.humanName)
-      this.props.saveHumanTitle(this.state.humanTitle)
-      this.props.saveHumanEmail(this.state.humanEmail)
-      this.props.saveHumanPw(this.state.humanPw)
-      this.props.saveHumanPhoneNumber(this.state.humanPhone)
+      this.props.saveHumanName(this.state.username)
       this.props.navigation.navigate('LogInPage')
     }
   }
+
+  handleSignUp = () => {
+    if (!this.state.username|| !this.state.email || !this.state.password || !this.state.reEnterPassword) {
+      this.setState({
+        errorMessage: 'Please enter all fields',
+        //showError: true,
+      })
+      console.warn(this.state.errorMessage)
+      return
+    }
+    
+    const newUser = { 
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email, 
+      phone_number: this.state.phone_number,
+      title: this.state.title,
+      petName: this.props.petsData.petName, 
+      petBirthday: this.props.petsData.petBirthday,
+      petBreed: this.props.petsData.petBreed,
+      petImg: this.props.petData.petImage,
+      petSex: this.props.petData.petSex 
+    }
+
+    axios.post(`${BASE_URL}/users`, newUser)
+      .then((response) => {
+        this.setState({
+          showError: false
+        })
+        this.props.navigation.navigate('LogInPage')
+      })
+      .catch(error => {
+        console.warn(error)
+        this.setState({
+          errorMessage: 'Signup Failed',
+          showError: true,
+          username: '',
+          title: '',
+          email: '',
+          password: '',
+          password2: '',
+          phone_number: ''
+        })
+      })
+  }
+
 
   render() {
     const image = this.props.humansData.humanImage
@@ -100,12 +141,12 @@ class AddHumanScreen extends React.Component {
                 <Text style={styles.text}>Phone Number</Text>
               </View>
               <View style={styles.inputContentContainer}>
-                <TextInput style={styles.mdTextInput} value={this.state.humanName} onChangeText={(humanName) => this.setState({ humanName })}></TextInput>
-                <TextInput style={styles.smTextInput} value={this.state.humanTitle} onChangeText={(humanTitle) => this.setState({ humanTitle })}></TextInput>
-                <TextInput style={styles.lgTextInput} value={this.state.humanEmail} onChangeText={(humanEmail) => this.emailValidate(humanEmail)}></TextInput>
-                <TextInput style={styles.smTextInput} value={this.state.humanPw} onChangeText={(humanPw) => this.setState({ humanPw})}></TextInput>
-                <TextInput style={styles.smTextInput} value={this.state.humanPw2} onChangeText={(humanPw2) => this.pwValidate(humanPw2)}></TextInput>
-                <TextInput style={styles.mdTextInput} value={this.state.humanPhone} onChangeText={(humanPhone) => this.phoneValidate(humanPhone)}></TextInput>
+                <TextInput style={styles.mdTextInput} value={this.state.username} onChangeText={(username) => this.setState({ username })}></TextInput>
+                <TextInput style={styles.smTextInput} value={this.state.title} onChangeText={(title) => this.setState({ title })}></TextInput>
+                <TextInput style={styles.lgTextInput} value={this.state.email} onChangeText={(email) => this.emailValidate(email)}></TextInput>
+                <TextInput style={styles.smTextInput} value={this.state.password} onChangeText={(password) => this.setState({ password })}></TextInput>
+                <TextInput style={styles.smTextInput} value={this.state.password2} onChangeText={(password2) => this.pwValidate(password2)}></TextInput>
+                <TextInput style={styles.mdTextInput} value={this.state.phone_number} onChangeText={(phone_number) => this.phoneValidate(phone_number)}></TextInput>
               </View>
             </View>
             {this.state.errorMessage ? (
@@ -114,7 +155,7 @@ class AddHumanScreen extends React.Component {
               </View>
               ) : null}
             <View style={styles.btnContainer}>
-              <Button title="Create Account" type="outline" style={styles.nextBtn} onPress={this.handleNext}></Button>
+              <Button title="Create Account" type="outline" style={styles.nextBtn} onPress={this.handleSignUp}></Button>
             </View>
           </View>
         <View style={styles.bottomNavContainer}>
@@ -132,7 +173,7 @@ const mapStateToProps = (state) => {
   })
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ openHumanImage, saveHumanName, saveHumanTitle, saveHumanEmail, saveHumanPw, saveHumanPhoneNumber }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ openHumanImage, saveHumanName }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddHumanScreen)
 
