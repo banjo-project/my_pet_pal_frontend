@@ -7,7 +7,8 @@ import { Button } from 'react-native-elements'
 import BottomNav from './BottomNav'
 import HeaderImage from './HeaderImage'
 import styles from '../styling/AddHumanScreen'
-
+import axios from 'axios'
+const BASE_URL = 'http://localhost:5000'
 
 class AddHumanScreen extends React.Component {
 
@@ -69,15 +70,15 @@ class AddHumanScreen extends React.Component {
   }
 
   handleSignUp = () => {
-    if (!this.state.username|| !this.state.email || !this.state.password || !this.state.reEnterPassword) {
+    if (!this.state.username|| !this.state.email || !this.state.password || !this.state.password2) {
       this.setState({
         errorMessage: 'Please enter all fields',
         //showError: true,
       })
-      console.warn(this.state.errorMessage)
+      // console.warn(this.state.errorMessage)
       return
     }
-    
+
     const newUser = { 
       username: this.state.username,
       password: this.state.password,
@@ -87,19 +88,20 @@ class AddHumanScreen extends React.Component {
       petName: this.props.petsData.petName, 
       petBirthday: this.props.petsData.petBirthday,
       petBreed: this.props.petsData.petBreed,
-      petImg: this.props.petData.petImage,
-      petSex: this.props.petData.petSex 
+      petImg: this.props.petsData.petImage ? this.props.petsData.petImage: null,
+      petSex: this.props.petsData.petSex
     }
 
     axios.post(`${BASE_URL}/users`, newUser)
       .then((response) => {
+        // console.warn(response)
         this.setState({
           showError: false
         })
         this.props.navigation.navigate('LogInPage')
       })
       .catch(error => {
-        console.warn(error)
+        // console.warn(error)
         this.setState({
           errorMessage: 'Signup Failed',
           showError: true,

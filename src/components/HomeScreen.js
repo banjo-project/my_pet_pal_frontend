@@ -10,12 +10,14 @@ import { saveName } from '../action/pets'
 class HomeScreen extends React.Component {
   state = {
     openNameInput: false,
+    openLogin: false,
     openErrorMsg: false,
-    petName: ''
+    petName: '',
   }
 
   handleAddName = () => { this.setState({ openNameInput: true }) }
   handleAddImage = () => this.props.navigation.navigate('PetPhotoPage')
+  handleLogIn = () => this.props.navigation.navigate('LogInPage')
   handleNext = () => {
     if(!this.state.petName){ 
       return this.setState({ openErrorMsg: true })
@@ -42,10 +44,15 @@ class HomeScreen extends React.Component {
         )}
           
           {!this.state.openNameInput? (
+            <View>
             <TouchableOpacity onPress={this.handleAddName} style={{flexDirection: 'row'}}> 
               <Text style={styles.text}> Tell us about your Pet  </Text>
               <Image source={require('../../assets/happy.png')} style={{width:35, height:35, marginTop: 15}} />
             </TouchableOpacity>
+            <TouchableOpacity onPress={this.handleLogIn} style={{flexDirection: 'row', alignItems:'center', justifyContent:'center'}}> 
+              <Text style={styles.text2}> Already have an account?  </Text>
+            </TouchableOpacity>
+            </View>
           ): (
               <View style={styles.inputContainer}>
                 <Text style={styles.text}>What's your pet's name?</Text>

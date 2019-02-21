@@ -44,6 +44,12 @@ const styles = StyleSheet.create({
       marginTop: 20,
       fontSize: 20,
     },
+    text2: {
+      marginTop: 50,
+      fontSize: 15,
+      fontWeight: 'bold'
+      
+    },
     textInput: {
       margin: 10,
       height: 40, 
