@@ -105,6 +105,8 @@ const styles = StyleSheet.create({
         width:60,
         height:60,
         borderRadius:20,
+        justifyContent:'center',
+        alignItems:'center',
       },
     headTitle: {
         fontSize: 20,
@@ -119,6 +121,29 @@ const styles = StyleSheet.create({
     },
     timeText:{
         marginLeft: "45%"
+    },
+    image: {
+        resizeMode: "stretch",
+        height: 60,
+        width: 60,
+        borderRadius: 20
+    },
+    headerIcon:{
+        marginTop: 25,
+        width: 40,
+        height: 40,
+    },
+    headerIcon:{
+        width: 40,
+        height: 40,
+    },
+    roundImage2:{
+        height: 62,
+        width: 62,
+        borderRadius: 31,
+        borderWidth:1,
+        alignItems:'center',
+        justifyContent:'center',
     }
 })
 

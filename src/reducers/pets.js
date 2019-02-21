@@ -4,8 +4,8 @@ import { SAVE_IMAGE,
         SAVE_SEX, 
         SAVE_BIRTHDAY, 
         SAVE_EVENT,
-        OPEN_SCHEDULE_CHECKER,
-        SELECTED_SCHEDULE  } from '../action/pets'
+        SELECTED_SCHEDULE,
+        SAVE_EVENT_IMAGE  } from '../action/pets'
 
 export const petsData = (state = {}, {type, payload}) => {
     switch(type){
@@ -43,6 +43,11 @@ export const petsData = (state = {}, {type, payload}) => {
           return {
             ...state,
             selectedSchedule: payload
+          }
+        case SAVE_EVENT_IMAGE:
+          return {
+            ...state,
+            eventImage: payload
           }
         default:
           return state

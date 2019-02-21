@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
     timeContainer:{
         width: "45%",
     },
+    timeContainer2:{
+        justifyContent:'center',
+        alignItems:'center',
+    },
     roundImage: {
         borderWidth:1,
         borderColor:'rgba(0,0,0,0.8)',
@@ -73,9 +77,14 @@ const styles = StyleSheet.create({
         margin : "5%"
     },
     timeText: {
-        fontSize: 15,
+        fontSize: 16,
         marginTop: "10%",
         marginBottom: "5%"
+    },
+    timeText2: {
+        fontSize: 15,
+        fontWeight: "bold",
+        margin: "3%"
     },
     btn:{
         marginTop: 10,
@@ -88,7 +97,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         marginLeft: '100%',
         right: 0,
-        left: -35,
+        left: -45,
         top: 0,
         bottom: 0,
       },
@@ -99,8 +108,58 @@ const styles = StyleSheet.create({
         bottom: 0,
         width: 25,
         height: 25
+      },
+      container2: {
+        marginTop: 200,
+        justifyContent:'center',
+        alignItems:'center',
+      },
+      textContainer:{
+        marginTop: '5%',
+        justifyContent:'center',
+        alignItems:'center',
+      },
+      roundImage: {
+        borderWidth:1,
+        borderColor:'rgba(0,0,0,0.8)',
+        width:200,
+        height:200,
+        borderRadius:100,
+        justifyContent:'center',
+        alignItems:'center',
+      },
+      dogImageContainer:{
+        flexDirection: "column", 
+        alignItems:'center', 
+        justifyContent:'center',
+      },
+      cameraContainer:{
+        flexDirection: 'column', 
+        justifyContent:'center', 
+        alignItems:'center', 
+        padding: 10
+      },
+      image2: {
+        resizeMode: "stretch",
+        height: 200,
+        width: 200,
+        borderRadius: 100,
+        alignItems:'center',
+        justifyContent:'center',
+      },
+      cameraImage: {
+        width:40, 
+        height:40, 
+        marginBottom: '2%'
+      },
+      roundImageText:{
+        justifyContent:'center',
+        fontSize: 20
+      },
+      btn2: {
+        marginTop: 25,
+        width: 160
       }
-
 })
 
 export default styles  

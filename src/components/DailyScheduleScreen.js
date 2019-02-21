@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Image } from "react-native";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { saveEvent } from '../action/pets'
@@ -29,7 +29,7 @@ class DailyScheduleScreen extends Component {
     constructor() {
         super();
         this.state = {
-            isVisible: false
+            isVisible: false,
         };
     }
 
@@ -37,7 +37,6 @@ class DailyScheduleScreen extends Component {
       this.props.navigation.navigate('AddHumanPage')
     }
     handleAddImage = () => {
-    //   this.props.openScheduleChecker(false)
       this.props.navigation.navigate('PetPhotoPage')
     }
     openModalFunc = () => { 
@@ -48,8 +47,8 @@ class DailyScheduleScreen extends Component {
     }
     
     render() {
-
-      return (
+        const image = this.props.petsData.petImage
+    return (
         <View style={styles.container}>
             <View style={styles.contentsContainer}>
 
@@ -58,15 +57,23 @@ class DailyScheduleScreen extends Component {
                 closeModalFunc = {this.closeModalFunc}/>
             
                 <View style={styles.headContainer}>
+                   {image ? (
                     <View style={styles.roundImage}>
-
+                       <Image source={{ uri: image }} style={styles.image} />
                     </View>
+                   ): (
+                    <View style={styles.roundImage}>
+                        <Image source={require('../../assets/dog.png')} style={styles.headerIcon}/> 
+                    </View>
+                   )}
+                   
+                    
                     <View style={styles.headTitleContainer}>
                         <Text style={styles.headTitle}>
                             Banjo's Day
                         </Text>
                         <Text style={styles.headText}>
-                            {new Date().toISOString().slice(0, 10)}
+                            {new Date().toString().slice(0,15)}
                         </Text>
                     </View>
                     

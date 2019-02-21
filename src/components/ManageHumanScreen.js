@@ -25,6 +25,11 @@ class ManageHumanScreen extends React.Component {
     },
   };
 
+  handleAddImage = () => {
+    // this.props.openHumanImage()
+    this.props.navigation.navigate('PetPhotoPage')
+  }
+
   handleNext = () => {
     if(!this.state.humanEmail || !this.state.humanPw){ 
       return this.setState({ openErrorMsg: true })

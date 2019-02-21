@@ -5,6 +5,7 @@ export const SAVE_SEX = 'SAVE_SEX'
 export const SAVE_BIRTHDAY = 'SAVE_BIRTHDAY'
 export const SAVE_EVENT = 'SAVE_EVENT'
 export const SELECTED_SCHEDULE = 'SELECTED_SCHEDULE'
+export const SAVE_EVENT_IMAGE = 'SAVE_EVENT_IMAGE'
 
 export const saveImage = (image) => {
     return {
@@ -53,5 +54,12 @@ export const selectedSchedule = (event) => {
     return {
         type: SELECTED_SCHEDULE,
         payload: event
+    }
+}
+
+export const saveEventImage = (image) => {
+    return {
+        type: SAVE_EVENT_IMAGE,
+        payload: image
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import HeaderImage from './HeaderImage'
-import { Text, View, TextInput } from 'react-native'
+import { Text, View, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { Button } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
 import styles from '../styling/PetInfoScreen'
@@ -40,51 +40,53 @@ class PetInfoScreen extends React.Component {
   render() {
 
     return (
-      <View style={styles.container}>
-      
-      {this.props.petsData.petName? <Text style={styles.titleText}>Create {this.props.petsData.petName}'s profile</Text> 
-        : <Text style={styles.titleText}>Create your pet's profile</Text>}
-          <View style={styles.inputContainer}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+        
+        {this.props.petsData.petName? <Text style={styles.titleText}>Create {this.props.petsData.petName}'s profile</Text> 
+          : <Text style={styles.titleText}>Create your pet's profile</Text>}
+            <View style={styles.inputContainer}>
 
-            <View style={styles.inputContainer2}>
-              <Text style={styles.text}> Breed        </Text>
-              <TextInput style={styles.textInput} onChangeText={(petBreed) => this.setState({ petBreed })}
-                placeholder=" ex) Poodle"></TextInput>
+              <View style={styles.inputContainer2}>
+                <Text style={styles.text}> Breed        </Text>
+                <TextInput style={styles.textInput} onChangeText={(petBreed) => this.setState({ petBreed })}
+                  placeholder=" ex) Poodle"></TextInput>
+              </View>
+
+              <View style={styles.inputContainer2}>
+                <Text style={styles.text}> Sex            </Text>
+                <TextInput style={styles.textInput} onChangeText={(petSex) => this.setState({ petSex })}
+                placeholder=" Girl or Boy"></TextInput>
+              </View>
+
+              <View style={styles.inputContainer2}>
+                <Text style={styles.text}>Bithday     </Text>
+                    <DatePicker
+                      customStyles={{
+                        showIcon: false,
+                        fontSize: 20,
+                        fontColor: 'gray',
+                        dateIcon: {
+                          position: 'absolute',
+                          height: 0
+                        },
+                      }}
+                      style={styles.datePickerStyle}
+                      date={this.state.petBirthday}
+                      mode="date"
+                      format="MM-DD-YYYY"
+                      minDate="01-01-2000"
+                      maxDate="12-31-2019"
+                      confirmBtnText="Confirm"
+                      cancelBtnText="Cancel"
+                      onDateChange={(date) => {this.setState({petBirthday: date})}}
+                    />
+              </View>
+
             </View>
-
-            <View style={styles.inputContainer2}>
-              <Text style={styles.text}> Sex            </Text>
-              <TextInput style={styles.textInput} onChangeText={(petSex) => this.setState({ petSex })}
-              placeholder=" Girl or Boy"></TextInput>
-            </View>
-
-            <View style={styles.inputContainer2}>
-              <Text style={styles.text}>Bithday     </Text>
-                  <DatePicker
-                    customStyles={{
-                      showIcon: false,
-                      fontSize: 20,
-                      fontColor: 'gray',
-                      dateIcon: {
-                        position: 'absolute',
-                        height: 0
-                      },
-                    }}
-                    style={styles.datePickerStyle}
-                    date={this.state.petBirthday}
-                    mode="date"
-                    format="MM-DD-YYYY"
-                    minDate="01-01-2000"
-                    maxDate="12-31-2019"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    onDateChange={(date) => {this.setState({petBirthday: date})}}
-                  />
-            </View>
-
-          </View>
-          <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
-      </View>
+            <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 }

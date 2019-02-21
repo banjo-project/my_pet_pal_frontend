@@ -58,7 +58,7 @@ class PetPhotoScreen extends Component {
 
   render() {
     let { image } = this.state;
-    if (this.props.humansData.humanImageOpen){
+     if (this.props.humansData.humanImageOpen){
       return (
         <ScrollView style={{flex: 1, flexDirection: 'column'}} contentContainerStyle={styles.container2}>
             <View style={styles.roundImage}>

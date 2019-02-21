@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
       justifyContent:'center',
+      alignItems:'center',
     },
     bottomNavContainer: {
       padding: 3,
