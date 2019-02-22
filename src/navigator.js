@@ -22,7 +22,7 @@ const RootStack = createStackNavigator (
     DailySchedulePage: DailyScheduleScreen,
   },
   {
-    initialRouteName: 'AddHumanPage',
+    initialRouteName: 'ManageHumanPage',
   }
 );
 

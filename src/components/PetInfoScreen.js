@@ -25,8 +25,7 @@ class PetInfoScreen extends React.Component {
       height: 100,
       fontWeight: 'bold',
     },
-  };
-
+  }
   
   HandlePicker = () => this.setState({ petSexPickerOpen: true })
   

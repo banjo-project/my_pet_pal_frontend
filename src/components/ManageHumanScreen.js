@@ -1,11 +1,12 @@
 'use strict';
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput, Image, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, Image, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import BottomNav from './BottomNav'
 import HeaderImage from './HeaderImage'
 import styles from '../styling/ManageHumanScreen'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { bindActionCreators } from 'redux'
 import { saveName } from '../action/pets'
 import Communications from 'react-native-communications';
@@ -14,7 +15,8 @@ class ManageHumanScreen extends React.Component {
   state = {
     openErrorMsg: false,
     openProfile: false,
-    openInvitation: false
+    openInvitation: false,
+    openAlert: false
   }
 
   static navigationOptions = {
@@ -26,14 +28,14 @@ class ManageHumanScreen extends React.Component {
   };
 
   handleAddImage = () => {
-    // this.props.openHumanImage()
     this.props.navigation.navigate('PetPhotoPage')
   }
 
-  handleNext = () => {
-    if(!this.state.humanEmail || !this.state.humanPw){ 
-      return this.setState({ openErrorMsg: true })
-    }
+  sentInvitation = () => {
+    this.setState({ 
+      openAlert: false, 
+      openProfile: false,
+      openInvitation: false })   
     this.props.navigation.navigate('DailySchedulePage')
   }
 
@@ -42,7 +44,7 @@ class ManageHumanScreen extends React.Component {
   const name = this.props.humansData.humanName
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
 
         <View style={styles.contentsContainer}>
@@ -52,7 +54,7 @@ class ManageHumanScreen extends React.Component {
             </View>
             ) : (
             <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-                <Image style={styles.image2} source={require('../../assets/happy.png')}/> 
+                <Image style={styles.image2} source={require('../../assets/happy_color.png')}/> 
                 <Text style={styles.roundImageText}>+ Human Image</Text>
             </TouchableOpacity>
             )}
@@ -67,31 +69,37 @@ class ManageHumanScreen extends React.Component {
             
         {this.state.openInvitation? (
         <View style={styles.profileContainer}>
-            <Text style={styles.profileText}>Name</Text>
-            <TextInput style={styles.textInput1} onChangeText={(human2Name) => this.setState({human2Name})}></TextInput>
-            <Text style={styles.profileText}>Email</Text>
-            <TextInput style={styles.textInput2} onChangeText={(human2Email) => this.setState({human2Email})}></TextInput>
-
-            <TouchableOpacity onPress={() => Communications.email(['tmddms0223@hotmail.dom'],null,null,'My Subject','My body text')}>
-          <View style={styles.holder}>
-            <Text style={styles.text}>Send an email</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => Communications.text('5038668388', 'testing my app -Sarah-')}>
-          <View style={styles.holder}>
-            <Text style={styles.text}>Send a text/iMessage</Text>
-          </View>
-        </TouchableOpacity>
-
-            <Button style={styles.btn} title="Send Invitation" onPress={()=>{this.setState({ openInvitation: !this.state.openInvitation, openProfile: false})}}></Button>
+          <KeyboardAwareScrollView>
+            <View style={styles.container2}>
+            <Text style={styles.profileText3}>Name</Text>
+              <TextInput style={styles.textInput1} onChangeText={(human2Name) => this.setState({human2Name})}></TextInput>
+            <Text style={styles.profileText2}>Email</Text>
+              <TextInput style={styles.textInput2} onChangeText={(human2Email) => this.setState({human2Email})}></TextInput>
+              <Button style={styles.btn} title="Send Invitation" onPress={()=>{this.setState({ openInvitation: !this.state.openInvitation, openProfile: false, openAlert: true})}}></Button>
+              <Button style={styles.btn} title="Your Human's profile" onPress={()=>{this.setState({ openProfile: !this.state.openProfile, openInvitation: false})}}></Button>
+            </View>
+              
+          </KeyboardAwareScrollView>
         </View>
         ): null}
 
-            <View style={styles.btnContainer}>
-                <Button style={styles.btn} type="outline" title="Your Human's profile" onPress={()=>{this.setState({ openProfile: !this.state.openProfile, openInvitation: false})}}></Button>
-                <Button style={styles.btn} type="outline" title="Invite More Human"onPress={()=>{this.setState({ openInvitation: !this.state.openInvitation, openProfile: false})}}></Button>
-            </View>
+          <View style={styles.btnContainer}>
+              <Button style={styles.btn} title="Your Human's profile" onPress={()=>{this.setState({ openProfile: !this.state.openProfile, openInvitation: false})}}></Button>
+              <Button style={styles.btn} title="Invite More Human"onPress={()=>{this.setState({ openInvitation: !this.state.openInvitation, openProfile: false})}}></Button>
+          </View>
+
+
+          {this.state.openAlert? 
+            Alert.alert(
+              "Invitation Sent!",
+              '',
+              [
+                {text: 'OK', onPress: () => {
+                  this.props.navigation.navigate('DailySchedulePage')}
+                }
+              ],
+              {cancelable: false},
+            ) : null}
 
         </View>
         <View style={styles.bottomNavContainer}>

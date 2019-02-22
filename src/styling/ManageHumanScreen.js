@@ -3,8 +3,13 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      flexDirection: 'column',
-      backgroundColor: '#fff',
+      alignItems:'center',
+      backgroundColor: '#53B6C4',
+    },
+    container2: {
+      marginTop: 20,
+      justifyContent:'center',
+      alignItems:'center',
     },
     inputContainer: {
       justifyContent:'center',
@@ -21,17 +26,16 @@ const styles = StyleSheet.create({
       height: '13%',
     },
     contentsContainer: {
-      height: '85%',
+      height: '84%',
       alignItems:'center',
       marginTop: 20
     },
     roundImage: {
         alignItems: 'center',
-        borderWidth:1,
-        borderColor:'rgba(0,0,0,0.8)',
-        width:120,
-        height:120,
-        borderRadius:60,
+        backgroundColor: '#CBE7ED',
+        width:160,
+        height:160,
+        borderRadius:80,
         justifyContent:'center',
     },
     image: {
@@ -47,40 +51,57 @@ const styles = StyleSheet.create({
     },
     roundImageText:{
       justifyContent:'center',
-      fontSize: 13
+      fontSize: 15,
+      marginTop: 20,
+      color: "#E45A42"
     },
     text: {
       marginTop: 20,
-      fontSize: 15,
-      marginLeft: 10,
-    },
-    profileText:{
-       fontSize: 17,
-       margin: 5
+      fontSize: 17,
+      color: 'white'
     },
     profileText1:{
-        fontSize: 20,
-        margin: 5
+      marginTop: 7,
+      fontSize: 23,
+      color: 'white',
+      fontWeight: 'bold',
+      alignItems: 'center',
+      justifyContent:'center',
+    },
+    profileText2:{
+      marginTop: 7,
+      fontSize: 17,
+      color: 'white'
+    },
+    profileText:{
+      marginTop: 7,
+      fontSize: 17,
+      color: 'white'
+     },
+     profileText3:{
+      fontSize: 17,
+      color: 'white'
      },
     textInput1: {
-      alignItems:'center',
-      justifyContent:'center',
-      margin: 10,
+      margin: 7,
       height: 30, 
       fontSize: 17,
       width: 150,
-      borderColor: 'gray', 
-      borderWidth: 1
+      borderColor: '#CBE7ED', 
+      color: "white",
+      borderWidth: 2,
+      padding: "1%"
     },
     textInput2: {
-        alignItems:'center',
-        justifyContent:'center',
-        margin: 10,
+        margin: 7,
+        marginBottom: 10,
         height: 30, 
         fontSize: 17,
         width: 230,
-        borderColor: 'gray', 
-        borderWidth: 1
+        borderColor: '#CBE7ED', 
+        color: "white",
+        borderWidth: 2,
+        padding: "1%"
       },
     
     btnContainer:{
@@ -88,7 +109,8 @@ const styles = StyleSheet.create({
         margin: "3%"
     },
     btn:{
-        margin: "3%"
+        margin: "3%",
+        width: 200
     },
     nextBtn: {
       marginTop: 30,
