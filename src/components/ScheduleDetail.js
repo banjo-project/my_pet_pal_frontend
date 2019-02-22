@@ -144,7 +144,9 @@ class ScheduleDetail extends Component {
                                 )
                         }
                     </View>
-                    <Text style={styles.timeText2}>Completed Time : {completed_time}</Text>
+                    <TouchableOpacity onPress={() => this.setState({showTime: !this.state.showTime})}>
+                        <Text style={styles.timeText2}>Completed Time : {completed_time}</Text>
+                    </TouchableOpacity>
                     <View style={styles.oneEventContainer}>
                     <View style={styles.iconContainer}>
                         <Image style={styles.iconImage} source={icon} /> 
@@ -163,7 +165,6 @@ class ScheduleDetail extends Component {
                         
                         <AutoGrowingTextInput style={styles.textInput} onChangeText={(comment) => this.setState({comment})}/>
                         
-                        <Button  type="outline" style={styles.btn} title="Select Time" onPress={() => this.setState({showTime: !this.state.showTime})}></Button>
                         {
                             this.state.showTime? (
                             <View style={styles.timePickerContainer}>
