@@ -14,7 +14,7 @@ export default class ScheduleItem extends React.Component {
 
 
     render () {
-        const type = this.props.event.item.event_type.toLowerCase()
+        const type = this.props.event.item.event_type
         const comment = this.props.event.item.comment
         const icon = activityToImageMap[type]
         const image = this.props.event.item.image
@@ -31,7 +31,9 @@ export default class ScheduleItem extends React.Component {
                 }
 
                 <View style={styles.eventTextContainer}>
-                    <Text>{type.toUpperCase()}</Text>
+                { type? 
+                    <Text>{type.toUpperCase()}</Text> : null
+                }    
                 </View>
                 {comment? (
                     <View style={styles.commentContainer}>

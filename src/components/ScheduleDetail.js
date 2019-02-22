@@ -8,7 +8,7 @@ import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withNavigation } from 'react-navigation';
-import { saveEventImage  } from '../action/pets'
+import { saveEventImage, postCompletedEvent } from '../action/pets'
 import { ImagePicker, Permissions } from 'expo';
 
 class ScheduleDetail extends Component {
@@ -79,7 +79,9 @@ class ScheduleDetail extends Component {
         return str += ' AM'
     }
 
-    handleNext = () => {
+    handleNext = (eventId, completed_time) => {
+        const eventInfo = {completed_time: completed_time, comment: this.state.comment, image: this.state.image }
+        this.props.postCompletedEvent(eventId, 1, eventInfo)
         this.props.closeModalFunc()
     }
     closeModalFunc = () => {
@@ -102,9 +104,10 @@ class ScheduleDetail extends Component {
     render() {
         let { image, date } = this.state;
         const type = this.props.petsData.selectedSchedule && this.props.petsData.selectedSchedule["event_type"]
+        const eventId = this.props.petsData.selectedSchedule && this.props.petsData.selectedSchedule["id"]
         const time = this.props.petsData.selectedSchedule && this.props.petsData.selectedSchedule["time"]
-        const miniType = this.props.petsData.selectedSchedule && type.toLowerCase()
-        const icon = activityToImageMap[miniType]
+        const icon = activityToImageMap[type]
+        const completed_time = this.handleTime(date.toString().slice(16,21))
 
         return (
 
@@ -141,7 +144,7 @@ class ScheduleDetail extends Component {
                                 )
                         }
                     </View>
-                    <Text style={styles.timeText2}>Completed Time : {this.handleTime(date.toString().slice(16,21))}</Text>
+                    <Text style={styles.timeText2}>Completed Time : {completed_time}</Text>
                     <View style={styles.oneEventContainer}>
                     <View style={styles.iconContainer}>
                         <Image style={styles.iconImage} source={icon} /> 
@@ -176,7 +179,7 @@ class ScheduleDetail extends Component {
                             null
                             )
                         }
-                        <Button style={styles.btn} title="Completed" onPress={() => this.handleNext()}/>
+                        <Button style={styles.btn} title="Completed" onPress={() => this.handleNext(eventId, completed_time)}/>
                         <Button style={styles.btn} title="Notification" onPress={() => this.handleNotification()}/>
                     </View>
                 </ScrollView>
@@ -221,7 +224,7 @@ const mapStateToProps = (state) => {
     })
   } 
   
-  const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEventImage }, dispatch)
+  const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEventImage, postCompletedEvent  }, dispatch)
   
   export default withNavigation(connect(mapStateToProps, mapDispatchToProps)(ScheduleDetail))
   

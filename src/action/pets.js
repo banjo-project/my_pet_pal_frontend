@@ -29,6 +29,18 @@ export const getCompletedEvents = (petId) => {
       ) 
 }
 
+export const POST_COMPLETED_EVENTS = 'POST_COMPLETED_EVENTS'
+export const postCompletedEvent = (eventId, userId, eventInfo) => {
+    return (dispatch, getState) => (
+        
+        axios.post(`${BASE_URL}/events/${eventId}/users/${userId}`, eventInfo)
+          .then(response => {       
+            dispatch(getCompletedEvents(getState().petsData.selectedSchedule.pet_id))
+          })
+          .catch((error) => console.warn(error.response))
+      ) 
+}
+
 export const SAVE_IMAGE = 'SAVE_IMAGE'
 export const saveImage = (image) => {
     return {
