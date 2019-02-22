@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'column',
-      backgroundColor: '#fff',
+      backgroundColor: '#53B6C4',
     },
     inputContainer: {
       flexDirection: 'row',
@@ -39,11 +39,10 @@ const styles = StyleSheet.create({
       },
     roundImage: {
       alignItems: 'center',
-      borderWidth:1,
-      borderColor:'rgba(0,0,0,0.8)',
-      width:120,
-      height:120,
-      borderRadius:60,
+      backgroundColor: '#CBE7ED',
+      width:200,
+      height:200,
+      borderRadius:100,
       justifyContent:'center',
     },
     image: {
@@ -59,38 +58,44 @@ const styles = StyleSheet.create({
     },
     roundImageText:{
       justifyContent:'center',
-      fontSize: 13
+      fontSize: 15,
+      color: '#E45A42',
+      marginTop: 20,
     },
     text: {
       marginTop: 20,
       fontSize: 15,
+      color: 'white'
     },
     smTextInput: {
       padding: 5,
       margin: 5,
       height: 30, 
       fontSize: 15,
+      color:'white',
       width: 120,
-      borderColor: 'gray', 
-      borderWidth: 1
+      borderColor: '#CBE7ED', 
+      borderWidth: 2
     },
     mdTextInput: {
         padding: 5,
         margin: 5,
         height: 30, 
         fontSize: 15,
+        color:'white',
         width: 160,
-        borderColor: 'gray', 
-        borderWidth: 1
+        borderColor: '#CBE7ED', 
+        borderWidth: 2
     },
     lgTextInput: {
         padding: 5,
         margin: 5,
         height: 30, 
         fontSize: 15,
+        color:'white',
         width: 200,
-        borderColor: 'gray', 
-        borderWidth: 1
+        borderColor: '#CBE7ED', 
+        borderWidth: 2
     },
     nextBtn: {
       width: 150,

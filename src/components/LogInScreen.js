@@ -59,14 +59,14 @@ class LogInScreen extends React.Component {
           </View>
         ) : (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-            <Image style={styles.image2} source={require('../../assets/happy.png')}/> 
+            <Image style={styles.image2} source={require('../../assets/happy_color.png')}/> 
             <Text style={styles.roundImageText}></Text>
           </TouchableOpacity>
         )}
           <View style={styles.inputContainer}>
             <Text style={styles.text}>Email</Text>
             <TextInput style={styles.textInput1} onChangeText={(humanEmail) => this.setState({humanEmail, openErrorMsg: false })}></TextInput>
-            <Text style={styles.text}>Password</Text>
+            <Text style={styles.text2}>Password</Text>
             <TextInput style={styles.textInput2} onChangeText={(humanPw) => this.setState({humanPw})}></TextInput>
           </View>
   

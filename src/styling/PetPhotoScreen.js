@@ -46,6 +46,11 @@ const styles = StyleSheet.create({
       height:40, 
       marginBottom: '2%'
     },
+    roundImageText2:{
+      justifyContent:'center',
+      fontSize: 20,
+      color: "white"
+    },
     roundImageText:{
       justifyContent:'center',
       fontSize: 20,

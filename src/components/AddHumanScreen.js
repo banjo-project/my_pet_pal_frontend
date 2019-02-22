@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { openHumanImage, saveHumanName } from '../action/humans'
-import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
+import { Text, View, TouchableOpacity, TextInput, Image, ScrollView } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Button } from 'react-native-elements'
 import BottomNav from './BottomNav'
 import HeaderImage from './HeaderImage'
@@ -120,6 +121,8 @@ class AddHumanScreen extends React.Component {
     const image = this.props.humansData.humanImage
     return (
       <View style={styles.container}>
+        <ScrollView>
+        <KeyboardAwareScrollView>
         <View style={styles.contentsContainer}>
         
         {image ? (
@@ -128,8 +131,8 @@ class AddHumanScreen extends React.Component {
           </TouchableOpacity>
         ): (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-            <Image style={styles.image2} source={require('../../assets/happy.png')}/> 
-            <Text style={styles.roundImageText}>+Photo </Text>
+            <Image style={styles.image2} source={require('../../assets/happy_color.png')}/> 
+            <Text style={styles.roundImageText}>+ Human Photo </Text>
           </TouchableOpacity>
         )}
 
@@ -157,13 +160,17 @@ class AddHumanScreen extends React.Component {
               </View>
               ) : null}
             <View style={styles.btnContainer}>
-              <Button title="Create Account" type="outline" style={styles.nextBtn} onPress={this.handleSignUp}></Button>
+              <Button title="Create Account" style={styles.nextBtn} onPress={this.handleSignUp}></Button>
             </View>
           </View>
+          </KeyboardAwareScrollView>
+          </ScrollView>
         <View style={styles.bottomNavContainer}>
           <BottomNav />
         </View>
+        
       </View> 
+      
     )
   }
 }

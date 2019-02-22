@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'column',
-      backgroundColor: '#fff',
+      backgroundColor: '#53B6C4',
     },
     inputContainer: {
       justifyContent:'center',
@@ -23,23 +23,21 @@ const styles = StyleSheet.create({
     },
     roundImage: {
         alignItems: 'center',
-        borderWidth:1,
-        borderColor:'rgba(0,0,0,0.8)',
-        width:120,
-        height:120,
-        borderRadius:60,
+        backgroundColor: '#CBE7ED',
+        width:200,
+        height:200,
+        borderRadius:100,
         justifyContent:'center',
     },
     image: {
         resizeMode: "stretch",
-        height: 120,
-        width: 120,
-        borderRadius: 60
+        height: 200,
+        width: 200,
+        borderRadius: 100
     },
     image2: {
-        height: 35,
-        width: 35,
-        marginTop: "10%"
+        height: 40,
+        width: 40,
     },
     roundImageText:{
       justifyContent:'center',
@@ -47,28 +45,33 @@ const styles = StyleSheet.create({
     },
     text: {
       marginTop: 20,
-      fontSize: 15,
-      marginLeft: 10,
+      fontSize: 17,
+      color: 'white'
+    },
+    text2: {
+      marginTop: 7,
+      fontSize: 17,
+      color: 'white'
     },
     textInput1: {
       alignItems:'center',
       justifyContent:'center',
       margin: 10,
       height: 30, 
-      fontSize: 20,
+      fontSize: 15,
       width: 230,
-      borderColor: 'gray', 
-      borderWidth: 1
+      borderColor: '#CBE7ED', 
+      borderWidth: 2
     },
     textInput2: {
         alignItems:'center',
         justifyContent:'center',
         margin: 10,
         height: 30, 
-        fontSize: 20,
+        fontSize: 15,
         width: 180,
-        borderColor: 'gray', 
-        borderWidth: 1
+        borderColor: '#CBE7ED', 
+        borderWidth: 2
     },
     nextBtn: {
       marginTop: 30,

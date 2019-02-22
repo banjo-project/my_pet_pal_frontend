@@ -73,11 +73,11 @@ class PetPhotoScreen extends Component {
             <View style={styles.textContainer}>
                 <TouchableOpacity onPress={this.useCameraHandler} style={styles.cameraContainer}>
                     <Image source={require('../../assets/camera_sky.png')} style={styles.cameraImage}/> 
-                    <Text style={styles.roundImageText}> Take a profile photo </Text> 
+                    <Text style={styles.roundImageText2}> Take a profile photo </Text> 
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.useLibraryHandler} style={styles.cameraContainer}>
                     <Image source={require('../../assets/album_sky.png')} style={styles.cameraImage}/> 
-                    <Text style={styles.roundImageText}>Choose a photo from my album</Text>
+                    <Text style={styles.roundImageText2}>Choose a photo from my album</Text>
                 </TouchableOpacity >
                 <Button style={styles.btn} type="outline" title="Save this photo"  onPress={() => this.handleHumanNext(image)}>
                 </Button>
@@ -98,11 +98,11 @@ class PetPhotoScreen extends Component {
             <View style={styles.textContainer}>
                 <TouchableOpacity onPress={this.useCameraHandler} style={styles.cameraContainer}>
                     <Image source={require('../../assets/camera_sky.png')} style={styles.cameraImage}/> 
-                    <Text style={styles.roundImageText}> Take a profile photo </Text> 
+                    <Text style={styles.roundImageText2}> Take a profile photo </Text> 
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.useLibraryHandler} style={styles.cameraContainer}>
                     <Image source={require('../../assets/album_sky.png')} style={styles.cameraImage}/> 
-                    <Text style={styles.roundImageText}>Choose a photo from my album</Text>
+                    <Text style={styles.roundImageText2}>Choose a photo from my album</Text>
                 </TouchableOpacity >
                 <Button style={styles.btn} title="Save this photo" onPress={() => this.handleNext(image)}/>
             </View>
