@@ -2,27 +2,13 @@ import React, { Component } from "react";
 import { View, Text, FlatList, Image } from "react-native";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { saveEvent } from '../action/pets'
+import { saveEvent, getAllEvents, getCompletedEvents } from '../action/pets'
 import ScheduleItem from './ScheduleItem'
 import ScheduleDetail from './ScheduleDetail'
 import CompletedScheduleItem from './CompletedScheduleItem'
 import BottomNav from './BottomNav'
 import styles from '../styling/DailyScheduleScreen'
-
-const events = [
-    { id: 4, pet_id: 1, event_type: 'WALK', time: '05:00 PM' },
-    { id: 5, pet_id: 1, event_type: 'POTTY', time: '05:00 PM' },
-    { id: 6, pet_id: 1, event_type: 'EAT', time: '07:00 PM' },
-    { id: 7, pet_id: 1, event_type: 'WALK', time: '09:00 PM' },
-    { id: 8, pet_id: 1, event_type: 'POTTY', time: '09:00 PM' },
-    { id: 9, pet_id: 1, event_type: 'EAT', time: '10:20 PM' },
-  ]
-
-const completed_event = [
-    { id: 1, event_id: 1, event_type: 'WALK', user_id: 1, completed_time: 'Fri Feb 08 2019 09:11:06 GMT-0800', image:  'https://www.petmd.com/sites/default/files/over-active-dog-211592482.jpg', comment: 'We went to Seattle Center! Banjo has been a good boi. need to give him lots of treats <3'},
-    { id: 2, event_id: 2, event_type: 'POTTY', user_id: 1, completed_time: 'Fri Feb 08 2019 09:11:06 GMT-0800' },
-    { id: 3, event_id: 3, event_type: 'WALK', user_id: 2, completed_time: 'Fri Feb 08 2019 09:11:06 GMT-0800', image: 'https://cdn3-www.dogtime.com/assets/uploads/gallery/west-highland-white-terrier-dogs-and-puppies/west-highland-white-terrier-dogs-puppies-2.jpg', comment: 'played with Merlin:)' }
-  ]
+import { getTaskOptionsAsync } from "expo-task-manager";
 
 class DailyScheduleScreen extends Component {
 
@@ -31,6 +17,11 @@ class DailyScheduleScreen extends Component {
         this.state = {
             isVisible: false,
         };
+    }
+
+    componentDidMount = () => {
+        this.props.getAllEvents(1)
+        this.props.getCompletedEvents(1)
     }
 
     handleNext = () => {
@@ -45,9 +36,24 @@ class DailyScheduleScreen extends Component {
     closeModalFunc = () => {
         this.setState({ isVisible: false }) 
     }
+
+    compare = (a, b) => {
+        const idA = a.id
+        const idB = b.id
+        let comparison = 0
+        if(idA > idB){
+            comparison = 1
+        } else if (idA < idB){
+            comparison = -1
+        }
+        return comparison
+    }
     
     render() {
         const image = this.props.petsData.petImage
+        const events = this.props.petsData.events && this.props.petsData.events.sort(this.compare)
+        const completed_events = this.props.petsData.completed_events && this.props.petsData.completed_events.sort(this.compare)
+
     return (
         <View style={styles.container}>
             <View style={styles.contentsContainer}>
@@ -55,7 +61,7 @@ class DailyScheduleScreen extends Component {
             <ScheduleDetail 
                 isVisible = {this.state.isVisible}
                 closeModalFunc = {this.closeModalFunc}/>
-            
+
                 <View style={styles.headContainer}>
                    {image ? (
                     <View style={styles.roundImage}>
@@ -72,6 +78,7 @@ class DailyScheduleScreen extends Component {
                         <Text style={styles.headTitle}>
                             Banjo's Day
                         </Text>
+                       
                         <Text style={styles.headText}>
                             {new Date().toString().slice(0,15)}
                         </Text>
@@ -97,7 +104,7 @@ class DailyScheduleScreen extends Component {
                             <Text style={styles.completedTitleText}>Completed Activities</Text>
                         </View>                   
                         <FlatList
-                            data = {completed_event}
+                            data = {completed_events}
                             renderItem={(i) => (
                                 <CompletedScheduleItem event = {i}/>
                             )}>
@@ -120,7 +127,7 @@ class DailyScheduleScreen extends Component {
     })
   } 
   
-  const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEvent }, dispatch)
+  const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEvent, getAllEvents, getCompletedEvents }, dispatch)
   
   export default connect(mapStateToProps, mapDispatchToProps)(DailyScheduleScreen)
   
