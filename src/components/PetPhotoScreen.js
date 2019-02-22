@@ -60,7 +60,7 @@ class PetPhotoScreen extends Component {
     let { image } = this.state;
      if (this.props.humansData.humanImageOpen){
       return (
-        <ScrollView style={{flex: 1, flexDirection: 'column'}} contentContainerStyle={styles.container2}>
+        <ScrollView style={{flex: 1, flexDirection: 'column', backgroundColor: '#53B6C4'}} contentContainerStyle={styles.container2}>
             <View style={styles.roundImage}>
                 {image ? <Image source={{ uri: image }} style={styles.image}/> 
                     : (
@@ -72,24 +72,24 @@ class PetPhotoScreen extends Component {
             </View>
             <View style={styles.textContainer}>
                 <TouchableOpacity onPress={this.useCameraHandler} style={styles.cameraContainer}>
-                    <Image source={require('../../assets/camera.png')} style={styles.cameraImage}/> 
-                    <Text style={styles.roundImageText}> Take a profile photo </Text> 
+                    <Image source={require('../../assets/camera_sky.png')} style={styles.cameraImage}/> 
+                    <Text style={styles.roundImageText2}> Take a profile photo </Text> 
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.useLibraryHandler} style={styles.cameraContainer}>
-                    <Image source={require('../../assets/files.png')} style={styles.cameraImage}/> 
-                    <Text style={styles.roundImageText}>Choose a photo from my album</Text>
+                    <Image source={require('../../assets/album_sky.png')} style={styles.cameraImage}/> 
+                    <Text style={styles.roundImageText2}>Choose a photo from my album</Text>
                 </TouchableOpacity >
                 <Button style={styles.btn} type="outline" title="Save this photo"  onPress={() => this.handleHumanNext(image)}>
                 </Button>
             </View>
         </ScrollView>
   )} return (
-        <ScrollView style={{flex: 1, flexDirection: 'column'}} contentContainerStyle={styles.container2}>
+        <ScrollView style={{flex: 1, flexDirection: 'column', backgroundColor: '#53B6C4'}} contentContainerStyle={styles.container2}>
             <View style={styles.roundImage}>
                 {image ? <Image source={{ uri: image }} style={styles.image}/> 
                     : (
                     <View style={styles.dogImageContainer}>
-                        <Image source={require('../../assets/dog.png')}/>
+                        <Image source={require('../../assets/dog_pink.png')}/>
                         <Text style={styles.roundImageText}>+ Pet Image</Text>
                     </View> 
                     )}
@@ -97,14 +97,14 @@ class PetPhotoScreen extends Component {
 
             <View style={styles.textContainer}>
                 <TouchableOpacity onPress={this.useCameraHandler} style={styles.cameraContainer}>
-                    <Image source={require('../../assets/camera.png')} style={styles.cameraImage}/> 
-                    <Text style={styles.roundImageText}> Take a profile photo </Text> 
+                    <Image source={require('../../assets/camera_sky.png')} style={styles.cameraImage}/> 
+                    <Text style={styles.roundImageText2}> Take a profile photo </Text> 
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.useLibraryHandler} style={styles.cameraContainer}>
-                    <Image source={require('../../assets/files.png')} style={styles.cameraImage}/> 
-                    <Text style={styles.roundImageText}>Choose a photo from my album</Text>
+                    <Image source={require('../../assets/album_sky.png')} style={styles.cameraImage}/> 
+                    <Text style={styles.roundImageText2}>Choose a photo from my album</Text>
                 </TouchableOpacity >
-                <Button style={styles.btn} type="outline" title="Save this photo" onPress={() => this.handleNext(image)}/>
+                <Button style={styles.btn} title="Save this photo" onPress={() => this.handleNext(image)}/>
             </View>
         </ScrollView>
     );

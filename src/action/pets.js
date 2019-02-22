@@ -1,6 +1,34 @@
 import axios from 'axios'
 const BASE_URL = 'http://localhost:5000'
 
+export const GET_EVENTS = 'GET_EVENTS'
+export const getAllEvents = (petId) => {
+    return dispatch => (
+        axios.get(`${BASE_URL}/pets/${petId}/events`)
+          .then(response => {
+            dispatch({
+              type: GET_EVENTS,
+              payload: response.data.data
+            })
+          })
+          .catch((error) => console.warn(error.response))
+      ) 
+}
+
+export const GET_COMPLETED_EVENTS = 'GET_COMPLETED_EVENTS'
+export const getCompletedEvents = (petId) => {
+    return dispatch => (
+        axios.get(`${BASE_URL}/pets/${petId}/completed_events`)
+          .then(response => {
+            dispatch({
+              type: GET_COMPLETED_EVENTS,
+              payload: response.data.data
+            })
+          })
+          .catch((error) => console.warn(error.response))
+      ) 
+}
+
 export const SAVE_IMAGE = 'SAVE_IMAGE'
 export const saveImage = (image) => {
     return {

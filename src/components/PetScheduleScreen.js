@@ -117,7 +117,8 @@ class PetScheduleScreen extends Component {
           </Modal>
         <View opacity={0.8} style={styles.listOuterContainer}>
           <FlatList
-            data={[{title: `What does ${this.props.petsData.petName}'s daily schedule look like?`, key: `   ${this.props.petsData.petName.toUpperCase()} WAKES UP!`}]}
+            data={[{title: `What does ${this.props.petsData.petName}'s daily schedule look like?`, key: '  BANJO WAKES UP!'}]}
+            //`   ${this.props.petsData.petName.toUpperCase()} WAKES UP!`}]}
             renderItem={({item, separators}) => (
                 <View style={styles.listContainer}>
                   <Text style={styles.listTitle}>{item.title}</Text>

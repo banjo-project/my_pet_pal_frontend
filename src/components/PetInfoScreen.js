@@ -25,8 +25,7 @@ class PetInfoScreen extends React.Component {
       height: 100,
       fontWeight: 'bold',
     },
-  };
-
+  }
   
   HandlePicker = () => this.setState({ petSexPickerOpen: true })
   
@@ -48,30 +47,41 @@ class PetInfoScreen extends React.Component {
             <View style={styles.inputContainer}>
 
               <View style={styles.inputContainer2}>
-                <Text style={styles.text}> Breed        </Text>
+                <Text style={styles.text}>Breed       </Text>
                 <TextInput style={styles.textInput} onChangeText={(petBreed) => this.setState({ petBreed })}
                   placeholder=" ex) Poodle"></TextInput>
               </View>
 
               <View style={styles.inputContainer2}>
-                <Text style={styles.text}> Sex            </Text>
+                <Text style={styles.text}>Sex           </Text>
                 <TextInput style={styles.textInput} onChangeText={(petSex) => this.setState({ petSex })}
                 placeholder=" Girl or Boy"></TextInput>
               </View>
 
               <View style={styles.inputContainer2}>
-                <Text style={styles.text}>Bithday     </Text>
+                <Text style={styles.text}>Bithday    </Text>
                     <DatePicker
                       customStyles={{
                         showIcon: false,
-                        fontSize: 20,
-                        fontColor: 'gray',
                         dateIcon: {
                           position: 'absolute',
                           height: 0
                         },
+                        dateInput: {
+                          borderColor: '#CBE7ED',
+                          borderWidth: 0.8,
+                          color: '#CBE7ED'
+                        },
+                        dateText:{
+                          color: '#CBE7ED',
+                          fontWeight: 'bold'
+                        },
+                        placeholderText: {
+                            fontSize: 18,
+                        }
                       }}
                       style={styles.datePickerStyle}
+                      
                       date={this.state.petBirthday}
                       mode="date"
                       format="MM-DD-YYYY"

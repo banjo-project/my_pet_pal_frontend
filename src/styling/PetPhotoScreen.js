@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'column',
-      backgroundColor: '#fff',
     },
     container2: {
       marginTop: 120,
@@ -17,8 +16,7 @@ const styles = StyleSheet.create({
       alignItems:'center',
     },
     roundImage: {
-      borderWidth:1,
-      borderColor:'rgba(0,0,0,0.8)',
+      backgroundColor: '#CBE7ED',
       width:200,
       height:200,
       borderRadius:100,
@@ -48,9 +46,15 @@ const styles = StyleSheet.create({
       height:40, 
       marginBottom: '2%'
     },
+    roundImageText2:{
+      justifyContent:'center',
+      fontSize: 20,
+      color: "white"
+    },
     roundImageText:{
       justifyContent:'center',
-      fontSize: 20
+      fontSize: 20,
+      color: "#E45A42"
     },
     btn: {
       marginTop: 25,

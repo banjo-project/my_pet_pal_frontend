@@ -4,26 +4,28 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'column',
-      backgroundColor: '#fff',
+      backgroundColor: '#53B6C4',
+      justifyContent:'center',
+      alignItems:'center',
     },
     inputContainer: {
       justifyContent:'center',
       alignItems:'center',
+      padding: "3%"
     },
     bottomNavContainer: {
       padding: 3,
       fontSize: 30,
       justifyContent:'center',
-      height: '13%',
+      height: '18%',
     },
     contentsContainer: {
-      height: '85%',
+      height: '65%',
       alignItems:'center',
       marginTop: 20
     },
     roundImage: {
-      borderWidth:1,
-      borderColor:'rgba(0,0,0,0.8)',
+      backgroundColor: '#CBE7ED',
       width:200,
       height:200,
       borderRadius:100,
@@ -38,25 +40,37 @@ const styles = StyleSheet.create({
   },
     roundImageText:{
       justifyContent:'center',
-      fontSize: 20
+      fontSize: 20,
+      color: "#E45A42"
+    },
+    title:{
+      fontSize: 30,
+      fontWeight: 'bold',
+      marginTop: 100,
+      color: 'white'
     },
     text: {
       marginTop: 20,
       fontSize: 20,
+      fontWeight: 'bold',
+      color: '#E45A42'
     },
     text2: {
       marginTop: 50,
       fontSize: 15,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      color: '#485786'
       
     },
     textInput: {
       margin: 10,
       height: 40, 
-      fontSize: 30,
+      fontSize: 20,
       width: 200,
-      borderColor: 'gray', 
-      borderWidth: 1
+      borderColor: 'white', 
+      borderWidth: 1,
+      color: 'white',
+      padding: "2%"
     },
     nextBtn: {
       marginTop: 30,

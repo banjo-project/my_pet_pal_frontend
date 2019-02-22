@@ -11,7 +11,9 @@ const styles = StyleSheet.create({
     headerText: {
         marginTop: 3,
         alignItems:'center',
-        marginLeft: 20,
+        fontWeight: 'bold',
+        color:'#DB692A',
+        marginLeft: 3,
         justifyContent:'center'
     },
     headerIcon:{
@@ -21,8 +23,11 @@ const styles = StyleSheet.create({
     },
     headerText2: {
         marginTop: 10,
+        fontWeight: 'bold',
         alignItems:'center',
-        justifyContent:'center'
+        color:'#DB692A',
+        marginLeft: 3,
+        justifyContent:'center',
     },
     image: {
         resizeMode: "stretch",
@@ -34,12 +39,16 @@ const styles = StyleSheet.create({
         height: 62,
         width: 62,
         borderRadius: 31,
+        color: '#485786',
+        alignItems:'center',
+        justifyContent:'center',
     },
     roundImage2: {
         height: 62,
         width: 62,
         borderRadius: 31,
         borderWidth:1,
+        borderColor: '#768cc2',
         alignItems:'center',
         justifyContent:'center',
     }
