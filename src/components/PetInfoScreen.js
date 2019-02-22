@@ -48,19 +48,19 @@ class PetInfoScreen extends React.Component {
             <View style={styles.inputContainer}>
 
               <View style={styles.inputContainer2}>
-                <Text style={styles.text}> Breed        </Text>
+                <Text style={styles.text}>Breed       </Text>
                 <TextInput style={styles.textInput} onChangeText={(petBreed) => this.setState({ petBreed })}
                   placeholder=" ex) Poodle"></TextInput>
               </View>
 
               <View style={styles.inputContainer2}>
-                <Text style={styles.text}> Sex            </Text>
+                <Text style={styles.text}>Sex           </Text>
                 <TextInput style={styles.textInput} onChangeText={(petSex) => this.setState({ petSex })}
                 placeholder=" Girl or Boy"></TextInput>
               </View>
 
               <View style={styles.inputContainer2}>
-                <Text style={styles.text}>Bithday     </Text>
+                <Text style={styles.text}>Bithday    </Text>
                     <DatePicker
                       customStyles={{
                         showIcon: false,
