@@ -64,14 +64,25 @@ class PetInfoScreen extends React.Component {
                     <DatePicker
                       customStyles={{
                         showIcon: false,
-                        fontSize: 20,
-                        fontColor: 'gray',
                         dateIcon: {
                           position: 'absolute',
                           height: 0
                         },
+                        dateInput: {
+                          borderColor: '#CBE7ED',
+                          borderWidth: 0.8,
+                          color: '#CBE7ED'
+                        },
+                        dateText:{
+                          color: '#CBE7ED',
+                          fontWeight: 'bold'
+                        },
+                        placeholderText: {
+                            fontSize: 18,
+                        }
                       }}
                       style={styles.datePickerStyle}
+                      
                       date={this.state.petBirthday}
                       mode="date"
                       format="MM-DD-YYYY"

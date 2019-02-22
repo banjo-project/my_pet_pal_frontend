@@ -31,6 +31,7 @@ class HomeScreen extends React.Component {
   
     return (
       <View style={styles.container}>
+      <Text style={styles.title}>Banjo Project</Text>
         <View style={styles.contentsContainer}>
         {image ? (
           <View style={styles.roundImage} onPress={this.handleAddImage}>
@@ -38,7 +39,7 @@ class HomeScreen extends React.Component {
           </View>
         ) : (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-            <Image source={require('../../assets/dog.png')}/> 
+            <Image source={require('../../assets/dog_pink.png')}/> 
             <Text style={styles.roundImageText}>+ Pet Image</Text>
           </TouchableOpacity>
         )}
@@ -46,8 +47,8 @@ class HomeScreen extends React.Component {
           {!this.state.openNameInput? (
             <View>
             <TouchableOpacity onPress={this.handleAddName} style={{flexDirection: 'row'}}> 
-              <Text style={styles.text}> Tell us about your Pet  </Text>
-              <Image source={require('../../assets/happy.png')} style={{width:35, height:35, marginTop: 15}} />
+              <Text style={styles.text}> Tell us about your Pet!  </Text>
+              <Image source={require('../../assets/happy_yellow.png')} style={{width:30, height:30, marginTop: 15}} />
             </TouchableOpacity>
             <TouchableOpacity onPress={this.handleLogIn} style={{flexDirection: 'row', alignItems:'center', justifyContent:'center'}}> 
               <Text style={styles.text2}> Already have an account?  </Text>

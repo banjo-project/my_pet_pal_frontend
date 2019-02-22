@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
         marginTop: 3,
         alignItems:'center',
         marginLeft: 20,
+        color: '#485786',
         justifyContent:'center'
     },
     headerIcon:{
@@ -34,12 +35,14 @@ const styles = StyleSheet.create({
         height: 62,
         width: 62,
         borderRadius: 31,
+        color: '#485786',
     },
     roundImage2: {
         height: 62,
         width: 62,
         borderRadius: 31,
         borderWidth:1,
+        borderColor: '#768cc2',
         alignItems:'center',
         justifyContent:'center',
     }
