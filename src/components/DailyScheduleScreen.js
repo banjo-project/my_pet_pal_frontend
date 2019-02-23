@@ -83,7 +83,6 @@ class DailyScheduleScreen extends Component {
                     </View>
                    )}
                    
-                    
                     <View style={styles.headTitleContainer}>
                         <Text style={styles.headTitle}>
                             Banjo's Day

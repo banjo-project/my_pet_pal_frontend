@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+import { withTheme } from 'react-native-elements';
 
 const styles = StyleSheet.create({ 
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#fff',
+        backgroundColor: '#53B6C4',
         alignItems:'center',
     },
     headerContainer: {
@@ -24,6 +25,8 @@ const styles = StyleSheet.create({
         width: "15%",
         height:50,
         borderRadius:25,
+        backgroundColor: 'white',
+        borderColor: 'white',
         width:50,
         height:50,
         marginBottom: 5,
@@ -33,7 +36,8 @@ const styles = StyleSheet.create({
         borderWidth:0.7
     },
     inputContainer:{
-        margin: "3%"
+        margin: "3%",
+        color: 'white'
     },
     timePickerContainer:{
         justifyContent:'center',
@@ -64,25 +68,35 @@ const styles = StyleSheet.create({
         height:30,
     },
     text:{
+        color: 'white',
         marginLeft: 10,
-        fontSize: 15
+        fontSize: 15,
+        fontWeight: 'bold'
     },
     textInput:{
         fontSize: 15,
         height: '25%',
+        color: 'white',
+        borderColor: 'white',
+        borderWidth: 2,
         borderRadius:10,
         width: 250,
-        borderWidth: 0.7,
         padding: "2%",
-        margin : "5%"
+        marginBottom : "5%",
+        marginLeft:'5%',
+        marginRight:'5%',
+        marginTop: '2%'
     },
     timeText: {
         fontSize: 16,
+        fontWeight: 'bold',
+        color:'#485786',
         marginTop: "10%",
         marginBottom: "5%"
     },
     timeText2: {
-        fontSize: 15,
+        fontSize: 16,
+        color:'white',
         fontWeight: "bold",
         margin: "3%"
     },
@@ -121,7 +135,8 @@ const styles = StyleSheet.create({
       },
       roundImage: {
         borderWidth:1,
-        borderColor:'rgba(0,0,0,0.8)',
+        backgroundColor: 'white',
+        borderColor:'white',
         width:200,
         height:200,
         borderRadius:100,
@@ -129,6 +144,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
       },
       dogImageContainer:{
+        backgroundColor:'white',
         flexDirection: "column", 
         alignItems:'center', 
         justifyContent:'center',
@@ -154,7 +170,17 @@ const styles = StyleSheet.create({
       },
       roundImageText:{
         justifyContent:'center',
-        fontSize: 20
+        marginTop: 15,
+        fontSize: 15,
+        color:'#485786'
+      },
+      roundImageText2:{
+        justifyContent:'center',
+        marginTop: 15,
+        fontSize: 18,
+        fontWeight: 'bold',
+        color:'white',
+
       },
       btn2: {
         marginTop: 25,

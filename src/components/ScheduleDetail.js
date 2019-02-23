@@ -139,7 +139,7 @@ class ScheduleDetail extends Component {
                                     <Image source={{ uri: image }} style={styles.image2}/> 
                                 ): (
                                 <TouchableOpacity style={styles.roundImage} onPress={()=>this.openPhotoPage()}>
-                                    <Image source={require('../../assets/dog.png')}/> 
+                                    <Image source={require('../../assets/dog_brown.png')}/> 
                                     <Text style={styles.roundImageText}>+ Add Event Photo</Text>
                                 </TouchableOpacity>
                                 )
@@ -172,7 +172,6 @@ class ScheduleDetail extends Component {
 
                     <View style={styles.inputContainer}>
                         <Text style={styles.text}>  Comment</Text>
-                        
                         <AutoGrowingTextInput style={styles.textInput} onChangeText={(comment) => this.setState({comment})}/>
                         
                         {
@@ -209,14 +208,14 @@ class ScheduleDetail extends Component {
                     </View>
                     <View style={styles.textContainer}>
                         <TouchableOpacity onPress={this.useCameraHandler} style={styles.cameraContainer}>
-                            <Image source={require('../../assets/camera.png')} style={styles.cameraImage}/> 
-                            <Text style={styles.roundImageText}> Take a photo </Text> 
+                            <Image source={require('../../assets/camera_sky.png')} style={styles.cameraImage}/> 
+                            <Text style={styles.roundImageText2}> Take a photo </Text> 
                         </TouchableOpacity>
                         <TouchableOpacity onPress={this.useLibraryHandler} style={styles.cameraContainer}>
-                            <Image source={require('../../assets/files.png')} style={styles.cameraImage}/> 
-                            <Text style={styles.roundImageText}>Choose a photo from my album</Text>
+                            <Image source={require('../../assets/album_sky.png')} style={styles.cameraImage}/> 
+                            <Text style={styles.roundImageText2}>Choose a photo from my album</Text>
                         </TouchableOpacity >
-                        <Button style={styles.btn2} type="outline" title="Save this photo"  onPress={() => this.saveEventPhoto()}>
+                        <Button style={styles.btn2} title="Save this photo"  onPress={() => this.saveEventPhoto()}>
                         </Button>
                     </View>
                 </ScrollView>

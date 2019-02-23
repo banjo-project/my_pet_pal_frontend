@@ -37,7 +37,7 @@ export default class ScheduleItem extends React.Component {
                 </View>
                 {comment? (
                     <View style={styles.commentContainer}>
-                        <Text>{this.commentTrim(comment)}</Text>
+                        <Text style={styles.commentText}>{this.commentTrim(comment)}</Text>
                     </View>
                 ):(
                     <View style={styles.timeContainer}>
@@ -46,7 +46,7 @@ export default class ScheduleItem extends React.Component {
                 )}
                 
                 <TouchableOpacity style={styles.btnContainer}>
-                    <Image style={styles.iconImage} source={require('../../assets/paws.png')}/>
+                    <Image style={styles.iconImage} source={require('../../assets/paws_color.png')}/>
                 </TouchableOpacity>
             </View>
         )

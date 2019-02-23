@@ -31,7 +31,7 @@ class ScheduleItem extends React.Component {
                     <Text style={styles.timeText}>{time}</Text>
                 </View>
                 <TouchableOpacity style={styles.btnContainer} onPress={() => this.handleSelect(event)}>
-                    <Image style={styles.iconImage} source={require('../../assets/veterinary.png')}/>
+                    <Image style={styles.iconImage} source={require('../../assets/veterinary_color.png')}/>
                 </TouchableOpacity>
             </View>
         )
