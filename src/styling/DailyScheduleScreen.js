@@ -81,6 +81,9 @@ const styles = StyleSheet.create({
         width: "15%",
         height:50,
         borderRadius:25,
+        backgroundColor: 'white',
+        borderColor: 'white',
+        borderWidth: 2,
         marginBottom: 5,
         marginLeft: 20,
         justifyContent:'center',
@@ -114,7 +117,8 @@ const styles = StyleSheet.create({
     roundImage: {
         marginLeft:'7%',
         borderWidth:1,
-        borderColor:'rgba(0,0,0,0.8)',
+        borderColor:'white',
+        backgroundColor: 'white',
         width:60,
         height:60,
         borderRadius:20,
@@ -123,17 +127,33 @@ const styles = StyleSheet.create({
       },
     headTitle: {
         fontSize: 20,
-        marginTop:"3%"
+        fontWeight: 'bold',
+        color:'#E45A42',
+        marginTop:"5%"
     },
     headText: {
         marginTop: "5%",
+        color:'#485786',
+        fontWeight: 'bold',
         fontSize: 13,
     },
     completedTitleText:{
-        fontSize: 20
+        fontSize: 20,
+        fontWeight:'bold',
+        color: '#E45A42'
     },
     timeText:{
-        marginLeft: "45%"
+        marginLeft: "45%",
+        color:'#485786',
+        fontWeight: 'bold'
+    },
+    typeText:{
+        color:'#485786',
+        fontWeight: 'bold' 
+    },
+    commentText:{
+        color:'#485786',
+        fontWeight: 'bold'
     },
     image: {
         resizeMode: "stretch",

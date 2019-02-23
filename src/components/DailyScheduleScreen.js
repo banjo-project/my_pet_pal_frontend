@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, FlatList, Image } from "react-native";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { LinearGradient } from 'expo';
 import { saveEvent, getAllEvents, getCompletedEvents } from '../action/pets'
 import ScheduleItem from './ScheduleItem'
 import ScheduleDetail from './ScheduleDetail'
@@ -56,6 +57,15 @@ class DailyScheduleScreen extends Component {
 
     return (
         <View style={styles.container}>
+        <LinearGradient
+            colors={['#fafc88','#04bfd8']}
+            style={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                bottom: 0,
+                height: 750,
+            }} ></LinearGradient>
             <View style={styles.contentsContainer}>
 
             <ScheduleDetail 
@@ -69,11 +79,10 @@ class DailyScheduleScreen extends Component {
                     </View>
                    ): (
                     <View style={styles.roundImage}>
-                        <Image source={require('../../assets/dog.png')} style={styles.headerIcon}/> 
+                        <Image source={require('../../assets/dog_brown.png')} style={styles.headerIcon}/> 
                     </View>
                    )}
                    
-                    
                     <View style={styles.headTitleContainer}>
                         <Text style={styles.headTitle}>
                             Banjo's Day

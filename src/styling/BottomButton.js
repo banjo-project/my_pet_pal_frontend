@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
       },
       circle: {
-        backgroundColor: "skyblue",
+        backgroundColor: "#04bfd8",
         alignItems: 'center', 
         justifyContent: 'center',
         width: 30 * 2.5,
@@ -29,6 +29,8 @@ const styles = StyleSheet.create({
       },
       btnText: {
         fontSize: 10,
+        color: 'white',
+        fontWeight: "bold"
       },
   });
 
