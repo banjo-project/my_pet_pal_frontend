@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { saveEvent } from '../action/pets'
+import { LinearGradient } from 'expo';
 import Modal from "react-native-modal"
 import activityToImageMap from './imageMap'
 import HeaderImage from './HeaderImage'
@@ -102,10 +103,20 @@ class PetScheduleScreen extends Component {
   }
 
   render() {
-    
+
     return (
       <View style={styles.mainContainer}>
+
         <View style={styles.dropZone}>
+        <LinearGradient
+      colors={['#04bfd8', '#fafc88' ]}
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 570,
+      }} >
           <Modal visible={this.state.modalVisible}>
             <View style={{ flex: 1, marginTop:130 }}>
             <View style={styles.modalView}  >
@@ -133,36 +144,38 @@ class PetScheduleScreen extends Component {
                 <View style={styles.listContainer}>
                   <Text style={styles.listTitle}>{item.title}</Text>
                   <View style={styles.contentBox}>
-                    <Image source={require('../../assets/dog.png')} style={styles.contentImg}/> 
+                    <Image source={require('../../assets/dog_brown.png')} style={styles.contentImg}/> 
                     <Text style={styles.listText}>{item.key}</Text>
                   </View>
                     {this.state.selected_schedule.map( a => {
                       return (
-                        <View style={{flexDirection: 'row'}}>
-                        <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => this.handleToggle(a.id)}>
+                        <View style={{flexDirection: 'row'}} key={a.id}>
+                        <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => this.handleToggle(a.id)} key={a.id}>
                           <Image source={activityToImageMap[a.activity]} style={{width: 30, height: 30}}/> 
                           <Text style={styles.scheduleText}>{a.activity.toUpperCase()}</Text>
                         </TouchableOpacity >
-                          <TouchableOpacity onPress={() => this.handleTimeChange(a.id)}>
+                          <TouchableOpacity onPress={() => this.handleTimeChange(a.id)} key={a.type}>
                             <Text style={styles.scheduleText2}>{this.handleTime(a.time.toString())}</Text>
                           </TouchableOpacity>
                         </View>
                       )
                     })}
                   <View style={{flexDirection: 'column'}}>
-                    <Button title="Add Schedule"  style={styles.nextBtn2} onPress={this.handleSchedulePage}></Button>
-                    <Button title="Add Human" style={styles.nextBtn1} onPress={this.handleAddHuman}></Button>
+                    <Button type="outline" title="Add Schedule"  style={styles.nextBtn2} onPress={this.handleSchedulePage}></Button>
+                    <Button type="outline" title="Add Human" style={styles.nextBtn1} onPress={this.handleAddHuman}></Button>
                   </View>
                 </View>
                 )}
               />
             </View>
+            </LinearGradient>
         </View>
 
         <View style={styles.ballContainer} />
         <BottomButtons 
           addItem={this.addItem}
           />
+          
     </View>
     );
   }

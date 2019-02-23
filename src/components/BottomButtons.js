@@ -18,7 +18,7 @@ render() {
             <View style={styles.row}>
             {activities1.map( a => {
                 return (
-                <TouchableOpacity style={styles.circle} onPress={()=>this.props.addItem(a)}>    
+                <TouchableOpacity style={styles.circle} onPress={()=>this.props.addItem(a)} key={a} >    
                     <Image source={activityToImageMap[a]} style={styles.image}/> 
                     <Text style={styles.btnText}>{a.toUpperCase()}</Text>
                 </TouchableOpacity>
@@ -28,7 +28,7 @@ render() {
             <View style={styles.row2}>
             {activities2.map( a => {
                 return (
-                <TouchableOpacity style={styles.circle} onPress={()=>this.props.addItem(a)}>
+                <TouchableOpacity style={styles.circle} onPress={()=>this.props.addItem(a)} key={a}>
                     <Image source={activityToImageMap[a]} style={styles.image}/> 
                     <Text style={styles.btnText}>{a.toUpperCase()}</Text>
                 </TouchableOpacity>

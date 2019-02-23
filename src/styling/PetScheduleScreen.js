@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     mainContainer: {
       flex: 1,
+      backgroundColor: '#fafc88',
       justifyContent: 'center',
     },
     ballContainer: {
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     },
     dropZone: {
       height: '85%',
-      backgroundColor: "#00334d",
+      backgroundColor: '#53B6C4',
       justifyContent: 'center',
     },
     text: {
@@ -52,14 +53,15 @@ const styles = StyleSheet.create({
       paddingBottom: '5%', 
       marginTop: '5%',
       marginLeft: 10,
-      fontSize: 15, 
+      color: '#485786',
+      fontSize: 17, 
       fontWeight: 'bold'
     },
     listText: {
-      paddingBottom: '10%', 
+      paddingBottom: '5%', 
       marginTop: '5%',
       fontSize: 17, 
-      color: 'red',
+      color: '#f94f00',
       fontWeight: 'bold'
     },
     scheduleText: {
@@ -97,7 +99,6 @@ const styles = StyleSheet.create({
       width: 55,
     },
     container: {
-      backgroundColor: 'gray',
       alignItems: 'center', 
       justifyContent: 'center', 
      },
