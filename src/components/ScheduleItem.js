@@ -25,7 +25,7 @@ class ScheduleItem extends React.Component {
                     <Image style={styles.iconImage} source={icon} /> 
                 </View>
                 <View style={styles.eventTextContainer}>
-                    <Text>{type.toUpperCase()}</Text>
+                    <Text style={styles.typeText}>{type.toUpperCase()}</Text>
                 </View>
                 <View style={styles.timeContainer}>
                     <Text style={styles.timeText}>{time}</Text>
