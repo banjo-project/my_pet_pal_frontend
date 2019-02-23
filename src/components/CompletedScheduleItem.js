@@ -46,7 +46,7 @@ export default class ScheduleItem extends React.Component {
                 )}
                 
                 <TouchableOpacity style={styles.btnContainer}>
-                    <Image style={styles.iconImage} source={require('../../assets/paws_color.png')}/>
+                    <Image style={styles.iconImage} source={require('../../assets/paws.png')}/>
                 </TouchableOpacity>
             </View>
         )
