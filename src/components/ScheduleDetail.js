@@ -202,7 +202,7 @@ class ScheduleDetail extends Component {
                         {image ? <Image source={{ uri: image }} style={styles.image2}/> 
                             : (
                             <View style={styles.dogImageContainer}>
-                                <Image source={require('../../assets/dog.png')}/>
+                                <Image source={require('../../assets/dog_brown.png')}/>
                                 <Text style={styles.roundImageText}>+ Event Image</Text>
                             </View> 
                             )}

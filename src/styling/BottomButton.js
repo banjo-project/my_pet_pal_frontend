@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
       },
       circle: {
-        backgroundColor: "#53B6C4",
+        backgroundColor: "#04bfd8",
         alignItems: 'center', 
         justifyContent: 'center',
         width: 30 * 2.5,
