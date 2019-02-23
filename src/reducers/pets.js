@@ -8,7 +8,7 @@ import { SAVE_IMAGE,
         SAVE_EVENT_IMAGE,
         GET_EVENTS,
         GET_COMPLETED_EVENTS,
-        POST_COMPLETED_EVENTS  } from '../action/pets'
+         } from '../action/pets'
 
 export const petsData = (state = {}, {type, payload}) => {
     switch(type){
@@ -62,11 +62,6 @@ export const petsData = (state = {}, {type, payload}) => {
             ...state,
             completed_events: payload
           }
-        // case POST_COMPLETED_EVENTS:
-        //   return {
-        //     ...state,
-        //     completed_events: payload
-        //   }
 
         default:
           return state

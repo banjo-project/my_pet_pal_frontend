@@ -80,9 +80,14 @@ const styles = StyleSheet.create({
       alignItems: 'center', 
       justifyContent: 'center', 
     },
-    nextBtn: {
+    nextBtn1: {
+      marginTop: 10,
+      width: 200,
+      justifyContent: 'space-between',
+    },
+    nextBtn2: {
       marginTop: 20,
-      width: 130,
+      width: 200,
       justifyContent: 'space-between',
     },
     textInput: {

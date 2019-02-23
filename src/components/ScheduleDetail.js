@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableWithoutFeedback, View, Text, ScrollView,  TouchableOpacity, Image, DatePickerIOS, Keyboard } from "react-native";
+import { TouchableWithoutFeedback, View, Text, ScrollView, TouchableOpacity, Image, DatePickerIOS, Keyboard, Alert } from "react-native";
 import Modal from "react-native-modal"
 import { Button } from 'react-native-elements'
 import styles from '../styling/ScheduleDetail'
@@ -24,6 +24,7 @@ class ScheduleDetail extends Component {
         result: null,
         image: null,
         completed_time: null,
+        openAlert: false
       };
     }
 
@@ -158,7 +159,16 @@ class ScheduleDetail extends Component {
                         <Text style={styles.timeText}>{time}</Text>
                     </View>
                     </View>
-       
+                    
+                    {this.state.openAlert? 
+                        Alert.alert(
+                        "Notification Sent!",
+                        '',
+                        [
+                            {text: 'OK', onPress: () => this.setState({ openAlert: false })}
+                        ],
+                        {cancelable: false},
+                    ) : null}
 
                     <View style={styles.inputContainer}>
                         <Text style={styles.text}>  Comment</Text>
@@ -181,7 +191,7 @@ class ScheduleDetail extends Component {
                             )
                         }
                         <Button style={styles.btn} title="Completed" onPress={() => this.handleNext(eventId, completed_time)}/>
-                        <Button style={styles.btn} title="Notification" onPress={() => this.handleNotification()}/>
+                        <Button style={styles.btn} title="Notification" onPress={() => this.setState({openAlert: true})}/>
                     </View>
                 </ScrollView>
             ):<View/>}
