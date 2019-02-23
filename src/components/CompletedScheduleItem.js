@@ -32,12 +32,12 @@ export default class ScheduleItem extends React.Component {
 
                 <View style={styles.eventTextContainer}>
                 { type? 
-                    <Text>{type.toUpperCase()}</Text> : null
+                    <Text style={styles.typeText}>{type.toUpperCase()}</Text> : null
                 }    
                 </View>
                 {comment? (
                     <View style={styles.commentContainer}>
-                        <Text style={styles.commentText}>{this.commentTrim(comment)}</Text>
+                        <Text>{this.commentTrim(comment)}</Text>
                     </View>
                 ):(
                     <View style={styles.timeContainer}>

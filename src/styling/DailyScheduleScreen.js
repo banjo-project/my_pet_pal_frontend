@@ -144,16 +144,9 @@ const styles = StyleSheet.create({
     },
     timeText:{
         marginLeft: "45%",
-        color:'#485786',
-        fontWeight: 'bold'
     },
     typeText:{
-        color:'#485786',
         fontWeight: 'bold' 
-    },
-    commentText:{
-        color:'#485786',
-        fontWeight: 'bold'
     },
     image: {
         resizeMode: "stretch",
