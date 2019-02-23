@@ -15,10 +15,10 @@ class ScheduleItem extends React.Component {
 
     render () {
         const event = this.props.event.item
-        const type = this.props.event.item.event_type.toLowerCase()
+        const type = this.props.event.item.event_type && this.props.event.item.event_type
         const time = this.props.event.item.time
         const icon = activityToImageMap[type]
-    
+  
         return (
             <View style={styles.oneEventContainer}>
                 <View style={styles.iconContainer}>

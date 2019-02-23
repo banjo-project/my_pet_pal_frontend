@@ -85,14 +85,24 @@ class PetScheduleScreen extends Component {
     this.setState({
       selected_schedule: ns
     })
-  }
-  handleNext = () => {
     this.props.saveEvent(this.state.selected_schedule)
+  }
+  handleSave = () => {
+    this.props.saveEvent(this.state.selected_schedule)
+    // const savedEvents = this.state.selected_schedule
+    // savedEvent.map(event => )
+  }
+  handleAddHuman = () => {
+    this.handleSave()
     this.props.navigation.navigate('AddHumanPage')
+  }
+  handleSchedulePage = () => {
+    this.handleSave()
+    this.props.navigation.navigate('DailySchedulePage')
   }
 
   render() {
-
+    
     return (
       <View style={styles.mainContainer}>
         <View style={styles.dropZone}>
@@ -139,8 +149,9 @@ class PetScheduleScreen extends Component {
                         </View>
                       )
                     })}
-                  <View style={{flexDirection: 'row'}}>
-                    <Button title="Add a human"  type="outline" style={styles.nextBtn} onPress={this.handleNext}></Button>
+                  <View style={{flexDirection: 'column'}}>
+                    <Button title="Add Schedule"  style={styles.nextBtn2} onPress={this.handleSchedulePage}></Button>
+                    <Button title="Add Human" style={styles.nextBtn1} onPress={this.handleAddHuman}></Button>
                   </View>
                 </View>
                 )}
