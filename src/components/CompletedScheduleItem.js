@@ -19,7 +19,7 @@ export default class ScheduleItem extends React.Component {
         const icon = activityToImageMap[type]
         const image = this.props.event.item.image
         return (
-            <View style={styles.oneEventContainer}>
+            <View style={styles.oneEventContainer} >
                 {image? (
                     <View style={styles.iconContainer}>
                         <Image style={styles.photoImage} source={{uri: image}} /> 

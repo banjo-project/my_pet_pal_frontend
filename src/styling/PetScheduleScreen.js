@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     listOuterContainer: {
       alignItems: 'center', 
       justifyContent: 'center', 
-      marginTop: 100,
-      marginBottom: 20, 
+      marginTop: 80,
+      marginBottom: 100, 
     },
     listContainer: {
       backgroundColor: 'white', 

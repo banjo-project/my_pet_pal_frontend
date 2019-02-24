@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       alignItems:'center',
     },
+    titleContainer:{
+      justifyContent:'center',
+      alignItems:'center',
+    },
     inputContainer: {
       justifyContent:'center',
       alignItems:'center',
@@ -16,11 +20,11 @@ const styles = StyleSheet.create({
     bottomNavContainer: {
       padding: 3,
       fontSize: 30,
-      justifyContent:'center',
-      height: '18%',
+      justifyContent:'flex-end',
+      height: '13%',
     },
     contentsContainer: {
-      height: '65%',
+      height: '100%',
       alignItems:'center',
       marginTop: 20
     },
@@ -45,8 +49,11 @@ const styles = StyleSheet.create({
     },
     title:{
       fontSize: 30,
+      alignItems:'center',
+      justifyContent:'center',
       fontWeight: 'bold',
-      marginTop: 100,
+
+      marginTop: 50,
       color: 'white'
     },
     text: {

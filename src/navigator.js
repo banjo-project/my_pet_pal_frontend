@@ -22,7 +22,7 @@ const RootStack = createStackNavigator (
     DailySchedulePage: DailyScheduleScreen,
   },
   {
-    initialRouteName: 'DailySchedulePage',
+    initialRouteName: 'PetSchedulePage',
   }
 );
 
