@@ -59,8 +59,8 @@ class LogInScreen extends React.Component {
           </View>
         ) : (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-            <Image style={styles.image2} source={require('../../assets/happy_color.png')}/> 
-            <Text style={styles.roundImageText}></Text>
+            <Image source={require('../../assets/happy_color.png')}/> 
+            <Text style={styles.roundImageText}>Welcome back!</Text>
           </TouchableOpacity>
         )}
           <View style={styles.inputContainer}>
