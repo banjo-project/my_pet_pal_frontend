@@ -96,7 +96,7 @@ class DailyScheduleScreen extends Component {
                 </View>
                 <View style={styles.scheduleContainer}>
                     <View style={styles.eventContainer}>
-                        <FlatList
+                        <FlatList  
                             data = {events}
                             renderItem={(event) => (
                                 <ScheduleItem 
@@ -104,10 +104,10 @@ class DailyScheduleScreen extends Component {
                                     isVisible = {this.state.isVisible}
                                     openModalFunc = {this.openModalFunc}
                                     />
-                            )}>
+                            )}
+                            keyExtractor={(item, index) => index.toString()}>
                         </FlatList>
                     </View>
-
                     <View style={styles.completedEventContainer}>
                         <View style={styles.completedTitleContainer}>
                             <Text style={styles.completedTitleText}>Completed Activities</Text>
@@ -115,8 +115,9 @@ class DailyScheduleScreen extends Component {
                         <FlatList
                             data = {completed_events}
                             renderItem={(i) => (
-                                <CompletedScheduleItem event = {i}/>
-                            )}>
+                                <CompletedScheduleItem event = {i} />
+                            )}
+                            keyExtractor={(item, index) => index.toString()}>
                         </FlatList>
                     </View>
                 </View>
@@ -139,5 +140,4 @@ class DailyScheduleScreen extends Component {
   const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEvent, getAllEvents, getCompletedEvents }, dispatch)
   
   export default connect(mapStateToProps, mapDispatchToProps)(DailyScheduleScreen)
-  
   

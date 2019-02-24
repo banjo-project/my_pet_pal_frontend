@@ -112,7 +112,7 @@ class ScheduleDetail extends Component {
 
         return (
 
-        <Modal isVisible={this.props.isVisible} >
+        <Modal isVisible={this.props.isVisible} key={eventId}>
 
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={styles.container}>

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
       row2: {
         padding: '3%',
         flexDirection: "row",
-        marginBottom: '17%',
+        marginBottom: '15%',
         justifyContent: 'space-around',
       },
       circle: {

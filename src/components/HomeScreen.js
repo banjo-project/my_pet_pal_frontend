@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput, Image, Alert } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, Image, Alert, ScrollView } from 'react-native';
 import BottomNav from './BottomNav'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../styling/HomeScreen'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
@@ -31,50 +32,57 @@ class HomeScreen extends React.Component {
   
     return (
       <View style={styles.container}>
-      <Text style={styles.title}>MY PET PAL</Text>
-        <View style={styles.contentsContainer}>
-        {image ? (
-          <View style={styles.roundImage} onPress={this.handleAddImage}>
-            <Image style={styles.image} source={{ uri: image }} /> 
-          </View>
-        ) : (
-          <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-            <Image source={require('../../assets/dog_pink.png')}/> 
-            <Text style={styles.roundImageText}>+ Pet Image</Text>
-          </TouchableOpacity>
-        )}
-          
-          {!this.state.openNameInput? (
-            <View>
-            <TouchableOpacity onPress={this.handleAddName} style={{flexDirection: 'row'}}> 
-              <Text style={styles.text}> Tell us about your Pet!  </Text>
-              {/* <Image source={require('../../assets/happy_yellow.png')} style={{width:30, height:30, marginTop: 15}} /> */}
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.handleLogIn} style={{flexDirection: 'row', alignItems:'center', justifyContent:'center'}}> 
-              <Text style={styles.text2}> Already have an account?  </Text>
-            </TouchableOpacity>
-            </View>
-          ): (
-              <View style={styles.inputContainer}>
-                <Text style={styles.text}>What's your pet's name?</Text>
-                <TextInput style={styles.textInput} onChangeText={(petName) => this.setState({petName})}></TextInput>
-                <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
-              </View>
-          )} 
-
-          {this.state.openErrorMsg? 
-            Alert.alert(
-              "Please enter your dog's name",
-              '',
-              [
-                {text: 'OK', onPress: () => this.setState({ openErrorMsg: false })}
-              ],
-              {cancelable: false},
-            ) : null}
-          
+      <ScrollView>
+      <KeyboardAwareScrollView>
+        <View style={styles.titleContainer}>
+        <Text style={styles.title}>MY PET PAL</Text>
         </View>
+          <View style={styles.contentsContainer}>
+          {image ? (
+            <View style={styles.roundImage} onPress={this.handleAddImage}>
+              <Image style={styles.image} source={{ uri: image }} /> 
+            </View>
+          ) : (
+            <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
+              <Image source={require('../../assets/dog_brown.png')}/> 
+              <Text style={styles.roundImageText}>+ Pet Image</Text>
+            </TouchableOpacity>
+          )}
+            
+            {!this.state.openNameInput? (
+              <View>
+                <TouchableOpacity onPress={this.handleAddName} style={{flexDirection: 'row'}}> 
+                  <Text style={styles.text}> Tell us about your Pet!  </Text>
+                  {/* <Image source={require('../../assets/happy_yellow.png')} style={{width:30, height:30, marginTop: 15}} /> */}
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.handleLogIn} style={{flexDirection: 'row', alignItems:'center', justifyContent:'center'}}> 
+                  <Text style={styles.text2}> Already have an account?  </Text>
+                </TouchableOpacity>
+              </View>
+            ): (
+                <View style={styles.inputContainer}>
+                    <Text style={styles.text}>What's your pet's name?</Text>
+                    <TextInput style={styles.textInput} onChangeText={(petName) => this.setState({petName})}></TextInput>
+                    <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
+                </View>
+            )} 
+
+            {this.state.openErrorMsg? 
+              Alert.alert(
+                "Please enter your dog's name",
+                '',
+                [
+                  {text: 'OK', onPress: () => this.setState({ openErrorMsg: false })}
+                ],
+                {cancelable: false},
+              ) : null}
+            
+          </View>
+          
+        </KeyboardAwareScrollView>
+        </ScrollView>
         <View style={styles.bottomNavContainer}>
-          <BottomNav />
+            <BottomNav />
         </View>
       </View>
     )
@@ -92,4 +100,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({ saveName }, dispat
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+
 
