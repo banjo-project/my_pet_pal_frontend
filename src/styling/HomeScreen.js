@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
   },
     roundImageText:{
       justifyContent:'center',
-      fontSize: 20,
+      fontSize: 18,
+      marginTop: 15,
       color: "#E45A42"
     },
     title:{

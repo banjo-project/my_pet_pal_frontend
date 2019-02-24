@@ -106,18 +106,17 @@ class PetScheduleScreen extends Component {
 
     return (
       <View style={styles.mainContainer}>
-
         <View style={styles.dropZone}>
         <LinearGradient
-      colors={['#04bfd8', '#fafc88' ]}
-      style={{
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 100,
-        height: 570,
-      }} >
+          colors={['#04bfd8', '#fafc88' ]}
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 100,
+            height: 570,
+          }} >
           <Modal visible={this.state.modalVisible}>
             <View style={{ flex: 1, marginTop:130 }}>
             <View style={styles.modalView}  >
@@ -171,12 +170,8 @@ class PetScheduleScreen extends Component {
             </View>
             </LinearGradient>
         </View>
-
         <View style={styles.ballContainer} />
-        <BottomButtons 
-          addItem={this.addItem}
-          />
-          
+        <BottomButtons addItem={this.addItem} />        
     </View>
     );
   }

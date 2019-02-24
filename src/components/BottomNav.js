@@ -14,6 +14,10 @@ constructor(props) {
 render() {
     return (
         <View style={{flex: 1, flexDirection: 'row'}}>
+            <TouchableOpacity style={styles.bottomNavItem}>
+              <MaterialIcons name="home" size={40} color="white" />
+              <Text style={styles.text}>Home</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.bottomNavItem} onPress={()=>this.props.navigation.navigate('ManageHumanPage')}>
               <MaterialIcons name="face" size={40} color="white"/>
               <Text style={styles.text}>Humans</Text>
@@ -25,10 +29,6 @@ render() {
             <TouchableOpacity style={styles.bottomNavItem}>
               <FontAwesome name="heartbeat" size={40} color="white" />
               <Text style={styles.text}>Stats</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.bottomNavItem}>
-              <MaterialIcons name="settings-applications" size={40} color="white" />
-              <Text style={styles.text}>Settings</Text>
             </TouchableOpacity>
         </View>
     )

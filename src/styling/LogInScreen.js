@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     bottomNavContainer: {
       padding: 3,
       fontSize: 30,
-      justifyContent:'center',
+      justifyContent:'flex-end',
+      marginBottom: '7%',
       height: '13%',
     },
     contentsContainer: {
@@ -59,15 +60,23 @@ const styles = StyleSheet.create({
       margin: 10,
       height: 30, 
       fontSize: 15,
+      color: 'white',
       width: 230,
       borderColor: '#CBE7ED', 
       borderWidth: 2
+    },
+    roundImageText:{
+      justifyContent:'center',
+      fontSize: 18,
+      marginTop: 15,
+      color: "#E45A42"
     },
     textInput2: {
         alignItems:'center',
         justifyContent:'center',
         margin: 10,
         height: 30, 
+        color: 'white',
         fontSize: 15,
         width: 180,
         borderColor: '#CBE7ED', 
@@ -75,7 +84,7 @@ const styles = StyleSheet.create({
     },
     nextBtn: {
       marginTop: 30,
-      width: 150,
+      width: 170,
       alignItems:'center',
       justifyContent:'center',
     }
