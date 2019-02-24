@@ -1,4 +1,5 @@
 import { OPEN_HUMAN_IMAGE, 
+        CLOSE_HUMAN_IMAGE,
          SAVE_HUMAN_IMAGE,
          SAVE_HUMAN_NAME,
         } from '../action/humans'
@@ -6,6 +7,11 @@ import { OPEN_HUMAN_IMAGE,
 export const humansData = (state={}, {type, payload}) => {
     switch(type){
         case OPEN_HUMAN_IMAGE:
+          return {
+            ...state,
+            humanImageOpen: payload
+          }
+        case CLOSE_HUMAN_IMAGE:
           return {
             ...state,
             humanImageOpen: payload

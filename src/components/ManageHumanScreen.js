@@ -8,8 +8,8 @@ import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { bindActionCreators } from 'redux'
-import { saveName } from '../action/pets'
-import Communications from 'react-native-communications';
+import { openHumanImage } from '../action/humans'
+
 
 class ManageHumanScreen extends React.Component {
   state = {
@@ -28,6 +28,7 @@ class ManageHumanScreen extends React.Component {
   };
 
   handleAddImage = () => {
+    this.props.openHumanImage()
     this.props.navigation.navigate('PetPhotoPage')
   }
 
@@ -54,7 +55,7 @@ class ManageHumanScreen extends React.Component {
             </View>
             ) : (
             <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
-                <Image style={styles.image2} source={require('../../assets/happy_color.png')}/> 
+                <Image source={require('../../assets/happy_color.png')}/> 
                 <Text style={styles.roundImageText}>+ Human Image</Text>
             </TouchableOpacity>
             )}
@@ -78,7 +79,6 @@ class ManageHumanScreen extends React.Component {
               <Button style={styles.btn} title="Send Invitation" onPress={()=>{this.setState({ openInvitation: !this.state.openInvitation, openProfile: false, openAlert: true})}}></Button>
               <Button style={styles.btn} title="Your Human's profile" onPress={()=>{this.setState({ openProfile: !this.state.openProfile, openInvitation: false})}}></Button>
             </View>
-              
           </KeyboardAwareScrollView>
         </View>
         ): null}
@@ -119,7 +119,7 @@ const mapStateToProps = (state) => {
   })
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ saveName }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ openHumanImage }, dispatch)
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageHumanScreen)
