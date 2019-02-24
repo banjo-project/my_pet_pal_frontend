@@ -6,6 +6,14 @@ export const openHumanImage = () => {
     }
 }
 
+export const CLOSE_HUMAN_IMAGE = 'CLOSE_HUMAN_IMAGE'
+export const closeHumanImage = () => {
+    return {
+        type: CLOSE_HUMAN_IMAGE,
+        payload: false
+    }
+}
+
 export const SAVE_HUMAN_IMAGE = 'SAVE_HUMAN_IMAGE'
 export const saveHumanImage = (image) => {
     return {

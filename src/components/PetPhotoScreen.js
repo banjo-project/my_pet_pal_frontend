@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { saveImage } from '../action/pets'
 import { Button } from 'react-native-elements'
-import { openHumanImage, saveHumanImage } from '../action/humans'
+import { openHumanImage, closeHumanImage, saveHumanImage } from '../action/humans'
 import styles from '../styling/PetPhotoScreen'
 import { Text, ScrollView, View, TouchableOpacity, Image } from 'react-native';
 import { ImagePicker, Permissions } from 'expo';
@@ -53,6 +53,7 @@ class PetPhotoScreen extends Component {
 
   handleHumanNext = async () => {
     this.props.saveHumanImage(this.state.image)
+    this.props.closeHumanImage()
     this.props.navigation.navigate('AddHumanPage')
   }
 
@@ -65,7 +66,7 @@ class PetPhotoScreen extends Component {
                 {image ? <Image source={{ uri: image }} style={styles.image}/> 
                     : (
                     <View style={styles.dogImageContainer}>
-                        <Image source={require('../../assets/happy.png')}/>
+                        <Image source={require('../../assets/happy_color.png')}/>
                         <Text style={styles.roundImageText}>+ Human Image</Text>
                     </View> 
                     )}
@@ -79,7 +80,7 @@ class PetPhotoScreen extends Component {
                     <Image source={require('../../assets/album_sky.png')} style={styles.cameraImage}/> 
                     <Text style={styles.roundImageText2}>Choose a photo from my album</Text>
                 </TouchableOpacity >
-                <Button style={styles.btn} type="outline" title="Save this photo"  onPress={() => this.handleHumanNext(image)}>
+                <Button style={styles.btn} title="Save this photo"  onPress={() => this.handleHumanNext(image)}>
                 </Button>
             </View>
         </ScrollView>
@@ -89,7 +90,7 @@ class PetPhotoScreen extends Component {
                 {image ? <Image source={{ uri: image }} style={styles.image}/> 
                     : (
                     <View style={styles.dogImageContainer}>
-                        <Image source={require('../../assets/dog_pink.png')}/>
+                        <Image source={require('../../assets/dog_brown.png')}/>
                         <Text style={styles.roundImageText}>+ Pet Image</Text>
                     </View> 
                     )}
@@ -117,7 +118,7 @@ const mapStateToProps = (state) => {
   })
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ saveImage, openHumanImage, saveHumanImage }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ saveImage, openHumanImage, closeHumanImage, saveHumanImage }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(PetPhotoScreen)
 

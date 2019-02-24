@@ -33,16 +33,16 @@ const styles = StyleSheet.create({
     roundImage: {
         alignItems: 'center',
         backgroundColor: '#CBE7ED',
-        width:160,
-        height:160,
-        borderRadius:80,
+        width:200,
+        height:200,
+        borderRadius:100,
         justifyContent:'center',
     },
     image: {
         resizeMode: "stretch",
-        height: 120,
-        width: 120,
-        borderRadius: 60
+        height: 200,
+        width: 200,
+        borderRadius: 100
     },
     image2: {
         height: 35,
@@ -87,6 +87,8 @@ const styles = StyleSheet.create({
       height: 30, 
       fontSize: 17,
       width: 150,
+      alignItems: 'center',
+      justifyContent:'center',
       borderColor: '#CBE7ED', 
       color: "white",
       borderWidth: 2,
@@ -98,6 +100,8 @@ const styles = StyleSheet.create({
         height: 30, 
         fontSize: 17,
         width: 230,
+        alignItems: 'center',
+        justifyContent:'center',
         borderColor: '#CBE7ED', 
         color: "white",
         borderWidth: 2,

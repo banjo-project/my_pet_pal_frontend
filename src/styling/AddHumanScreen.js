@@ -40,16 +40,16 @@ const styles = StyleSheet.create({
     roundImage: {
       alignItems: 'center',
       backgroundColor: '#CBE7ED',
-      width:200,
-      height:200,
-      borderRadius:100,
+      width:160,
+      height:160,
+      borderRadius:80,
       justifyContent:'center',
     },
     image: {
       resizeMode: "stretch",
-      height: 120,
-      width: 120,
-      borderRadius: 60
+      height: 160,
+      width: 160,
+      borderRadius: 80
   },
       image2: {
         height: 35,
