@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         resizeMode: "stretch",
     },
     eventTextContainer:{
-        width: "15%",
+        width: "20%",
         marginLeft: "2%"
     },
     timeContainer:{

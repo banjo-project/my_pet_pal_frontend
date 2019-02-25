@@ -5,6 +5,3 @@ export const setAuthentication = id => ({
   payload: id
 })
 
-
-
-

@@ -31,7 +31,7 @@ class PetInfoScreen extends React.Component {
   
   handleNext = () => {
     this.props.saveBreed(this.state.petBreed)
-    this.props.saveSex(this.state.petSex)
+    this.props.saveSex(this.state.petSex.toLowerCase())
     this.props.saveBirthday(this.state.petBirthday)
     this.props.navigation.navigate('PetSchedulePage')
   }

@@ -7,7 +7,8 @@ import { SAVE_IMAGE,
         SELECTED_SCHEDULE,
         SAVE_EVENT_IMAGE,
         GET_EVENTS,
-        GET_COMPLETED_EVENTS,
+        GET_PET_INFO,
+        GET_COMPLETED_EVENTS
          } from '../action/pets'
 
 export const petsData = (state = {}, {type, payload}) => {
@@ -56,6 +57,11 @@ export const petsData = (state = {}, {type, payload}) => {
           return {
             ...state,
             events: payload
+          }
+        case GET_PET_INFO:
+          return {
+            ...state,
+            petInfo: payload
           }
         case GET_COMPLETED_EVENTS:
           return {

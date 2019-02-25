@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { SecureStore } from 'expo'
 import { getUserId, postLogin } from '../util/auth'
-import { saveName } from '../action/pets'
+import { saveName, getPetInfo } from '../action/pets'
 import { setAuthentication } from '../action/auth'
 
 class LogInScreen extends React.Component {
@@ -41,7 +41,8 @@ class LogInScreen extends React.Component {
       .then(response => {
         this.setState({ openErrorMsg: false })
         this.props.setAuthentication(response.data.id)
-        this.props.navigation.navigate('DailySchedulePage')
+        this.props.getPetInfo(this.props.auth.user, () =>
+          this.props.navigation.navigate('DailySchedulePage'))
       })
       .catch(() => {
         this.setState({ openErrorMsg: true })
@@ -88,11 +89,12 @@ class LogInScreen extends React.Component {
 const mapStateToProps = (state) => {
   return ({
     petsData: state.petsData,
-    humansData: state.humansData
+    humansData: state.humansData,
+    auth: state.authentication
   })
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ saveName, setAuthentication }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ saveName, getPetInfo, setAuthentication }, dispatch)
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogInScreen)
