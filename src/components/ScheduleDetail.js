@@ -72,7 +72,7 @@ class ScheduleDetail extends Component {
     handleTime = (str) => {
         let hour = Number(str.slice(0, 2))
         if(hour >= 12) {
-            if(hour === 12){return str += ' PM'}
+            if(hour === 12) {return str += ' PM'}
             let newNumber = (hour - 12).toString() 
             newNumber += str.slice(2, 6)
             return newNumber += ' PM'
@@ -82,12 +82,13 @@ class ScheduleDetail extends Component {
 
     handleNext = (eventId, completed_time) => {
         const eventInfo = {completed_time: completed_time, comment: this.state.comment, image: this.state.image }
-        this.props.postCompletedEvent(eventId, 1, eventInfo)
+        this.props.postCompletedEvent(eventId, this.props.petsData.petInfo.pet_id, eventInfo)
+        this.setState({ image: null })
         this.props.closeModalFunc()
     }
     closeModalFunc = () => {
         this.props.closeModalFunc()
-        this.setState({ showTime: false })
+        this.setState({ showTime: false, image: null })
     }
     openPhotoPage = () => {
         this.setState({

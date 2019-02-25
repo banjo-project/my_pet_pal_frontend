@@ -3,7 +3,7 @@ import { View, Text, FlatList, Image, TouchableOpacity, DatePickerIOS } from "re
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { saveEvent } from '../action/pets'
+import { saveEvent, createEvent } from '../action/pets'
 import { LinearGradient } from 'expo';
 import Modal from "react-native-modal"
 import activityToImageMap from './imageMap'
@@ -42,24 +42,25 @@ class PetScheduleScreen extends Component {
   }
 
   handleTime = (str) => {
-    if(str == '8.5') {
-      return '8:30 AM'
+    if(str == '08:30 AM') {
+      return str
     } else {
-      let time = str.slice(15, 21)
-      let hour = Number(time.slice(0, 3))
+      let time = str.toString().slice(16,21)
+      let hour = Number(time.slice(0,2))
       if(hour >= 12) {
-        if(hour === 12){return time += 'PM'}
+        if(hour === 12) {return time += ' PM'}
         let newNumber = (hour - 12).toString() 
-        newNumber += time.slice(3, 6)
+        newNumber += time.slice(2, 6)
         return newNumber += ' PM'
-      } return time += ' AM'
+      }
+    return time += ' AM' 
     }
   }
 
   addItem = (a) => {
     const activity = { id: shortid.generate(),
-                       activity: a,
-                       time: 8.5 }
+                       event_type: a,
+                       time: "08:30 AM" }
     const joined = this.state.selected_schedule.concat(activity);
     this.setState({ selected_schedule: joined })
   }
@@ -86,24 +87,28 @@ class PetScheduleScreen extends Component {
     this.setState({
       selected_schedule: ns
     })
-    this.props.saveEvent(this.state.selected_schedule)
   }
-  handleSave = () => {
-    this.props.saveEvent(this.state.selected_schedule)
-    // const savedEvents = this.state.selected_schedule
-    // savedEvent.map(event => )
-  }
+  // handleSave = () => {
+  //   // this.props.saveEvent(this.state.selected_schedule)
+  //   const eventArr = this.state.selected_schedule
+  //   eventArr.forEach(event => {
+  //     const eventInfo = { event_type: event.event_type, time: event.time}
+  //     this.props.createEvent(1, eventInfo)
+  //   });
+  // }
+
+
   handleAddHuman = () => {
-    this.handleSave()
+    this.props.saveEvent(this.state.selected_schedule)
     this.props.navigation.navigate('AddHumanPage')
   }
+  
   handleSchedulePage = () => {
     this.handleSave()
     this.props.navigation.navigate('DailySchedulePage')
   }
 
   render() {
-
     return (
       <View style={styles.mainContainer}>
         <View style={styles.dropZone}>
@@ -138,8 +143,7 @@ class PetScheduleScreen extends Component {
           </Modal>
         <View opacity={0.8} style={styles.listOuterContainer}>
           <FlatList
-            data={[{title: `What does ${this.props.petsData.petName}'s daily schedule look like?`, key: '  BANJO WAKES UP!'}]}
-            //`   ${this.props.petsData.petName.toUpperCase()} WAKES UP!`}]}
+            data={[{title: `What does ${this.props.petsData.petName}'s daily schedule look like?`, key: `  ${this.props.petsData.petName.toUpperCase()} WAKES UP!`}]}
             renderItem={({item, separators}) => (
                 <View style={styles.listContainer}>
                   <Text style={styles.listTitle}>{item.title}</Text>
@@ -151,17 +155,17 @@ class PetScheduleScreen extends Component {
                       return (
                         <View style={{flexDirection: 'row'}} key={a.id}>
                         <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => this.handleToggle(a.id)} key={a.id}>
-                          <Image source={activityToImageMap[a.activity]} style={{width: 30, height: 30}}/> 
-                          <Text style={styles.scheduleText}>{a.activity.toUpperCase()}</Text>
+                          <Image source={activityToImageMap[a.event_type]} style={{width: 30, height: 30}}/> 
+                          <Text style={styles.scheduleText}>{a.event_type.toUpperCase()}</Text>
                         </TouchableOpacity >
                           <TouchableOpacity onPress={() => this.handleTimeChange(a.id)} key={a.type}>
-                            <Text style={styles.scheduleText2}>{this.handleTime(a.time.toString())}</Text>
+                            <Text style={styles.scheduleText2}>{this.handleTime(a.time)}</Text>
                           </TouchableOpacity>
                         </View>
                       )
                     })}
                   <View style={{flexDirection: 'column'}}>
-                    <Button type="outline" title="Add Schedule"  style={styles.nextBtn2} onPress={this.handleSchedulePage}></Button>
+                    {/* <Button type="outline" title="Add Schedule"  style={styles.nextBtn2} onPress={this.handleSchedulePage}></Button> */}
                     <Button type="outline" title="Add Human" style={styles.nextBtn1} onPress={this.handleAddHuman}></Button>
                   </View>
                 </View>
@@ -183,7 +187,7 @@ const mapStateToProps = (state) => {
   })
 } 
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEvent }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ saveEvent, createEvent }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(PetScheduleScreen)
 

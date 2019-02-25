@@ -15,7 +15,7 @@ render() {
     return (
         <View style={{flex: 1, flexDirection: 'row'}}>
             <TouchableOpacity style={styles.bottomNavItem}>
-              <MaterialIcons name="home" size={40} color="white" />
+              <MaterialIcons name="home" size={40} color="white" onPress={()=>this.props.navigation.navigate('Home')}/>
               <Text style={styles.text}>Home</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.bottomNavItem} onPress={()=>this.props.navigation.navigate('ManageHumanPage')}>
@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
       alignItems:'center',
     },
     text:{
-      color: "white"
+      color: "white",
+      fontWeight: 'bold'
     }
 });
   

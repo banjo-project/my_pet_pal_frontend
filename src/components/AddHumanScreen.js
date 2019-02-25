@@ -1,15 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { openHumanImage, saveHumanName } from '../action/humans'
+import { openHumanImage, saveHumanName, createUser } from '../action/humans'
 import { Text, View, TouchableOpacity, TextInput, Image, ScrollView } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Button } from 'react-native-elements'
 import BottomNav from './BottomNav'
 import HeaderImage from './HeaderImage'
 import styles from '../styling/AddHumanScreen'
-import axios from 'axios'
-const BASE_URL = 'http://localhost:5000'
 
 class AddHumanScreen extends React.Component {
 
@@ -21,8 +19,7 @@ class AddHumanScreen extends React.Component {
       email: '',
       password: '',
       password2: '',
-      phone_number: '',
-      errorMessage: ''
+      errorMessage: '',
     }
   }
 
@@ -54,14 +51,6 @@ class AddHumanScreen extends React.Component {
       this.setState({ password2, errorMessage: '' })
     }
   }
-  phoneValidate = (phone_number) => {
-    let reg = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/;
-    if(reg.test(phone_number) === false){
-      this.setState({ phone_number, errorMessage: 'Please type valid phone number.' })
-      } else {
-      this.setState({ phone_number, errorMessage: '' })
-    }
-  }
 
   handleNext = () => {
     if(!this.state.errorMessage){
@@ -70,21 +59,27 @@ class AddHumanScreen extends React.Component {
     }
   }
 
+  // handleSave = () => {
+  //   // this.props.saveEvent(this.state.selected_schedule)
+  //   const eventArr = this.state.selected_schedule
+  //   eventArr.forEach(event => {
+  //     const eventInfo = { event_type: event.event_type, time: event.time}
+  //     this.props.createEvent(1, eventInfo)
+  //   });
+  // }
+
+
   handleSignUp = () => {
     if (!this.state.username|| !this.state.email || !this.state.password || !this.state.password2) {
       this.setState({
         errorMessage: 'Please enter all fields',
-        //showError: true,
       })
-      // console.warn(this.state.errorMessage)
-      return
     }
-
     const newUser = { 
       username: this.state.username,
       password: this.state.password,
       email: this.state.email, 
-      phone_number: this.state.phone_number,
+      image: this.props.humansData.image ? this.props.humansData.image: null,
       title: this.state.title,
       petName: this.props.petsData.petName, 
       petBirthday: this.props.petsData.petBirthday,
@@ -92,30 +87,9 @@ class AddHumanScreen extends React.Component {
       petImg: this.props.petsData.petImage ? this.props.petsData.petImage: null,
       petSex: this.props.petsData.petSex
     }
-
-    axios.post(`${BASE_URL}/users`, newUser)
-      .then((response) => {
-        // console.warn(response)
-        this.setState({
-          showError: false
-        })
-        this.props.navigation.navigate('LogInPage')
-      })
-      .catch(error => {
-        // console.warn(error)
-        this.setState({
-          errorMessage: 'Signup Failed',
-          showError: true,
-          username: '',
-          title: '',
-          email: '',
-          password: '',
-          password2: '',
-          phone_number: ''
-        })
-      })
+    this.props.createUser(newUser)
+    this.props.navigation.navigate('LogInPage')
   }
-
 
   render() {
     const image = this.props.humansData.humanImage
@@ -143,7 +117,6 @@ class AddHumanScreen extends React.Component {
                 <Text style={styles.text}>Email</Text>
                 <Text style={styles.text}>Password</Text>
                 <Text style={styles.text}>Retype Password</Text>
-                <Text style={styles.text}>Phone Number</Text>
               </View>
               <View style={styles.inputContentContainer}>
                 <TextInput style={styles.mdTextInput} value={this.state.username} onChangeText={(username) => this.setState({ username })}></TextInput>
@@ -151,7 +124,6 @@ class AddHumanScreen extends React.Component {
                 <TextInput style={styles.lgTextInput} value={this.state.email} onChangeText={(email) => this.emailValidate(email)}></TextInput>
                 <TextInput style={styles.smTextInput} value={this.state.password} onChangeText={(password) => this.setState({ password })}></TextInput>
                 <TextInput style={styles.smTextInput} value={this.state.password2} onChangeText={(password2) => this.pwValidate(password2)}></TextInput>
-                <TextInput style={styles.mdTextInput} value={this.state.phone_number} onChangeText={(phone_number) => this.phoneValidate(phone_number)}></TextInput>
               </View>
             </View>
             {this.state.errorMessage ? (
@@ -182,7 +154,7 @@ const mapStateToProps = (state) => {
   })
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ openHumanImage, saveHumanName }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ openHumanImage, saveHumanName, createUser }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddHumanScreen)
 

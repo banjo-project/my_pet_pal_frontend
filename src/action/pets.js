@@ -15,6 +15,21 @@ export const getAllEvents = (petId) => {
       ) 
 }
 
+export const GET_PET_INFO = 'GET_PET_INFO'
+export const getPetInfo = (userId, cb) => {
+    return dispatch => (
+        axios.get(`${BASE_URL}/users/${userId}`)
+        .then(response => {
+            dispatch({
+                type: GET_PET_INFO,
+                payload: response.data.data 
+            })
+            if(cb) cb()
+        })
+        .catch((error) => console.warn(error.response))
+    )
+}
+
 export const GET_COMPLETED_EVENTS = 'GET_COMPLETED_EVENTS'
 export const getCompletedEvents = (petId) => {
     return dispatch => (
@@ -30,16 +45,18 @@ export const getCompletedEvents = (petId) => {
 }
 
 export const POST_COMPLETED_EVENTS = 'POST_COMPLETED_EVENTS'
-export const postCompletedEvent = (eventId, userId, eventInfo) => {
+export const postCompletedEvent = (eventId, userId, eventInfo, cb) => {
     return (dispatch, getState) => (
         
         axios.post(`${BASE_URL}/events/${eventId}/users/${userId}`, eventInfo)
-          .then(response => {       
+          .then(response => {  
+            dispatch(getAllEvents(getState().petsData.selectedSchedule.pet_id)) 
             dispatch(getCompletedEvents(getState().petsData.selectedSchedule.pet_id))
           })
           .catch((error) => console.warn(error.response))
       ) 
 }
+
 
 export const postEvent = (eventId, userId, eventInfo) => {
     return (dispatch, getState) => (
@@ -50,6 +67,17 @@ export const postEvent = (eventId, userId, eventInfo) => {
           })
           .catch((error) => console.warn(error.response))
       ) 
+}
+
+export const createEvent = (petId, eventInfo) => {
+    return (dispatch) => (
+        axios.post(`${BASE_URL}/pets/${petId}/events`, eventInfo)
+        .then(() => {
+            dispatch(getAllEvents(petId))
+            dispatch(getCompletedEvents(petId))
+          })
+          .catch((error) => console.warn(error.response))    
+    )
 }
 
 export const SAVE_IMAGE = 'SAVE_IMAGE'

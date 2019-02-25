@@ -1,3 +1,20 @@
+import axios from 'axios'
+const BASE_URL = 'http://localhost:5000'
+
+export const GET_PET_USER_INFO = 'GET_PET_USER_INFO'
+export const createUser = (newUser) => {
+    return (dispatch) => (
+        axios.post(`${BASE_URL}/users`, newUser)
+        .then((res) => {
+            dispatch({
+                type: GET_PET_USER_INFO,
+                payload: res.data.userData
+              })
+          })
+          .catch((error) => console.warn(error.response))    
+    )
+}
+
 export const OPEN_HUMAN_IMAGE = 'OPEN_HUMAN_IMAGE'
 export const openHumanImage = () => {
     return {
