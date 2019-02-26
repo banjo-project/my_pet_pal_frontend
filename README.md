@@ -1,4 +1,4 @@
-# banjo-project-frontend
+# MY PET PAL - Frontend
 
 Take care of your puppy, all record at your fingertips!<br />
 <br />
