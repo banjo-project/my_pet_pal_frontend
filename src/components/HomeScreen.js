@@ -1,8 +1,8 @@
-import React from 'react';
-import { Text, View, TouchableOpacity, TextInput, Image, Alert, ScrollView } from 'react-native';
+import React from 'react'
+import { Text, View, TouchableOpacity, TextInput, Image, Alert, ScrollView } from 'react-native'
+import styles from '../styling/HomeScreen'
 import BottomNav from './BottomNav'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import styles from '../styling/HomeScreen'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
