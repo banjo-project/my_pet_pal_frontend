@@ -4,7 +4,7 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import styles from '../styling/DailyScheduleScreen'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { openScheduleChecker, selectedSchedule } from '../action/pets'
+import { selectedSchedule } from '../action/pets'
 
 class ScheduleItem extends React.Component {
       
@@ -45,7 +45,7 @@ const mapStateToProps = (state) => {
     })
   } 
   
-const mapDispatchToProps = (dispatch) => bindActionCreators({ openScheduleChecker, selectedSchedule }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ selectedSchedule }, dispatch)
   
 export default connect(mapStateToProps, mapDispatchToProps)(ScheduleItem)
   

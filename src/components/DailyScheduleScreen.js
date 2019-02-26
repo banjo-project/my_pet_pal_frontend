@@ -6,6 +6,7 @@ import { LinearGradient } from 'expo';
 import { saveEvent, getAllEvents, getCompletedEvents, createEvent } from '../action/pets'
 import ScheduleItem from './ScheduleItem'
 import ScheduleDetail from './ScheduleDetail'
+import CompletedScheduleDetail from './CompletedScheduleDetail'
 import CompletedScheduleItem from './CompletedScheduleItem'
 import BottomNav from './BottomNav'
 import styles from '../styling/DailyScheduleScreen'
@@ -17,6 +18,7 @@ class DailyScheduleScreen extends Component {
         super();
         this.state = {
             isVisible: false,
+            isCompletedVisible: false,
         };
     }
 
@@ -43,6 +45,12 @@ class DailyScheduleScreen extends Component {
     } 
     closeModalFunc = () => {
         this.setState({ isVisible: false }) 
+    }
+    openCompletedModalFunc = () => { 
+        this.setState({ isCompletedVisible: true }) 
+    } 
+    closeCompletedModalFunc = () => {
+        this.setState({ isCompletedVisible: false }) 
     }
 
     compare = (a, b) => {
@@ -79,6 +87,9 @@ class DailyScheduleScreen extends Component {
                 <ScheduleDetail 
                     isVisible = {this.state.isVisible}
                     closeModalFunc = {this.closeModalFunc}/>
+                <CompletedScheduleDetail 
+                   isCompletedVisible = {this.state.isCompletedVisible}
+                   closeCompletedModalFunc = {this.closeCompletedModalFunc}/>
 
                     <View style={styles.headContainer}>
                     {image ? (
@@ -110,8 +121,7 @@ class DailyScheduleScreen extends Component {
                                     <ScheduleItem 
                                         event = {event}
                                         isVisible = {this.state.isVisible}
-                                        openModalFunc = {this.openModalFunc}
-                                        />
+                                        openModalFunc = {this.openModalFunc} />
                                 )}
                                 keyExtractor={(item, index) => index.toString()}>
                             </FlatList>
@@ -123,7 +133,9 @@ class DailyScheduleScreen extends Component {
                             <FlatList
                                 data = {completed_events}
                                 renderItem={(i) => (
-                                    <CompletedScheduleItem event = {i} />
+                                    <CompletedScheduleItem 
+                                        event = {i}
+                                        openCompletedModalFunc = {this.openCompletedModalFunc} />
                                 )}
                                 keyExtractor={(item, index) => index.toString()}>
                             </FlatList>
