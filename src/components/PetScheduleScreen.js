@@ -21,7 +21,8 @@ class PetScheduleScreen extends Component {
         selected_schedule: [],
         date: new Date(),
         modalVisible: false,
-        time_changed_schedule: ''
+        time_changed_schedule: '',
+        time:''
     };
   }
 
@@ -42,7 +43,7 @@ class PetScheduleScreen extends Component {
   }
 
   handleTime = (str) => {
-    if(str == '08:30 AM') {
+    if(str.length > 9) {
       return str
     } else {
       let time = str.toString().slice(16,21)
@@ -60,7 +61,7 @@ class PetScheduleScreen extends Component {
   addItem = (a) => {
     const activity = { id: shortid.generate(),
                        event_type: a,
-                       time: "08:30 AM" }
+                       time: "8:30 AM" }
     const joined = this.state.selected_schedule.concat(activity);
     this.setState({ selected_schedule: joined })
   }
@@ -71,9 +72,10 @@ class PetScheduleScreen extends Component {
 
   saveTimeChange = () => {
     const activityId = this.state.time_changed_schedule
+
     const ns = this.state.selected_schedule.map(i => {
       if(i.id === activityId){
-        return {...i, time: this.state.date}
+        return {...i, time: this.handleTime(this.state.date)}
       }
       return i
     })
@@ -88,15 +90,6 @@ class PetScheduleScreen extends Component {
       selected_schedule: ns
     })
   }
-  // handleSave = () => {
-  //   // this.props.saveEvent(this.state.selected_schedule)
-  //   const eventArr = this.state.selected_schedule
-  //   eventArr.forEach(event => {
-  //     const eventInfo = { event_type: event.event_type, time: event.time}
-  //     this.props.createEvent(1, eventInfo)
-  //   });
-  // }
-
 
   handleAddHuman = () => {
     this.props.saveEvent(this.state.selected_schedule)
@@ -159,7 +152,7 @@ class PetScheduleScreen extends Component {
                           <Text style={styles.scheduleText}>{a.event_type.toUpperCase()}</Text>
                         </TouchableOpacity >
                           <TouchableOpacity onPress={() => this.handleTimeChange(a.id)} key={a.type}>
-                            <Text style={styles.scheduleText2}>{this.handleTime(a.time)}</Text>
+                            <Text style={styles.scheduleText2}>{a.time}</Text>
                           </TouchableOpacity>
                         </View>
                       )

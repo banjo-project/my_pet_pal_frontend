@@ -44,16 +44,25 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     eventTextContainer:{
-        width: "20%",
-        marginLeft: "2%"
+        width: "25%",
+        marginLeft: "2%",
+        justifyContent:'center',
+        alignItems:'center',
     },
     timeContainer:{
         width: "45%",
+        justifyContent:'center',
+        alignItems:'center',
     },
     timeContainer2:{
         justifyContent:'center',
         alignItems:'center',
     },
+    completedContainer:{
+      justifyContent:'center',
+      alignItems:'center',
+      flexDirection: 'row',
+  },
     roundImage: {
         borderWidth:1,
         borderColor:'rgba(0,0,0,0.8)',
@@ -100,6 +109,24 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         margin: "3%"
     },
+    timeText3: {
+      fontSize: 16,
+      color:'#485786',
+      fontWeight: "bold",
+      margin: "3%"
+    },
+    timeText4: {
+      fontSize: 16,
+      color:'#E45A42',
+      fontWeight: "bold",
+      margin: "3%"
+    },
+    timeText5: {
+      fontSize: 19,
+      color:'white',
+      fontWeight: "bold",
+      margin: "3%"
+  },
     btn:{
         marginTop: 10,
         justifyContent:'center',
@@ -112,6 +139,14 @@ const styles = StyleSheet.create({
         marginLeft: '100%',
         right: 0,
         left: -30,
+        top: 0,
+        bottom: 0,
+      },
+      cancelContainer2: {
+        position: 'absolute',
+        marginLeft: '100%',
+        right: 0,
+        left: -40,
         top: 0,
         bottom: 0,
       },

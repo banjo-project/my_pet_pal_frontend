@@ -5,6 +5,7 @@ import { SAVE_IMAGE,
         SAVE_BIRTHDAY, 
         SAVE_EVENT,
         SELECTED_SCHEDULE,
+        SELECTED_COMPLETED_SCHEDULE,
         SAVE_EVENT_IMAGE,
         GET_EVENTS,
         GET_PET_INFO,
@@ -48,6 +49,11 @@ export const petsData = (state = {}, {type, payload}) => {
             ...state,
             selectedSchedule: payload
           }
+        case SELECTED_COMPLETED_SCHEDULE:
+          return {
+            ...state,
+            selectedCompletedSchedule: payload
+        }
         case SAVE_EVENT_IMAGE:
           return {
             ...state,

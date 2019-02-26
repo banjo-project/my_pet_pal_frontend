@@ -2,8 +2,11 @@ import React from 'react';
 import activityToImageMap from './imageMap'
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import styles from '../styling/DailyScheduleScreen'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { selectedCompletedSchedule } from '../action/pets'
 
-export default class ScheduleItem extends React.Component {
+class CompletedScheduleItem extends React.Component {
 
     commentTrim = (comment) => {    
         if(comment.length> 30){
@@ -12,9 +15,15 @@ export default class ScheduleItem extends React.Component {
         return comment
     }
 
+    handleSelect = (event) => { 
+        this.props.selectedCompletedSchedule(event)
+        this.props.openCompletedModalFunc()
+    }
 
     render () {
+        const event = this.props.event.item
         const type = this.props.event.item.event_type
+        const TYPE = type && type.toUpperCase()
         const comment = this.props.event.item.comment
         const icon = activityToImageMap[type]
         const image = this.props.event.item.image
@@ -45,7 +54,7 @@ export default class ScheduleItem extends React.Component {
                     </View>
                 )}
                 
-                <TouchableOpacity style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btnContainer} onPress={() => this.handleSelect(event)}>
                     <Image style={styles.iconImage} source={require('../../assets/paws.png')}/>
                 </TouchableOpacity>
             </View>
@@ -53,3 +62,15 @@ export default class ScheduleItem extends React.Component {
         
     }
 }
+const mapStateToProps = (state) => {
+    return ({
+      petsData: state.petsData,
+      humansData: state.humansData
+    })
+  } 
+  
+const mapDispatchToProps = (dispatch) => bindActionCreators({ selectedCompletedSchedule }, dispatch)
+  
+export default connect(mapStateToProps, mapDispatchToProps)(CompletedScheduleItem)
+  
+  

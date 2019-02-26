@@ -86,6 +86,7 @@ class ScheduleDetail extends Component {
         this.setState({ image: null })
         this.props.closeModalFunc()
     }
+
     closeModalFunc = () => {
         this.props.closeModalFunc()
         this.setState({ showTime: false, image: null })
@@ -98,6 +99,7 @@ class ScheduleDetail extends Component {
     }
     saveEventPhoto = () => {
         this.setState({
+            showTime: false,
             photoPageOpen: false,
             modalPageOpen: true,
         })
@@ -110,6 +112,7 @@ class ScheduleDetail extends Component {
         const time = this.props.petsData.selectedSchedule && this.props.petsData.selectedSchedule["time"]
         const icon = activityToImageMap[type]
         const completed_time = this.handleTime(date.toString().slice(16,21))
+        const TYPE = type && type.toUpperCase()
 
         return (
 
@@ -119,21 +122,15 @@ class ScheduleDetail extends Component {
             <View style={styles.container}>
             
             {this.state.modalPageOpen? (
-
-                
                 <ScrollView contentContainerStyle={styles.container}>
-
-
                     <TouchableOpacity onPress={() => this.closeModalFunc()} style={styles.cancelContainer}>
                         <Image source={require('../../assets/cancel.png')} style={styles.cancelImg}/>
                         <Text> </Text> 
                     </TouchableOpacity>
-
                     <Text style={styles.timeText}>
                         {date.toString().slice(0,15)}
                     </Text>
                     <View style={styles.headerContainer}>
-
                         {this.state.showTime? (
                                 <View/>
                             ):  image? (
@@ -150,17 +147,16 @@ class ScheduleDetail extends Component {
                         <Text style={styles.timeText2}>Completed Time : {completed_time}</Text>
                     </TouchableOpacity>
                     <View style={styles.oneEventContainer}>
-                    <View style={styles.iconContainer}>
-                        <Image style={styles.iconImage} source={icon} /> 
-                    </View>
-                    <View style={styles.eventTextContainer}>
-                        <Text style={styles.timeText}>{type}</Text>
-                    </View>
-                    <View style={styles.timeContainer}>
-                        <Text style={styles.timeText}>{time}</Text>
-                    </View>
-                    </View>
-                    
+                        <View style={styles.iconContainer}>
+                            <Image style={styles.iconImage} source={icon} /> 
+                        </View>
+                        <View style={styles.eventTextContainer}>
+                            <Text style={styles.timeText}>{TYPE}</Text>
+                        </View>
+                        <View style={styles.timeContainer}>
+                            <Text style={styles.timeText}>{time}</Text>
+                        </View>
+                    </View>         
                     {this.state.openAlert? 
                         Alert.alert(
                         "Notification Sent!",
@@ -170,11 +166,9 @@ class ScheduleDetail extends Component {
                         ],
                         {cancelable: false},
                     ) : null}
-
                     <View style={styles.inputContainer}>
                         <Text style={styles.text}>  Comment</Text>
-                        <AutoGrowingTextInput style={styles.textInput} onChangeText={(comment) => this.setState({comment})}/>
-                        
+                        <AutoGrowingTextInput style={styles.textInput} onChangeText={(comment) => this.setState({comment})}/>          
                         {
                             this.state.showTime? (
                             <View style={styles.timePickerContainer}>

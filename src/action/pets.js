@@ -129,6 +129,13 @@ export const selectedSchedule = (event) => {
         payload: event
     }
 }
+export const SELECTED_COMPLETED_SCHEDULE = 'SELECTED_COMPLETED_SCHEDULE'
+export const selectedCompletedSchedule = (event) => {
+    return {
+        type: SELECTED_COMPLETED_SCHEDULE,
+        payload: event
+    }
+}
 export const SAVE_EVENT_IMAGE = 'SAVE_EVENT_IMAGE'
 export const saveEventImage = (image) => {
     return {
