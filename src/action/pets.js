@@ -1,5 +1,5 @@
 import axios from 'axios'
-const BASE_URL = 'http://localhost:5000'
+const BASE_URL = 'https://banjo-project.herokuapp.com'
 
 export const GET_EVENTS = 'GET_EVENTS'
 export const getAllEvents = (petId) => {

@@ -59,16 +59,6 @@ class AddHumanScreen extends React.Component {
     }
   }
 
-  // handleSave = () => {
-  //   // this.props.saveEvent(this.state.selected_schedule)
-  //   const eventArr = this.state.selected_schedule
-  //   eventArr.forEach(event => {
-  //     const eventInfo = { event_type: event.event_type, time: event.time}
-  //     this.props.createEvent(1, eventInfo)
-  //   });
-  // }
-
-
   handleSignUp = () => {
     if (!this.state.username|| !this.state.email || !this.state.password || !this.state.password2) {
       this.setState({
