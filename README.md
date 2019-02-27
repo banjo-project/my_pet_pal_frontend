@@ -10,8 +10,8 @@ My Pet Pal's goal is to make the lives of all dogs happier. Happy dogs means a h
 
 ### Demo
 
-<img width="403" alt="screen shot 2019-02-26 at 1 56 12 pm" src="https://user-images.githubusercontent.com/41387357/53449639-20093a80-39cf-11e9-85fe-3e6ce3878853.png">
-<img width="406" alt="screen shot 2019-02-26 at 1 52 25 pm" src="https://user-images.githubusercontent.com/41387357/53449636-20093a80-39cf-11e9-8c36-01380317d84b.png">
+<img width="405" alt="screen shot 2019-02-27 at 8 40 30 am" src="https://user-images.githubusercontent.com/41387357/53507315-855f3900-3a6c-11e9-9c16-e5950b84bccb.png">
+<img width="407" alt="screen shot 2019-02-27 at 8 45 25 am" src="https://user-images.githubusercontent.com/41387357/53507314-84c6a280-3a6c-11e9-93c8-15c7ee441e4f.png">
 
 ### Features
 
