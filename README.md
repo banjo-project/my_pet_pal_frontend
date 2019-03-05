@@ -26,7 +26,7 @@ My Pet Pal's goal is to make the lives of all dogs happier. Happy dogs means a h
 
 ### Tech/framework used
 
-* Frontend : HTML / CSS / JavaScript / React Native / Redux / Expo 
+* Frontend : JavaScript / React Native / Redux / Expo 
 * Backend : Node.js / Express / Knex.js / PSQL
 
 ## To install
