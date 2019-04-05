@@ -17,7 +17,7 @@ class HeaderImage extends React.Component {
                         <Text style={styles.headerText}>{petName}</Text>
                     </View>) : 
                     <View style={styles.roundImage2}> 
-                        <Image source={require('../../assets/dog_pink.png')} style={styles.headerIcon}/> 
+                        <Image source={require('../../assets/dog_brown.png')} style={styles.headerIcon}/> 
                         <Text style={styles.headerText2}>{petName}</Text>
                     </View> 
                 }

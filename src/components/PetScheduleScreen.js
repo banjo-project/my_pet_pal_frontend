@@ -112,8 +112,7 @@ class PetScheduleScreen extends Component {
             left: 0,
             right: 0,
             top: 0,
-            bottom: 100,
-            height: 570,
+            height: '100%',
           }} >
           <Modal visible={this.state.modalVisible}>
             <View style={{ flex: 1, marginTop:130 }}>

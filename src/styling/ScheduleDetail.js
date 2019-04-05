@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     timeContainer2:{
         justifyContent:'center',
         alignItems:'center',
+        marginTop: 50,
     },
     completedContainer:{
       justifyContent:'center',
