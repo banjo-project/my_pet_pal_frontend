@@ -80,7 +80,7 @@ class DailyScheduleScreen extends Component {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    height: 750,
+                    height: '100%',
                 }} ></LinearGradient>
                 <View style={styles.contentsContainer}>
 

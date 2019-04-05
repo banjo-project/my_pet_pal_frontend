@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import BottomNav from './BottomNav'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import HeaderImage from './HeaderImage'
 import styles from '../styling/LogInScreen'
 import { Button } from 'react-native-elements'
@@ -64,11 +65,13 @@ class LogInScreen extends React.Component {
             <Text style={styles.roundImageText}>Welcome back!</Text>
           </TouchableOpacity>
         )}
+        <KeyboardAwareScrollView>
+          <View style={styles.inputContainer}>
           <View style={styles.inputContainer}>
             <Text style={styles.text}>Email</Text>
             <TextInput style={styles.textInput1} onChangeText={(humanEmail) => this.setState({humanEmail, openErrorMsg: false })}></TextInput>
             <Text style={styles.text2}>Password</Text>
-            <TextInput style={styles.textInput2} onChangeText={(humanPw) => this.setState({humanPw})}></TextInput>
+            <TextInput style={styles.textInput2} secureTextEntry={true} onChangeText={(humanPw) => this.setState({humanPw})}></TextInput>
           </View>
   
           {this.state.openErrorMsg? (
@@ -77,7 +80,10 @@ class LogInScreen extends React.Component {
             </View>
           ) : null}
           <Button title="Submit" style={styles.nextBtn} onPress={this.handleLogIn}></Button>
+          </View>
+          </KeyboardAwareScrollView>
         </View>
+        
         <View style={styles.bottomNavContainer}>
           <BottomNav />
         </View>

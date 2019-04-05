@@ -23,7 +23,6 @@ class CompletedScheduleItem extends React.Component {
     render () {
         const event = this.props.event.item
         const type = this.props.event.item.event_type
-        const TYPE = type && type.toUpperCase()
         const comment = this.props.event.item.comment
         const icon = activityToImageMap[type]
         const image = this.props.event.item.image

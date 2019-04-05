@@ -37,7 +37,7 @@ class AddHumanScreen extends React.Component {
   }
 
   emailValidate = (email) => {
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+    let reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
     if(reg.test(email) === false){
       this.setState({ email, errorMessage: 'Please type valid email address.' })
       } else {
@@ -112,8 +112,8 @@ class AddHumanScreen extends React.Component {
                 <TextInput style={styles.mdTextInput} value={this.state.username} onChangeText={(username) => this.setState({ username })}></TextInput>
                 <TextInput style={styles.smTextInput} value={this.state.title} onChangeText={(title) => this.setState({ title })}></TextInput>
                 <TextInput style={styles.lgTextInput} value={this.state.email} onChangeText={(email) => this.emailValidate(email)}></TextInput>
-                <TextInput style={styles.smTextInput} value={this.state.password} onChangeText={(password) => this.setState({ password })}></TextInput>
-                <TextInput style={styles.smTextInput} value={this.state.password2} onChangeText={(password2) => this.pwValidate(password2)}></TextInput>
+                <TextInput style={styles.smTextInput} value={this.state.password} secureTextEntry={true} onChangeText={(password) => this.setState({ password })}></TextInput>
+                <TextInput style={styles.smTextInput} value={this.state.password2} secureTextEntry={true} onChangeText={(password2) => this.pwValidate(password2)}></TextInput>
               </View>
             </View>
             {this.state.errorMessage ? (

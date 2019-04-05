@@ -3,7 +3,6 @@ import { TouchableWithoutFeedback, View, Text, ScrollView, TouchableOpacity, Ima
 import Modal from "react-native-modal"
 import styles from '../styling/ScheduleDetail'
 import activityToImageMap from './imageMap'
-import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withNavigation } from 'react-navigation';

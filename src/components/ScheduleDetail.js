@@ -4,6 +4,7 @@ import Modal from "react-native-modal"
 import { Button } from 'react-native-elements'
 import styles from '../styling/ScheduleDetail'
 import activityToImageMap from './imageMap'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -28,41 +29,40 @@ class ScheduleDetail extends Component {
       };
     }
 
-      askPermissionsAsync = async () => {
+    askPermissionsAsync = async () => {
         await Permissions.askAsync(Permissions.CAMERA);
         await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      };
-    
-      useLibraryHandler = async () => {
+    };
+
+    useLibraryHandler = async () => {
         await this.askPermissionsAsync();
         let result = await ImagePicker.launchImageLibraryAsync({
-          allowsEditing: true,
-          aspect: [4, 3],
-          base64: false,
+            allowsEditing: true,
+            aspect: [4, 3],
+            base64: false,
         });
         this.setState({ result });
         this.setState({ image: result.uri });
-      };
-    
-      useCameraHandler = async () => {
+    };
+
+    useCameraHandler = async () => {
         await this.askPermissionsAsync();
         let result = await ImagePicker.launchCameraAsync({
-          allowsEditing: true,
-          aspect: [4, 3],
-          base64: false,
+            allowsEditing: true,
+            aspect: [4, 3],
+            base64: false,
         });
         this.setState({ result });
         this.setState({ image: result.uri });
-      }
-      
-      handleEventNext = async () => {
+    }
+    
+    handleEventNext = async () => {
         this.props.saveEventImage(this.state.image)
         this.props.navigation.navigate('DailySchedulePage')
-      }
+    }
 
     onTextChange = (event) => {
         const { contentSize, text } = event.nativeEvent;
-   
         this.setState({
            text: text,
            height: contentSize.height > 100 ? 100 : contentSize.height
@@ -83,13 +83,13 @@ class ScheduleDetail extends Component {
     handleNext = (eventId, completed_time) => {
         const eventInfo = {completed_time: completed_time, comment: this.state.comment, image: this.state.image }
         this.props.postCompletedEvent(eventId, this.props.petsData.petInfo.pet_id, eventInfo)
-        this.setState({ image: null })
+        this.setState({ image: null, showTime: false, comment: null })
         this.props.closeModalFunc()
     }
 
     closeModalFunc = () => {
         this.props.closeModalFunc()
-        this.setState({ showTime: false, image: null })
+        this.setState({ showTime: false, image: null, comment: null })
     }
     openPhotoPage = () => {
         this.setState({
@@ -127,6 +127,8 @@ class ScheduleDetail extends Component {
                         <Image source={require('../../assets/cancel.png')} style={styles.cancelImg}/>
                         <Text> </Text> 
                     </TouchableOpacity>
+                <KeyboardAwareScrollView>
+                    <View style={styles.timeContainer2}>
                     <Text style={styles.timeText}>
                         {date.toString().slice(0,15)}
                     </Text>
@@ -187,6 +189,8 @@ class ScheduleDetail extends Component {
                         <Button style={styles.btn} title="Completed" onPress={() => this.handleNext(eventId, completed_time)}/>
                         <Button style={styles.btn} title="Notification" onPress={() => this.setState({openAlert: true})}/>
                     </View>
+                    </View>
+                </KeyboardAwareScrollView>
                 </ScrollView>
             ):<View/>}
               
