@@ -5,21 +5,24 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'column',
       backgroundColor: '#53B6C4',
-      paddingLeft: 40,
       alignItems:'center',
+      paddingLeft: '10%',
+      paddingRight: '10%',
     },
     inputContainer: {
-      width: '60%',
       alignItems:'center',
       padding: '1%',
       color:'#CBE7ED'
+    },
+    pickerContainer: {
+      flex: 2
     },
     inputContainer2: {
       flexDirection: "row",
       alignItems:'center',
       color:'#CBE7ED',
       justifyContent: 'center',
-      padding: '1%',
+      paddingTop: '5%',
     },
     titleText: {
       marginTop: 30,
@@ -31,25 +34,33 @@ const styles = StyleSheet.create({
       justifyContent: "center",
     },
     text: {
+      flex: 1,
       marginTop: 15,
       fontSize: 20,
       color: 'white'
     },
     textInput: {
-      margin: 5,
       height: 40, 
-      padding: 10,
       fontSize: 18,
       fontWeight: 'bold',
-      width: 200,
+      flex: 2,
+      textAlign: 'center',
+      borderColor: '#CBE7ED', 
+      color: '#CBE7ED',
+      borderWidth: 1
+    },
+    pickerTextInput: {
+      height: 40, 
+      fontSize: 18,
+      textAlign: 'center',
+      fontWeight: 'bold',
       borderColor: '#CBE7ED', 
       color: '#CBE7ED',
       borderWidth: 1
     },
     datePickerStyle: {
-      width: 200, 
+      flex: 2,
       height: 20,
-      marginTop: 10,
       marginBottom: '5%',
     },
     nextBtn: {
