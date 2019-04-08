@@ -3,10 +3,19 @@ import HeaderImage from './HeaderImage'
 import { Text, View, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { Button } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
+import RNPickerSelect from 'react-native-picker-select'
 import styles from '../styling/PetInfoScreen'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { saveBreed, saveSex, saveBirthday } from '../action/pets'
+
+const sex = [{
+  label: 'Boy',
+  value: 'boy'
+}, {
+  label: 'Girl',
+  value: 'girl'
+}]
 
 class PetInfoScreen extends React.Component {
   constructor(props) {
@@ -37,7 +46,10 @@ class PetInfoScreen extends React.Component {
   }
 
   render() {
-
+    const placeholder = {
+      label: 'Select One',
+      value: null,
+    };
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.container}>
@@ -47,19 +59,30 @@ class PetInfoScreen extends React.Component {
             <View style={styles.inputContainer}>
 
               <View style={styles.inputContainer2}>
-                <Text style={styles.text}>Breed       </Text>
+                <Text style={styles.text}>Breed</Text>
                 <TextInput style={styles.textInput} onChangeText={(petBreed) => this.setState({ petBreed })}
-                  placeholder=" ex) Poodle"></TextInput>
+                  placeholder="e.g. Poodle" placeholderTextColor='#CBE7ED'></TextInput>
               </View>
 
               <View style={styles.inputContainer2}>
-                <Text style={styles.text}>Sex           </Text>
-                <TextInput style={styles.textInput} onChangeText={(petSex) => this.setState({ petSex })}
-                placeholder=" Girl or Boy"></TextInput>
+                <Text style={styles.text}>Sex</Text>
+                <View style={styles.pickerContainer}>
+                  <RNPickerSelect 
+                    placeholder= {placeholder}
+                    items={sex}
+                    textInputProps={{style: styles.pickerTextInput}}
+                    onValueChange={petSex => this.setState({ petSex })}
+                    value={this.state.petSex}
+                    useNativeAndroidPickerStyle={false}
+                    ref={el => {
+                      this.state.petSex = el;
+                    }}
+                  />
+                </View>
               </View>
 
               <View style={styles.inputContainer2}>
-                <Text style={styles.text}>Bithday    </Text>
+                <Text style={styles.text}>Bithday</Text>
                     <DatePicker
                       customStyles={{
                         showIcon: false,
@@ -74,7 +97,8 @@ class PetInfoScreen extends React.Component {
                         },
                         dateText:{
                           color: '#CBE7ED',
-                          fontWeight: 'bold'
+                          fontSize: 18,
+                          fontWeight: 'bold',
                         },
                         placeholderText: {
                             fontSize: 18,
