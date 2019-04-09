@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
     nextBtn: {
       marginTop: 40,
       width: 150,
-    }
+    },
+
   });
 
 export default styles

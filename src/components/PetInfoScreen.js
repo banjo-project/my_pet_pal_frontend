@@ -9,6 +9,27 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { saveBreed, saveSex, saveBirthday } from '../action/pets'
 
+const datePickerCustomStyles = {
+  showIcon: false,
+  dateIcon: {
+    position: 'absolute',
+    height: 0
+  },
+  dateInput: {
+    borderColor: '#CBE7ED',
+    borderWidth: 0.8,
+    color: '#CBE7ED'
+  },
+  dateText:{
+    color: '#CBE7ED',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  placeholderText: {
+      fontSize: 18,
+  }
+}
+
 const sex = [{
   label: 'Boy',
   value: 'boy'
@@ -40,7 +61,7 @@ class PetInfoScreen extends React.Component {
   
   handleNext = () => {
     this.props.saveBreed(this.state.petBreed)
-    this.props.saveSex(this.state.petSex.toLowerCase())
+    this.props.saveSex(this.state.petSex)
     this.props.saveBirthday(this.state.petBirthday)
     this.props.navigation.navigate('PetSchedulePage')
   }
@@ -49,7 +70,7 @@ class PetInfoScreen extends React.Component {
     const placeholder = {
       label: 'Select One',
       value: null,
-    };
+    }
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.container}>
@@ -60,7 +81,7 @@ class PetInfoScreen extends React.Component {
 
               <View style={styles.inputContainer2}>
                 <Text style={styles.text}>Breed</Text>
-                <TextInput style={styles.textInput} onChangeText={(petBreed) => this.setState({ petBreed })}
+                <TextInput style={styles.textInput} onChangeText={(petBreed) => this.setState({  ...this.state, petBreed })}
                   placeholder="e.g. Poodle" placeholderTextColor='#CBE7ED'></TextInput>
               </View>
 
@@ -71,52 +92,27 @@ class PetInfoScreen extends React.Component {
                     placeholder= {placeholder}
                     items={sex}
                     textInputProps={{style: styles.pickerTextInput}}
-                    onValueChange={petSex => this.setState({ petSex })}
+                    onValueChange={petSex => this.setState({ ...this.state, petSex })}
                     value={this.state.petSex}
                     useNativeAndroidPickerStyle={false}
-                    ref={el => {
-                      this.state.petSex = el;
-                    }}
                   />
                 </View>
               </View>
-
               <View style={styles.inputContainer2}>
                 <Text style={styles.text}>Bithday</Text>
                     <DatePicker
-                      customStyles={{
-                        showIcon: false,
-                        dateIcon: {
-                          position: 'absolute',
-                          height: 0
-                        },
-                        dateInput: {
-                          borderColor: '#CBE7ED',
-                          borderWidth: 0.8,
-                          color: '#CBE7ED'
-                        },
-                        dateText:{
-                          color: '#CBE7ED',
-                          fontSize: 18,
-                          fontWeight: 'bold',
-                        },
-                        placeholderText: {
-                            fontSize: 18,
-                        }
-                      }}
+                      customStyles={datePickerCustomStyles}
                       style={styles.datePickerStyle}
-                      
                       date={this.state.petBirthday}
                       mode="date"
                       format="MM-DD-YYYY"
                       minDate="01-01-2000"
-                      maxDate="12-31-2019"
+                      maxDate={new Date()}
                       confirmBtnText="Confirm"
                       cancelBtnText="Cancel"
-                      onDateChange={(date) => {this.setState({petBirthday: date})}}
+                      onDateChange={(date) => {this.setState({ ...this.state, petBirthday: date})}}
                     />
               </View>
-
             </View>
             <Button title="Next" style={styles.nextBtn} onPress={this.handleNext}></Button>
         </View>

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import Navigator from './navigator'
 
 export default class App extends Component {
+
   render() {
     return (
       <Provider store={store}>
