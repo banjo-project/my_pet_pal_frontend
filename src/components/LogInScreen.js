@@ -69,7 +69,7 @@ class LogInScreen extends React.Component {
           <View style={styles.inputContainer}>
           <View style={styles.inputContainer}>
             <Text style={styles.text}>Email</Text>
-            <TextInput style={styles.textInput1} onChangeText={(humanEmail) => this.setState({humanEmail, openErrorMsg: false })}></TextInput>
+            <TextInput style={styles.textInput1} onChangeText={(humanEmail) => this.setState({humanEmail : humanEmail.toLowerCase(), openErrorMsg: false })}></TextInput>
             <Text style={styles.text2}>Password</Text>
             <TextInput style={styles.textInput2} secureTextEntry={true} onChangeText={(humanPw) => this.setState({humanPw})}></TextInput>
           </View>

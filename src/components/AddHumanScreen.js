@@ -93,7 +93,7 @@ class AddHumanScreen extends React.Component {
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
             <Image style={styles.image} source={{ uri: image }} /> 
           </TouchableOpacity>
-        ): (
+          ): (
           <TouchableOpacity style={styles.roundImage} onPress={this.handleAddImage}>
             <Image style={styles.image2} source={require('../../assets/happy_color.png')}/> 
             <Text style={styles.roundImageText}>+ Human Photo </Text>
@@ -111,28 +111,29 @@ class AddHumanScreen extends React.Component {
               <View style={styles.inputContentContainer}>
                 <TextInput style={styles.mdTextInput} value={this.state.username} onChangeText={(username) => this.setState({ username })}></TextInput>
                 <TextInput style={styles.smTextInput} value={this.state.title} onChangeText={(title) => this.setState({ title })}></TextInput>
-                <TextInput style={styles.lgTextInput} value={this.state.email} onChangeText={(email) => this.emailValidate(email)}></TextInput>
+                <TextInput style={styles.lgTextInput} value={this.state.email} onChangeText={(email) => this.emailValidate(email.toLowerCase())}></TextInput>
                 <TextInput style={styles.smTextInput} value={this.state.password} secureTextEntry={true} onChangeText={(password) => this.setState({ password })}></TextInput>
                 <TextInput style={styles.smTextInput} value={this.state.password2} secureTextEntry={true} onChangeText={(password2) => this.pwValidate(password2)}></TextInput>
               </View>
             </View>
+
             {this.state.errorMessage ? (
               <View>
               <Text>{this.state.errorMessage}</Text>
               </View>
               ) : null}
+
             <View style={styles.btnContainer}>
               <Button title="Create Account" style={styles.nextBtn} onPress={this.handleSignUp}></Button>
             </View>
           </View>
           </KeyboardAwareScrollView>
           </ScrollView>
+
         <View style={styles.bottomNavContainer}>
           <BottomNav />
         </View>
-        
-      </View> 
-      
+      </View>
     )
   }
 }
