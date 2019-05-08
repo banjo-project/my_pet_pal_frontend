@@ -4,13 +4,19 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
+    "test": "node_modules/.bin/jest test/**/*.spec.js",
     "eject": "expo eject"
   },
   "dependencies": {
     "@expo/vector-icons": "^9.0.0",
+    "@jest/reporters": "^24.8.0",
     "axios": "^0.18.0",
     "date-and-time": "^0.6.3",
+    "detox": "^12.7.0",
+    "detox-expo-helpers": "^0.6.0",
     "expo": "^32.0.0",
+    "expo-detox-hook": "^1.0.10",
+    "jest-expo": "^32.0.0",
     "react": "16.5.0",
     "react-dom": "^16.8.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
@@ -24,9 +30,11 @@
     "react-native-picker-select": "^6.1.0",
     "react-native-svg": "^9.2.4",
     "react-native-svg-uri": "^1.2.3",
+    "react-native-testing-library": "^1.7.0",
     "react-native-vector-icons": "^6.2.0",
     "react-navigation": "^3.1.5",
     "react-redux": "^6.0.0",
+    "react-test-renderer": "^16.8.6",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
@@ -37,5 +45,18 @@
     "babel-preset-expo": "^5.0.0",
     "eslint": "^5.13.0"
   },
-  "private": true
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "private": true,
+  "detox": {
+    "test-runner": "jest",
+    "configurations": {
+      "ios.sim": {
+        "binaryPath": "bin/Exponent.app",
+        "type": "ios.simulator",
+        "name": "iPhone 8"
+      }
+    }
+  }
 }
