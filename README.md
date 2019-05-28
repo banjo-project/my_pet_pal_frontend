@@ -39,12 +39,27 @@ npm install -g expo-cli
 
 ```
 
-## To run simulator
+## To run iOS simulator
+
+Make sure Xcode is already installed. If Xcode is not installed, find Xcode on the Mac App Store and install it first.
 
 ```bash
-npm start
-run on ios simulator
+expo start
+
 ```
+Then click Run on iOS Simulator button at the left menu on the expo page.
+
+or
+```bash
+expo start --ios
+
+```
+## To run iOS simulator on the iPhone
+
+Install Expo Client App on the iPhone App Store. 
+Run expo in your local machine by following above instruction. Then click Send link with email button on the left menu option. Type your email and send it.
+Open your email in your iPhone, then click the link in the email. It will automatically run this app in your iPhone device.
+
 
 
 
